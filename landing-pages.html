@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IDISTØPIC</title>
+<title>IDISTØPIC — Landing Pages</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500;700&family=Orbitron:wght@900&display=swap" rel="stylesheet">
@@ -655,240 +653,53 @@
     border-color: var(--chrome-2);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 32px rgba(0,0,0,0.5), 0 0 26px rgba(166,169,178,0.16);
   }
-
-  .preview-carousel {
-    position: relative;
-    width: 100%;
-    margin-bottom: 8px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--stroke);
-    background: var(--bg-plate);
-  }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.4s ease;
-  }
-  .carousel-slide {
-    flex: 0 0 100%;
-    display: block;
-    text-decoration: none;
-  }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    padding: 10px 0 4px;
-  }
-  .carousel-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--stroke-strong);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-  }
-  .carousel-arrow {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-    background: none;
-    border: none;
-    color: rgba(255,255,255,0.55);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    line-height: 1;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.2s ease, color 0.2s ease;
-  }
-  .preview-carousel:hover .carousel-arrow { opacity: 1; }
-  .carousel-arrow:hover { color: #fff; }
-  .carousel-arrow.prev {
-    left: 0;
-    background: linear-gradient(90deg, rgba(0,0,0,0.35), transparent);
-    justify-content: flex-start;
-    padding-left: 8px;
-  }
-  .carousel-arrow.next {
-    right: 0;
-    background: linear-gradient(270deg, rgba(0,0,0,0.35), transparent);
-    justify-content: flex-end;
-    padding-right: 8px;
-  }
-
-  .preview-frame.carousel-slide-frame {
-    aspect-ratio: auto;
-    height: 220px;
-    padding: 0;
-    overflow: hidden;
-    display: block;
-  }
-  .carousel-slide-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .carousel-slide-frame .slide-caption {
-    position: absolute;
-    left: 0; right: 0; bottom: 0;
-    padding: 10px 14px;
-    background: linear-gradient(0deg, rgba(0,0,0,0.82), transparent);
-    text-align: left;
-  }
-  .carousel-slide-frame .slide-caption .title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-  }
-  .carousel-slide-frame .slide-caption .subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-dim);
-    margin-top: 2px;
-  }
-  .carousel-slide-frame.is-placeholder {
-    background:
-      repeating-linear-gradient(135deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 2px, transparent 2px, transparent 14px),
-      linear-gradient(180deg, var(--bg-plate), #0d0d10);
-  }
-  .carousel-slide-frame .slide-placeholder-text {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
 </style>
-</head>
+
 <body>
 
   <div class="bg-watermark" aria-hidden="true"></div>
 
   <header class="site-header">
-    <div class="header-logo">IDISTØPIC</div>
+    <a href="index.html" style="text-decoration:none;">
+      <div class="header-logo">IDISTØPIC</div>
+    </a>
   </header>
 
-  <section id="services" class="home-section">
+  <section class="home-section">
 
-    <svg class="home-wordmark-img" viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="IDISTØPIC">
-      <defs>
-        <linearGradient id="wordmarkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#FFFFFF"/>
-          <stop offset="25%" stop-color="#C0C0C8"/>
-          <stop offset="50%" stop-color="#8A8D93"/>
-          <stop offset="75%" stop-color="#C0C0C8"/>
-          <stop offset="100%" stop-color="#FFFFFF"/>
-        </linearGradient>
-      </defs>
-      <text x="50%" y="55%" text-anchor="middle" dominant-baseline="middle" font-family="Orbitron, sans-serif" font-weight="900" font-size="64" letter-spacing="6" fill="url(#wordmarkGradient)">IDISTØPIC</text>
-    </svg>
+    <div class="home-eyebrow">— Landing Pages —</div>
 
     <div class="home-divider"></div>
 
+    <p class="home-tagline">Exemplos reais de páginas feitas sob medida.</p>
+
     <div class="service-card">
-      <h3>Landing Pages</h3>
+      <h3>FB Restaurações</h3>
 
-      <div class="preview-carousel" id="siteCarousel">
-        <button type="button" class="carousel-arrow prev" aria-label="Modelo anterior" onclick="carouselMove(-1)">&#8249;</button>
-        <button type="button" class="carousel-arrow next" aria-label="Próximo modelo" onclick="carouselMove(1)">&#8250;</button>
-        <div class="carousel-track" id="carouselTrack">
-          <a class="carousel-slide" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener">
-            <div class="preview-frame carousel-slide-frame">
-              <span class="corner-bl"></span><span class="corner-br"></span>
-              <span class="frame-shine"></span>
-              <img src="assets/fb-restauracoes.jpg" alt="Prévia do site FB Restaurações">
-              <div class="slide-caption">
-                <div class="title">FB Restaurações</div>
-                <div class="subtitle">Restauração de móveis</div>
-              </div>
-            </div>
-          </a>
-          <a class="carousel-slide" href="landing-pages.html">
-            <div class="preview-frame carousel-slide-frame is-placeholder">
-              <span class="corner-bl"></span><span class="corner-br"></span>
-              <span class="frame-shine"></span>
-              <div class="slide-placeholder-text">
-                <div style="font-family:'Archivo Black',sans-serif; font-size:16px; color:var(--text-dim);">Novo modelo</div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-top:6px;">Em breve</div>
-              </div>
-            </div>
-          </a>
-          <a class="carousel-slide" href="landing-pages.html">
-            <div class="preview-frame carousel-slide-frame is-placeholder">
-              <span class="corner-bl"></span><span class="corner-br"></span>
-              <span class="frame-shine"></span>
-              <div class="slide-placeholder-text">
-                <div style="font-family:'Archivo Black',sans-serif; font-size:16px; color:var(--text-dim);">Novo modelo</div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); margin-top:6px;">Em breve</div>
-              </div>
-            </div>
-          </a>
+      <a class="preview-card" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener" style="display:block; text-decoration:none; margin-bottom:18px;">
+        <div class="preview-frame" style="aspect-ratio:auto; padding:36px 20px;">
+          <span class="corner-bl"></span><span class="corner-br"></span>
+          <span class="frame-shine"></span>
+          <div style="text-align:center;">
+            <div style="font-family:'Archivo Black',sans-serif; font-size:19px; color:var(--text); margin-bottom:8px;">FB Restaurações</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim);">Restauração de móveis</div>
+          </div>
         </div>
-      </div>
-      <div class="carousel-dots" id="carouselDots">
-        <button type="button" class="carousel-dot active" aria-label="Modelo 1" onclick="carouselGoTo(0)"></button>
-        <button type="button" class="carousel-dot" aria-label="Modelo 2" onclick="carouselGoTo(1)"></button>
-        <button type="button" class="carousel-dot" aria-label="Modelo 3" onclick="carouselGoTo(2)"></button>
-      </div>
-      <div class="preview-label" style="text-align:center; margin: 4px 0 18px;">Desliza para ver mais →</div>
+        <div class="preview-label">Ver site ao vivo →</div>
+      </a>
 
-      <p>Página própria pro teu negócio, feita sob medida.</p>
+      <p>Restauração de móveis. Página feita para apresentar o trabalho e captar contato de clientes.</p>
       <div class="row">
-        <a href="landing-pages.html" class="btn-secondary">Ver exemplos</a>
-        <a href="/briefing" class="btn-primary">Pedir orçamento</a>
+        <a href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener" class="btn-secondary">Ver site</a>
       </div>
     </div>
-    <div class="service-card disabled">
-      <span class="tag">Em breve</span>
-      <h3>Automações</h3>
-      <p>Fluxos automáticos para o teu negócio — briefing, orçamento, notificações. Em construção.</p>
+
+    <div class="cta-row" style="margin-top:8px;">
+      <a href="/briefing" class="btn-primary">Pedir orçamento</a>
     </div>
 
     <div class="home-footer">IDISTØPIC &nbsp;·&nbsp; @idistopic</div>
   </section>
 
-
-<script>
-(function () {
-  var track = document.getElementById('carouselTrack');
-  var dots = document.querySelectorAll('#carouselDots .carousel-dot');
-  var index = 0;
-  var total = dots.length;
-
-  function update() {
-    track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
-  }
-
-  window.carouselMove = function (dir) {
-    index = (index + dir + total) % total;
-    update();
-  };
-  window.carouselGoTo = function (i) {
-    index = i;
-    update();
-  };
-
-  var startX = 0;
-  track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', function (e) {
-    var diff = e.changedTouches[0].clientX - startX;
-    if (diff > 40) carouselMove(-1);
-    else if (diff < -40) carouselMove(1);
-  });
-})();
-</script>
 </body>
 </html>
