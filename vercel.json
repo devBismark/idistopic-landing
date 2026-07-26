@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/briefing", "destination": "https://client-flow-ekgp.onrender.com/index.html" },
     { "source": "/painel", "destination": "https://client-flow-ekgp.onrender.com/admin.html" },
+    { "source": "/login.html", "destination": "https://client-flow-ekgp.onrender.com/login.html" },
     { "source": "/api/:path*", "destination": "https://client-flow-ekgp.onrender.com/api/:path*" }
   ]
 }
