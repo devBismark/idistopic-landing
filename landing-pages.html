@@ -28,7 +28,7 @@
   body {
     position: relative;
     background:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(166,169,178,0.10), transparent),
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(166,169,178,0.05), transparent),
       var(--bg);
     color: var(--text);
     font-family: 'Space Grotesk', sans-serif;
@@ -52,7 +52,7 @@
     background-position: center 60%;
     background-size: min(140vw, 1100px) auto;
     opacity: 0.05;
-    filter: grayscale(1);
+    filter: grayscale(1) brightness(0.35);
   }
 
   .frame {
@@ -653,6 +653,104 @@
     border-color: var(--chrome-2);
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 32px rgba(0,0,0,0.5), 0 0 26px rgba(166,169,178,0.16);
   }
+
+  .q-block { margin-bottom: 18px; }
+  .q-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chrome-2);
+    margin-bottom: 10px;
+  }
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+  .q-opt {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--stroke);
+    color: var(--text);
+    text-align: left;
+    padding: 11px 14px;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .q-opt:hover { border-color: var(--stroke-strong); }
+  .q-opt.selected {
+    border-color: var(--chrome-2);
+    background: rgba(255,255,255,0.07);
+  }
+  .q-opt.selected::before { content: '✓ '; color: var(--chrome-2); }
+  .result-box {
+    margin-top: 4px;
+    border: 1px solid var(--stroke);
+    border-radius: 8px;
+    padding: 22px 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .result-hint {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .result-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #0a0a0c;
+    background: linear-gradient(160deg, #d9be8a, #c8a25c 60%, #a8813f);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .result-tag.show { opacity: 1; transform: translateY(0); }
+  .result-tier {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--text);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+  }
+  .result-tier.show { opacity: 1; transform: translateY(0); }
+  .result-price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--chrome-2);
+    margin-top: 6px;
+    opacity: 0;
+    transition: opacity 0.35s ease 0.1s;
+  }
+  .result-price.show { opacity: 1; }
+  .demo-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 12px;
+  }
+  .btn-primary.demo-cta {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.15s ease, opacity 0.15s ease;
+  }
+  .btn-primary.demo-cta.show { opacity: 1; pointer-events: auto; }
 </style>
 
 <body>
@@ -694,12 +792,106 @@
       </div>
     </div>
 
-    <div class="cta-row" style="margin-top:8px;">
-      <a href="/briefing" class="btn-primary">Pedir orçamento</a>
+    <div class="service-card">
+      <h3>Descobre o teu pacote</h3>
+      <p>Responde 3 perguntas rápidas e vê uma estimativa na hora.</p>
+
+      <div class="q-block" data-q="1">
+        <div class="q-label">1. Quantas páginas ou secções precisas?</div>
+        <div class="q-options">
+          <button type="button" class="q-opt" data-pts="1">Só uma página</button>
+          <button type="button" class="q-opt" data-pts="2">Algumas secções + formulário</button>
+          <button type="button" class="q-opt" data-pts="3">Site completo, várias páginas</button>
+        </div>
+      </div>
+
+      <div class="q-block" data-q="2">
+        <div class="q-label">2. Já tens fotos e textos prontos?</div>
+        <div class="q-options">
+          <button type="button" class="q-opt" data-pts="1">Sim, tudo pronto</button>
+          <button type="button" class="q-opt" data-pts="2">Tenho parte, falta organizar</button>
+          <button type="button" class="q-opt" data-pts="3">Preciso de ajuda para criar tudo</button>
+        </div>
+      </div>
+
+      <div class="q-block" data-q="3">
+        <div class="q-label">3. Qual a urgência?</div>
+        <div class="q-options">
+          <button type="button" class="q-opt" data-pts="1">Sem pressa</button>
+          <button type="button" class="q-opt" data-pts="2">Rápido, poucas semanas</button>
+          <button type="button" class="q-opt" data-pts="3">É urgente</button>
+        </div>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <div class="result-hint" id="resultHint">Responde às 3 perguntas acima →</div>
+        <div class="result-tag" id="resultTag"></div>
+        <div class="result-tier" id="resultTier"></div>
+        <div class="result-price" id="resultPrice"></div>
+      </div>
+
+      <div class="row" style="margin-top:16px; justify-content:center;">
+        <a href="/briefing" class="btn-primary demo-cta" id="ctaBtn">Pedir orçamento com esta base</a>
+      </div>
+      <div class="demo-note">Estimativa automática · confirmamos tudo no briefing</div>
     </div>
 
     <div class="home-footer">IDISTØPIC &nbsp;·&nbsp; @idistopic</div>
   </section>
 
+
+<script>
+(function () {
+  var answers = { 1: null, 2: null, 3: null };
+
+  document.querySelectorAll('.q-block').forEach(function (block) {
+    var qNum = block.dataset.q;
+    block.querySelectorAll('.q-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        block.querySelectorAll('.q-opt').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        answers[qNum] = parseInt(btn.dataset.pts, 10);
+        updateResult();
+      });
+    });
+  });
+
+  function updateResult() {
+    var vals = Object.values(answers);
+    if (vals.indexOf(null) !== -1) return;
+
+    var total = vals.reduce(function (a, b) { return a + b; }, 0);
+    var tier, price;
+
+    if (total <= 4) {
+      tier = 'ESSENCIAL';
+      price = '150€ – 200€';
+    } else if (total <= 7) {
+      tier = 'PROFISSIONAL';
+      price = '300€ – 400€';
+    } else {
+      tier = 'PREMIUM';
+      price = '500€ – 700€';
+    }
+
+    var hint = document.getElementById('resultHint');
+    if (hint) hint.style.display = 'none';
+
+    var tag = document.getElementById('resultTag');
+    var tierEl = document.getElementById('resultTier');
+    var priceEl = document.getElementById('resultPrice');
+    var cta = document.getElementById('ctaBtn');
+
+    tag.textContent = 'Sugestão';
+    tierEl.textContent = tier;
+    priceEl.textContent = price;
+
+    tag.classList.add('show');
+    tierEl.classList.add('show');
+    priceEl.classList.add('show');
+    cta.classList.add('show');
+  }
+})();
+</script>
 </body>
 </html>

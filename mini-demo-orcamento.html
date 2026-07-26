@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protótipo — Mini-demo de orçamento automático</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void: #050506;
+    --prata: #C0C0C8;
+    --aco: #8A8D93;
+    --branco: #FFFFFF;
+    --dourado: #C8A25C;
+    --dim: #85858e;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--void);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+  .demo-wrap {
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(166,169,178,0.06), transparent),
+      var(--void);
+    color: var(--branco);
+    font-family: 'Space Mono', monospace;
+    padding: 32px 20px;
+    border-radius: 10px;
+    max-width: 480px;
+    width: 100%;
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+  .demo-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .demo-title {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 0.04em;
+    background: linear-gradient(90deg, #FFFFFF, #C0C0C8, #8A8D93, #C0C0C8, #FFFFFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 28px;
+  }
+  .q-block { margin-bottom: 22px; }
+  .q-label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--prata);
+    margin-bottom: 10px;
+  }
+  .q-options { display: flex; flex-direction: column; gap: 8px; }
+  .q-opt {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.09);
+    color: var(--branco);
+    text-align: left;
+    padding: 11px 14px;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .q-opt:hover { border-color: rgba(255,255,255,0.25); }
+  .q-opt.selected {
+    border-color: var(--prata);
+    background: rgba(255,255,255,0.07);
+  }
+  .q-opt.selected::before {
+    content: '✓ ';
+    color: var(--prata);
+  }
+  .result-box {
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 8px;
+    padding: 22px 20px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    min-height: 108px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .result-hint {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .result-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    color: #0a0a0c;
+    background: linear-gradient(160deg, #d9be8a, var(--dourado) 60%, #a8813f);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .result-tag.show { opacity: 1; transform: translateY(0); }
+  .result-tier {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+  }
+  .result-tier.show { opacity: 1; transform: translateY(0); }
+  .result-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--prata);
+    margin-top: 6px;
+    opacity: 0;
+    transition: opacity 0.35s ease 0.1s;
+  }
+  .result-price.show { opacity: 1; }
+  .demo-cta {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: linear-gradient(160deg, #eef0f4, var(--prata) 60%, #4c4d56);
+    color: #0a0a0c;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .demo-cta.show { opacity: 1; pointer-events: auto; }
+  .demo-note {
+    text-align: center;
+    font-size: 9.5px;
+    color: var(--dim);
+    margin-top: 14px;
+    letter-spacing: 0.04em;
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-wrap">
+  <div class="demo-eyebrow">— Orçamento em 3 perguntas —</div>
+  <div class="demo-title">DESCOBRE O TEU PACOTE</div>
+
+  <div class="q-block" data-q="1">
+    <div class="q-label">1. Quantas páginas ou secções precisas?</div>
+    <div class="q-options">
+      <button class="q-opt" data-pts="1">Só uma página</button>
+      <button class="q-opt" data-pts="2">Algumas secções + formulário</button>
+      <button class="q-opt" data-pts="3">Site completo, várias páginas</button>
+    </div>
+  </div>
+
+  <div class="q-block" data-q="2">
+    <div class="q-label">2. Já tens fotos e textos prontos?</div>
+    <div class="q-options">
+      <button class="q-opt" data-pts="1">Sim, tudo pronto</button>
+      <button class="q-opt" data-pts="2">Tenho parte, falta organizar</button>
+      <button class="q-opt" data-pts="3">Preciso de ajuda para criar tudo</button>
+    </div>
+  </div>
+
+  <div class="q-block" data-q="3">
+    <div class="q-label">3. Qual a urgência?</div>
+    <div class="q-options">
+      <button class="q-opt" data-pts="1">Sem pressa</button>
+      <button class="q-opt" data-pts="2">Rápido, poucas semanas</button>
+      <button class="q-opt" data-pts="3">É urgente</button>
+    </div>
+  </div>
+
+  <div class="result-box" id="resultBox">
+    <div class="result-hint" id="resultHint">Responde às 3 perguntas acima →</div>
+    <div class="result-tag" id="resultTag"></div>
+    <div class="result-tier" id="resultTier"></div>
+    <div class="result-price" id="resultPrice"></div>
+  </div>
+
+  <button class="demo-cta" id="ctaBtn">Pedir orçamento com esta base</button>
+  <div class="demo-note">Protótipo visual · lógica final será a mesma do client-flow (scoreTier)</div>
+</div>
+
+<script>
+  var answers = { 1: null, 2: null, 3: null };
+
+  document.querySelectorAll('.q-block').forEach(function (block) {
+    var qNum = block.dataset.q;
+    block.querySelectorAll('.q-opt').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        block.querySelectorAll('.q-opt').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        answers[qNum] = parseInt(btn.dataset.pts, 10);
+        updateResult();
+      });
+    });
+  });
+
+  function updateResult() {
+    var vals = Object.values(answers);
+    if (vals.indexOf(null) !== -1) return;
+
+    var total = vals.reduce(function (a, b) { return a + b; }, 0);
+    var tier, price;
+
+    if (total <= 4) {
+      tier = 'ESSENCIAL';
+      price = '150€ – 200€';
+    } else if (total <= 7) {
+      tier = 'PROFISSIONAL';
+      price = '300€ – 400€';
+    } else {
+      tier = 'PREMIUM';
+      price = '500€ – 700€';
+    }
+
+    document.getElementById('resultHint').style.display = 'none';
+    var tag = document.getElementById('resultTag');
+    var tierEl = document.getElementById('resultTier');
+    var priceEl = document.getElementById('resultPrice');
+    var cta = document.getElementById('ctaBtn');
+
+    tag.textContent = 'Sugestão';
+    tierEl.textContent = tier;
+    priceEl.textContent = price;
+
+    tag.classList.add('show');
+    tierEl.classList.add('show');
+    priceEl.classList.add('show');
+    cta.classList.add('show');
+  }
+
+  document.getElementById('ctaBtn').addEventListener('click', function () {
+    alert('Aqui, no site de verdade, isto levaria para /briefing já com o pacote pré-selecionado.');
+  });
+</script>
+</body>
+</html>
