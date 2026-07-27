@@ -262,8 +262,13 @@ section {
 
 .card-icon {
   display: inline-block;
-  font-size: 1.6rem;
   margin-bottom: 0.6rem;
+}
+
+.card-icon svg {
+  display: block;
+  width: 28px;
+  height: 28px;
 }
 
 .icon-cyan { color: var(--cor-ciano); }
