@@ -122,16 +122,6 @@ p {
   text-align: center;
 }
 
-.prototype-flag {
-  margin: 0;
-  padding: 0.5rem var(--espaco);
-  text-align: center;
-  background: #fff4d6;
-  color: #6b5a1f;
-  font-size: 0.8rem;
-  border-bottom: 1px solid #ecd98f;
-}
-
 header.hero {
   text-align: center;
   padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 7vw, 4.5rem);
@@ -412,11 +402,6 @@ footer.rodape {
 
 .cyan { color: var(--cor-ciano); }
 .green { color: var(--cor-verde); }
-
-.rodape-nota {
-  color: var(--cor-texto-suave);
-  opacity: 0.7;
-}
 
 /* CTA (botões) */
 
