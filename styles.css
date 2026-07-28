@@ -575,3 +575,75 @@ footer.rodape {
     text-align: center;
   }
 }
+
+/* SOLUÇÕES PASS (2026-07-28) — página /solucoes.html, reaproveita variáveis
+   e classes já existentes (.card-icon, .cta, .reveal etc.). Só classes novas
+   abaixo, sem alterar nenhuma regra anterior. */
+
+.voltar-home {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  color: var(--cor-texto-suave);
+  text-decoration: none;
+}
+
+.voltar-home:hover,
+.voltar-home:focus-visible {
+  color: var(--cor-ciano);
+}
+
+.solucoes-lista {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--espaco) * 1.5);
+  margin-top: calc(var(--espaco) * 1.5);
+  text-align: left;
+}
+
+.solucao-bloco {
+  background:
+    linear-gradient(180deg, rgba(245, 247, 248, 0.025), rgba(245, 247, 248, 0)),
+    var(--cor-fundo);
+  border: 1px solid var(--linha-fina);
+  border-radius: var(--raio);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.solucao-titulo {
+  text-align: left;
+  margin: 0.6rem 0 1rem;
+}
+
+.solucao-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.solucao-meta p {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+}
+
+.solucao-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cor-ciano);
+  margin-bottom: 0.3rem;
+}
+
+.solucao-nota {
+  font-size: 0.88rem;
+  font-style: italic;
+}
+
+@media (max-width: 720px) {
+  .solucao-meta {
+    grid-template-columns: 1fr;
+  }
+}
