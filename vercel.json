@@ -4,6 +4,7 @@
     { "source": "/painel", "destination": "https://client-flow-ekgp.onrender.com/admin.html" },
     { "source": "/login.html", "destination": "https://client-flow-ekgp.onrender.com/login.html" },
     { "source": "/proposta.html", "destination": "https://client-flow-ekgp.onrender.com/proposta.html" },
-    { "source": "/api/:path*", "destination": "https://client-flow-ekgp.onrender.com/api/:path*" }
+    { "source": "/api/:path*", "destination": "https://client-flow-ekgp.onrender.com/api/:path*" },
+    { "source": "/diagnostico", "destination": "https://client-flow-ekgp.onrender.com/diagnostico" }
   ]
 }
