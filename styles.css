@@ -442,11 +442,13 @@ footer.rodape {
   transition: filter 0.2s ease;
 }
 
-.card:hover {
+.card:hover,
+.card:focus-visible {
   filter: brightness(1.08);
 }
 
-.cta:hover {
+.cta:hover,
+.cta:focus-visible {
   filter: brightness(1.06);
 }
 
@@ -455,7 +457,8 @@ footer.rodape {
     transition: transform 0.2s ease, filter 0.2s ease;
   }
 
-  .card:hover {
+  .card:hover,
+  .card:focus-visible {
     transform: translateY(-4px);
   }
 
@@ -463,8 +466,13 @@ footer.rodape {
     transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.2s ease;
   }
 
-  .cta:hover {
+  .cta:hover,
+  .cta:focus-visible {
     transform: translateY(-2px);
+  }
+
+  .cta:active {
+    transform: scale(0.97);
   }
 }
 
@@ -485,6 +493,49 @@ footer.rodape {
   .reveal.is-visible {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Motion Design Pass (2026-07-28) — entrada do Hero + scroll suave.
+   Plano: memory/products/landing-idistopic (Skill motion-design).
+   Conteúdo do Hero é visível por padrão (fora da media query abaixo);
+   anima só quando o usuário não pediu menos movimento. CSS puro, sem JS. */
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes hero-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  header.hero h1,
+  header.hero .lead,
+  header.hero .cta {
+    opacity: 0;
+    animation: hero-entrada 0.55s ease-out forwards;
+  }
+
+  header.hero h1 {
+    animation-delay: 0.05s;
+  }
+
+  header.hero .lead {
+    animation-delay: 0.13s;
+  }
+
+  header.hero .cta {
+    animation-delay: 0.21s;
   }
 }
 
