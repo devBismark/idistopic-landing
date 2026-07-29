@@ -822,9 +822,34 @@ footer.rodape {
   padding: clamp(1.5rem, 4vw, 2.25rem);
 }
 
+/* Correção de bug de composição (2026-07-29) — títulos de bloco herdavam
+   IBM Plex Mono da regra geral de h2 e quebravam mal em títulos longos
+   (ex.: "IA" isolado numa linha). .solucao-bloco h2 volta a --fonte-titulo/
+   Space Grotesk. .solucao-label (PROBLEMA, PARA QUEM, O QUE ENTREGAMOS,
+   EXEMPLO) não tinha font-family própria antes (herdava --fonte-texto/
+   Inter do body) e continua exatamente assim — não tocado por esta regra. */
+.solucao-bloco h2 {
+  font-family: var(--fonte-titulo);
+}
+
 .solucao-titulo {
   text-align: left;
   margin: 0.6rem 0 1rem;
+}
+
+/* Ajuste visual (2026-07-29) — .badge é <span> inline por padrão; margem
+   vertical em elemento inline não empurra os blocos vizinhos, então o
+   badge ("Disponível agora"/"Em desenvolvimento") ficava colado no label
+   "PROBLEMA" logo abaixo. inline-flex resolve isso sem alterar o tamanho
+   visual do badge (continua pill pequeno, não vira CTA). */
+.solucao-bloco .badge {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.solucao-bloco .cta {
+  margin-top: 1.25rem;
 }
 
 .solucao-meta {

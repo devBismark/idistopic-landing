@@ -2,14 +2,25 @@
      rewrite interno /solucoes -> /solucoes.html em vercel.json. Reaproveita
      styles.css e script.js já existentes (mesmo design system, mesmo
      scroll-reveal). Sem CDN, sem dependência nova, sem build. Não altera
-     index.html. Ver plano aprovado nesta conversa. -->
+     index.html. Ver plano aprovado nesta conversa.
+
+     REPOSICIONAMENTO — alinhamento com a homepage (2026-07-29) — título,
+     meta description, Hero e CTA final agora distinguem "landing pages com
+     IA" (oferta disponível hoje, badge-cyan "Disponível agora", CTAs para
+     /briefing) das demais 4 frentes (badge-neutro "Em desenvolvimento",
+     sem CTA de venda, sem link de contato nesta etapa). Rodapé alinhado ao
+     index.html ("Landing pages com IA"). Grid 2x2 interno de cada bloco
+     (Problema/Para quem/O que entregamos/Exemplo) não foi reescrito. Só
+     classes já existentes reaproveitadas (.badge/.badge-cyan/.badge-neutro)
+     — nenhuma mudança em styles.css, index.html, vercel.json ou script.js.
+     Ver memory/products/landing-idistopic/DECISIONS.md. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Soluções — IDISTØPIC | AI Systems Company</title>
-  <meta name="description" content="Sistemas inteligentes, automações, sites e landing pages, APIs e integrações, SaaS e produtos digitais. Veja o que a IDISTØPIC entrega em cada frente." />
+  <title>Soluções — IDISTØPIC | Landing pages com IA</title>
+  <meta name="description" content="Landing pages com IA é a oferta disponível hoje na IDISTØPIC. Veja também a visão de produto em desenvolvimento: sistemas inteligentes, agentes de IA, automações, APIs e SaaS." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,81 +31,15 @@
       <a class="voltar-home" href="/">← Voltar para a home</a>
       <p class="eyebrow">Soluções</p>
       <span class="accent-line"></span>
-      <h1>Sistemas inteligentes para cada etapa da sua operação</h1>
-      <p class="lead">Da automação ao produto digital: veja o que a IDISTØPIC entrega em cada frente e qual caminho faz sentido para o seu momento.</p>
+      <h1>O que a IDISTØPIC entrega hoje — e o que está em desenvolvimento</h1>
+      <p class="lead">Landing pages com IA já é uma oferta real, com briefing guiado, apoio de IA e validação de qualidade. As demais frentes abaixo fazem parte da nossa visão de produto e ainda estão em desenvolvimento.</p>
+      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
     </div>
   </header>
 
   <section class="solucoes" id="solucoes">
     <div class="container">
       <div class="solucoes-lista">
-
-        <article class="solucao-bloco reveal">
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="2.5"/>
-              <circle cx="5" cy="6" r="1.4"/>
-              <circle cx="19" cy="6" r="1.4"/>
-              <circle cx="12" cy="20" r="1.4"/>
-              <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
-              <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
-              <line x1="12" y1="14.5" x2="12" y2="18.3"/>
-            </svg>
-          </span>
-          <h2 class="solucao-titulo">Sistemas inteligentes e agentes de IA</h2>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Times presos em decisões manuais e tarefas repetitivas que não escalam.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Empresas que já sentem o limite operacional de fazer tudo manualmente.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Sistema sob medida com agente de IA integrado aos processos existentes.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> agente que faz triagem e prioriza solicitações internas antes de chegar a um humano.</p>
-            </div>
-          </div>
-          <a class="cta cta-secondary" href="/diagnostico">Começar diagnóstico</a>
-        </article>
-
-        <article class="solucao-bloco reveal">
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"/>
-              <circle cx="12" cy="12" r="1.6"/>
-              <line x1="12" y1="3.5" x2="12" y2="6"/>
-              <line x1="12" y1="18" x2="12" y2="20.5"/>
-              <line x1="3.5" y1="12" x2="6" y2="12"/>
-              <line x1="18" y1="12" x2="20.5" y2="12"/>
-            </svg>
-          </span>
-          <h2 class="solucao-titulo">Automações</h2>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Processos manuais consomem tempo do time e geram erro humano.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Times operacionais e administrativos com fluxo repetitivo.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Fluxos automatizados ponta a ponta, conectando as ferramentas que a empresa já usa.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> automação de onboarding de cliente disparada por evento.</p>
-            </div>
-          </div>
-          <a class="cta cta-secondary" href="/diagnostico">Começar diagnóstico</a>
-        </article>
 
         <article class="solucao-bloco reveal">
           <span class="card-icon icon-orange">
@@ -104,6 +49,7 @@
             </svg>
           </span>
           <h2 class="solucao-titulo">Sites e landing pages</h2>
+          <span class="badge badge-cyan">Disponível agora</span>
           <div class="solucao-meta">
             <div>
               <span class="solucao-label">Problema</span>
@@ -123,7 +69,74 @@
             </div>
           </div>
           <p class="solucao-nota">Já sabe que precisa de uma página? Este briefing é o caminho mais direto.</p>
-          <a class="cta cta-secondary" href="/briefing">Preencher briefing de landing page</a>
+          <a class="cta cta-secondary" href="/briefing">Preencher briefing</a>
+        </article>
+
+        <article class="solucao-bloco reveal">
+          <span class="card-icon icon-cyan">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="2.5"/>
+              <circle cx="5" cy="6" r="1.4"/>
+              <circle cx="19" cy="6" r="1.4"/>
+              <circle cx="12" cy="20" r="1.4"/>
+              <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
+              <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
+              <line x1="12" y1="14.5" x2="12" y2="18.3"/>
+            </svg>
+          </span>
+          <h2 class="solucao-titulo">Sistemas inteligentes e agentes de IA</h2>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <div class="solucao-meta">
+            <div>
+              <span class="solucao-label">Problema</span>
+              <p>Times presos em decisões manuais e tarefas repetitivas que não escalam.</p>
+            </div>
+            <div>
+              <span class="solucao-label">Para quem</span>
+              <p>Empresas que já sentem o limite operacional de fazer tudo manualmente.</p>
+            </div>
+            <div>
+              <span class="solucao-label">O que entregamos</span>
+              <p>Sistema sob medida com agente de IA integrado aos processos existentes.</p>
+            </div>
+            <div>
+              <span class="solucao-label">Exemplo</span>
+              <p><em>Demo:</em> agente que faz triagem e prioriza solicitações internas antes de chegar a um humano.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="solucao-bloco reveal">
+          <span class="card-icon icon-green">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="12" cy="12" r="1.6"/>
+              <line x1="12" y1="3.5" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="20.5"/>
+              <line x1="3.5" y1="12" x2="6" y2="12"/>
+              <line x1="18" y1="12" x2="20.5" y2="12"/>
+            </svg>
+          </span>
+          <h2 class="solucao-titulo">Automações</h2>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <div class="solucao-meta">
+            <div>
+              <span class="solucao-label">Problema</span>
+              <p>Processos manuais consomem tempo do time e geram erro humano.</p>
+            </div>
+            <div>
+              <span class="solucao-label">Para quem</span>
+              <p>Times operacionais e administrativos com fluxo repetitivo.</p>
+            </div>
+            <div>
+              <span class="solucao-label">O que entregamos</span>
+              <p>Fluxos automatizados ponta a ponta, conectando as ferramentas que a empresa já usa.</p>
+            </div>
+            <div>
+              <span class="solucao-label">Exemplo</span>
+              <p><em>Demo:</em> automação de onboarding de cliente disparada por evento.</p>
+            </div>
+          </div>
         </article>
 
         <article class="solucao-bloco reveal">
@@ -135,6 +148,7 @@
             </svg>
           </span>
           <h2 class="solucao-titulo">APIs e integrações</h2>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
           <div class="solucao-meta">
             <div>
               <span class="solucao-label">Problema</span>
@@ -153,7 +167,6 @@
               <p><em>Demo:</em> integração entre CRM e ferramenta de comunicação.</p>
             </div>
           </div>
-          <a class="cta cta-secondary" href="/diagnostico">Começar diagnóstico</a>
         </article>
 
         <article class="solucao-bloco reveal">
@@ -164,6 +177,7 @@
             </svg>
           </span>
           <h2 class="solucao-titulo">SaaS e produtos digitais</h2>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
           <div class="solucao-meta">
             <div>
               <span class="solucao-label">Problema</span>
@@ -182,7 +196,6 @@
               <p><em>Demo:</em> MVP de um produto vertical de nicho.</p>
             </div>
           </div>
-          <a class="cta cta-secondary" href="/diagnostico">Começar diagnóstico</a>
         </article>
 
       </div>
@@ -191,9 +204,9 @@
 
   <section class="cta-final" id="cta-final">
     <div class="container reveal">
-      <h2>Não sabe por onde começar?</h2>
-      <p class="lead lead-invertido">O diagnóstico identifica qual solução faz mais sentido para o seu momento.</p>
-      <a class="cta cta-primary" href="/diagnostico">Começar diagnóstico</a>
+      <h2>Precisa de uma landing page que já comece com estratégia?</h2>
+      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
+      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
     </div>
   </section>
   </main>
@@ -201,7 +214,7 @@
   <footer class="rodape" id="rodape">
     <div class="container footer-inner">
       <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
-      <span>AI Systems Company</span>
+      <span>Landing pages com IA</span>
     </div>
   </footer>
 
