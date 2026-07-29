@@ -102,6 +102,16 @@ h1, h2, h3 {
   color: var(--cor-texto);
 }
 
+/* Teste tipográfico (2026-07-29) — IBM Plex Mono em h2/.servico-destaque h3.
+   h1 removido desta regra: aprovado parcialmente, ficou "técnico demais" e
+   reduziu a força comercial do Hero — h1 volta a usar --fonte-titulo (regra
+   acima), sem mudança. h3 fora da lista continua Space Grotesk também;
+   só .servico-destaque h3 muda, se existir. */
+h2,
+.servico-destaque h3 {
+  font-family: var(--fonte-mono);
+}
+
 h1 {
   font-size: clamp(2.1rem, 5vw, 3.75rem);
   line-height: 1;
