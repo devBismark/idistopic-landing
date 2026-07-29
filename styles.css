@@ -50,6 +50,8 @@ body {
     radial-gradient(circle at 15% 10%, rgba(0, 240, 255, 0.08), transparent 25%),
     radial-gradient(circle at 85% 15%, rgba(255, 138, 0, 0.07), transparent 25%),
     radial-gradient(circle at 50% 92%, rgba(57, 255, 20, 0.05), transparent 22%),
+    repeating-linear-gradient(0deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(90deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
     var(--cor-fundo);
   line-height: 1.6;
 }
@@ -137,30 +139,38 @@ header.hero {
   position: relative;
   text-align: center;
   padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 7vw, 4.5rem);
-  border-bottom: 1px solid var(--linha-fina);
+  border-bottom: none;
 }
 
-/* Design DNA v3 — Fase 1 (camada técnica no Hero da homepage).
-   Grid fino + frame/cantos, sem HUD textual, sem progress dots, sem
-   fonte monospace — mesmo padrão já validado no protótipo de carrossel
-   (memory/products/carrossel-instagram/prototypes/html-static-poc-1/),
-   agora aplicado só ao Hero, via core/identity.md v3. Elementos puramente
-   decorativos: aria-hidden, pointer-events desativado, z-index negativo
-   (renderizam atrás do conteúdo do Hero, nunca sobre texto/CTA). */
+/* Design DNA v3 — Fase 1.1: divisor de gradiente sutil no lugar da linha
+   neutra, suavizando a transição Hero → Problema. */
+header.hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde), var(--cor-laranja));
+  opacity: 0.35;
+}
 
-.hero-tech-grid,
+/* Design DNA v3 — Fase 1 (camada técnica no Hero da homepage), ajustada na
+   Fase 1.2: o grid deixou de ser exclusivo do Hero (.hero-tech-grid
+   removida) — agora é textura contínua de toda a homepage, aplicada via
+   background em body e nas seções com fundo próprio (ver acima). Frame +
+   cantos continuam exclusivos do Hero. Sem HUD textual, sem progress dots,
+   sem fonte monospace — mesmo padrão já validado no protótipo de carrossel
+   (memory/products/carrossel-instagram/prototypes/html-static-poc-1/), via
+   core/identity.md v3. Elementos puramente decorativos: aria-hidden,
+   pointer-events desativado, z-index negativo (renderizam atrás do
+   conteúdo do Hero, nunca sobre texto/CTA). */
+
 .hero-tech-frame,
 .hero-tech-corner {
   position: absolute;
   pointer-events: none;
   z-index: -1;
-}
-
-.hero-tech-grid {
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(0deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
-    repeating-linear-gradient(90deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px);
 }
 
 .hero-tech-frame {
@@ -186,6 +196,11 @@ header.hero .cta-primary {
   box-shadow: var(--glow-forte-cyan);
 }
 
+/* Design DNA v3 — Fase 1.1 introduziu cantos de seção em .solucao/.servicos;
+   removidos na Fase 1.2 por instrução explícita do usuário — frame/cantos
+   ficam exclusivos do Hero, a continuidade visual entre seções agora vem
+   do grid global (ver body / .solucao,.servicos,.cta-final acima). */
+
 section {
   padding: clamp(2.75rem, 7vw, 4.5rem) 0;
   border-bottom: 1px solid var(--linha-fina);
@@ -195,7 +210,10 @@ section {
 .solucao,
 .servicos,
 .cta-final {
-  background: var(--cor-painel);
+  background:
+    repeating-linear-gradient(0deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(90deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
+    var(--cor-painel);
 }
 
 .problema p {
@@ -310,6 +328,7 @@ section {
 }
 
 .card {
+  position: relative;
   background:
     linear-gradient(180deg, rgba(245, 247, 248, 0.025), rgba(245, 247, 248, 0)),
     var(--cor-fundo);
@@ -358,16 +377,43 @@ a.card {
 }
 
 .servico-destaque {
+  position: relative;
   text-align: left;
   background:
     linear-gradient(180deg, rgba(245, 247, 248, 0.025), rgba(245, 247, 248, 0)),
     var(--cor-fundo);
   border: 1px solid rgba(0, 240, 255, 0.35);
-  border-radius: var(--raio);
+  border-radius: var(--raio-lg);
   padding: clamp(1.5rem, 4vw, 2.25rem);
-  box-shadow: var(--glow-cyan);
+  box-shadow: var(--glow-forte-cyan);
   margin-top: calc(var(--espaco) * 1.5);
 }
+
+/* Design DNA v3 — Fase 1.1: .servico-destaque é o único elemento, além do
+   Hero, com o tratamento completo de frame + 4 cantos — é o análogo direto
+   do card de destaque do carrossel. Sem status-dot, sem texto de HUD. */
+.destaque-tech-frame {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--linha-fina);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.destaque-tech-corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--cor-ciano);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.destaque-tech-corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.destaque-tech-corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.destaque-tech-corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.destaque-tech-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
 .badge-destaque {
   display: inline-block;
@@ -387,24 +433,44 @@ a.card {
   display: block;
 }
 
+/* Design DNA v3 — Fase 1.1: cards de Serviços viram painéis técnicos —
+   borda superior colorida (por card) no lugar da tinta nas 4 bordas;
+   canto único (.card-tech-corner, markup em index.html) reforça a leitura
+   de "painel de sistema", sem repetir o frame completo do Hero. */
 .servicos .card:nth-child(1) {
-  border-color: rgba(57, 255, 20, 0.2);
+  border-top: 2px solid var(--cor-verde);
   box-shadow: var(--glow-green);
 }
+.servicos .card:nth-child(1) .card-tech-corner { border-color: var(--cor-verde); }
 
 .servicos .card:nth-child(2) {
-  border-color: rgba(255, 138, 0, 0.2);
+  border-top: 2px solid var(--cor-laranja);
   box-shadow: var(--glow-orange);
 }
+.servicos .card:nth-child(2) .card-tech-corner { border-color: var(--cor-laranja); }
 
 .servicos .card:nth-child(3) {
-  border-color: rgba(0, 240, 255, 0.2);
+  border-top: 2px solid var(--cor-ciano);
   box-shadow: var(--glow-cyan);
 }
+.servicos .card:nth-child(3) .card-tech-corner { border-color: var(--cor-ciano); }
 
 .servicos .card:nth-child(4) {
-  border-color: rgba(57, 255, 20, 0.2);
+  border-top: 2px solid var(--cor-verde);
   box-shadow: var(--glow-green);
+}
+.servicos .card:nth-child(4) .card-tech-corner { border-color: var(--cor-verde); }
+
+.card-tech-corner {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 10px;
+  height: 10px;
+  border-left: 1.5px solid;
+  border-top: 1.5px solid;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .card-compact {
@@ -412,18 +478,21 @@ a.card {
   padding: clamp(0.9rem, 2.4vw, 1.25rem);
 }
 
+/* Design DNA v3 — Fase 1.1: cards de Valores recebem tratamento mais leve
+   que os de Serviços — só borda superior colorida, sem canto (densidade
+   proporcional: 5 cards compactos lado a lado não pedem o mesmo reforço). */
 .valores .card:nth-child(1),
 .valores .card:nth-child(3) {
-  border-color: rgba(0, 240, 255, 0.18);
+  border-top: 2px solid var(--cor-ciano);
 }
 
 .valores .card:nth-child(2) {
-  border-color: rgba(57, 255, 20, 0.18);
+  border-top: 2px solid var(--cor-verde);
 }
 
 .valores .card:nth-child(4),
 .valores .card:nth-child(5) {
-  border-color: rgba(255, 138, 0, 0.18);
+  border-top: 2px solid var(--cor-laranja);
 }
 
 /* CTA final */
