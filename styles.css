@@ -8,6 +8,33 @@
    DEPLOY CANDIDATE (2026-07-27): cópia deste arquivo, sem alteração de conteúdo,
    preparada para servir como root de um projeto Vercel. Ver README.md desta pasta. */
 
+/* IBM Plex Mono — hospedada localmente (2026-07-29), baixada do repositório
+   oficial github.com/IBM/plex (packages/plex-mono/fonts/complete/woff2/),
+   licença SIL Open Font License 1.1 em assets/fonts/ibm-plex-mono/LICENSE.txt.
+   Sem CDN, sem Google Fonts, sem @import externo — só os 3 pesos usados nos
+   seletores já aprovados (memory/products/landing-idistopic/DECISIONS.md). */
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("assets/fonts/ibm-plex-mono/IBMPlexMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("assets/fonts/ibm-plex-mono/IBMPlexMono-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("assets/fonts/ibm-plex-mono/IBMPlexMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --cor-fundo: #05090b;
   --cor-painel: #091014;
@@ -36,6 +63,12 @@
   --glow-forte-cyan: 0 0 40px rgba(0, 240, 255, 0.12);
   --glow-forte-green: 0 0 40px rgba(57, 255, 20, 0.12);
   --glow-forte-orange: 0 0 40px rgba(255, 138, 0, 0.12);
+
+  /* Tipografia técnica — teste visual (2026-07-29), sem @font-face ainda,
+     sem arquivo local: cai direto no fallback (JetBrains Mono/SFMono-Regular/
+     Consolas/Liberation Mono/monospace) até IBM Plex Mono ser aprovada e
+     hospedada localmente. Ver memory/products/landing-idistopic/DECISIONS.md. */
+  --fonte-mono: "IBM Plex Mono", "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -95,6 +128,7 @@ p {
 }
 
 .eyebrow {
+  font-family: var(--fonte-mono);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.78rem;
@@ -237,6 +271,7 @@ section {
 }
 
 .badge {
+  font-family: var(--fonte-mono);
   border-radius: 999px;
   padding: 0.4rem 1rem;
   font-size: 0.85rem;
@@ -374,6 +409,7 @@ a.card {
 }
 
 .card-link {
+  font-family: var(--fonte-mono);
   display: inline-block;
   margin-top: 0.6rem;
   color: var(--cor-ciano);
@@ -425,6 +461,7 @@ a.card {
 .destaque-tech-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
 .badge-destaque {
+  font-family: var(--fonte-mono);
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -553,6 +590,7 @@ footer.rodape {
 }
 
 .footer-inner {
+  font-family: var(--fonte-mono);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -564,7 +602,7 @@ footer.rodape {
 }
 
 .footer-logo {
-  font-family: var(--fonte-titulo);
+  font-family: var(--fonte-mono);
   letter-spacing: 0.05em;
   color: var(--cor-texto);
 }
