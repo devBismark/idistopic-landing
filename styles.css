@@ -25,6 +25,17 @@
   --glow-cyan: 0 0 24px rgba(0, 240, 255, 0.08);
   --glow-green: 0 0 24px rgba(57, 255, 20, 0.08);
   --glow-orange: 0 0 24px rgba(255, 138, 0, 0.08);
+
+  /* Design DNA v3 (core/identity.md) — escala de radius v1 e glow "forte",
+     introduzidos aditivamente: --raio/--glow-cyan/--glow-green/--glow-orange
+     acima continuam existindo, sem mudar de valor. */
+  --raio-sm: 12px;
+  --raio-md: 16px;
+  --raio-lg: 28px;
+  --raio-pill: 999px;
+  --glow-forte-cyan: 0 0 40px rgba(0, 240, 255, 0.12);
+  --glow-forte-green: 0 0 40px rgba(57, 255, 20, 0.12);
+  --glow-forte-orange: 0 0 40px rgba(255, 138, 0, 0.12);
 }
 
 * {
@@ -123,9 +134,56 @@ p {
 }
 
 header.hero {
+  position: relative;
   text-align: center;
   padding: clamp(3rem, 9vw, 6rem) 0 clamp(2.5rem, 7vw, 4.5rem);
   border-bottom: 1px solid var(--linha-fina);
+}
+
+/* Design DNA v3 — Fase 1 (camada técnica no Hero da homepage).
+   Grid fino + frame/cantos, sem HUD textual, sem progress dots, sem
+   fonte monospace — mesmo padrão já validado no protótipo de carrossel
+   (memory/products/carrossel-instagram/prototypes/html-static-poc-1/),
+   agora aplicado só ao Hero, via core/identity.md v3. Elementos puramente
+   decorativos: aria-hidden, pointer-events desativado, z-index negativo
+   (renderizam atrás do conteúdo do Hero, nunca sobre texto/CTA). */
+
+.hero-tech-grid,
+.hero-tech-frame,
+.hero-tech-corner {
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-tech-grid {
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px),
+    repeating-linear-gradient(90deg, var(--linha-fina) 0, var(--linha-fina) 1px, transparent 1px, transparent 64px);
+}
+
+.hero-tech-frame {
+  inset: clamp(16px, 3vw, 32px);
+  border: 1px solid var(--linha-fina);
+}
+
+.hero-tech-corner {
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--cor-ciano);
+  opacity: 0.5;
+}
+
+.hero-tech-corner-tl { top: clamp(16px, 3vw, 32px); left: clamp(16px, 3vw, 32px); border-right: none; border-bottom: none; }
+.hero-tech-corner-tr { top: clamp(16px, 3vw, 32px); right: clamp(16px, 3vw, 32px); border-left: none; border-bottom: none; }
+.hero-tech-corner-bl { bottom: clamp(16px, 3vw, 32px); left: clamp(16px, 3vw, 32px); border-right: none; border-top: none; }
+.hero-tech-corner-br { bottom: clamp(16px, 3vw, 32px); right: clamp(16px, 3vw, 32px); border-left: none; border-top: none; }
+
+/* CTA primário do Hero (só o do Hero — .cta-primary do CTA final da página
+   permanece no glow "sutil" original, sem mudança). */
+header.hero .cta-primary {
+  box-shadow: var(--glow-forte-cyan);
 }
 
 section {
