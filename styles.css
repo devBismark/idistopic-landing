@@ -262,6 +262,15 @@ section {
   border-color: rgba(255, 138, 0, 0.35);
 }
 
+/* Reposicionamento (2026-07-29) — variante neutra para status "Em
+   desenvolvimento" nos cards de visão futura; deliberadamente sem cor de
+   acento (nunca é uma oferta ativa), só tokens já existentes. */
+.badge-neutro {
+  background: rgba(245, 247, 248, 0.06);
+  color: var(--cor-texto-suave);
+  border-color: var(--linha-fina);
+}
+
 /* Como funciona — timeline de 5 passos */
 
 .timeline {
@@ -431,6 +440,34 @@ a.card {
 
 .servico-destaque .card-icon {
   display: block;
+}
+
+/* Reposicionamento (2026-07-29) — lista de bullets dentro de
+   .servico-destaque não existia antes; sem isso o navegador renderizaria
+   marcadores/indentação padrão, destoando do resto do sistema visual. */
+.servico-destaque ul {
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.servico-destaque li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-bottom: 0.6rem;
+  color: var(--cor-texto-suave);
+  font-size: 0.95rem;
+}
+
+.servico-destaque li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cor-ciano);
 }
 
 /* Design DNA v3 — Fase 1.1: cards de Serviços viram painéis técnicos —

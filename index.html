@@ -1,13 +1,24 @@
-<!-- HOMEPAGE EVOLUTION PASS (2026-07-27) — seção "Serviços" (âncora #servicos,
-     sem rota /servicos ainda), movimento leve (hover, scroll-reveal via
-     IntersectionObserver em script.js, respeitando prefers-reduced-motion).
-     CTA do Hero e CTA final agora apontam para #servicos ("Ver serviços") —
-     briefing deixa de ser CTA universal. Só o card "Sites e landing pages"
-     aponta para https://www.idistopic.com/briefing (briefing específico de
-     landing pages, já existente, conectado a Telegram fora deste repositório —
-     não criado nem alterado aqui). Sem formulário, sem backend, sem dependência,
-     sem CDN. 
-     Ver memory/products/landing-idistopic/DECISIONS.md.
+<!-- REPOSICIONAMENTO — copy/estrutura (2026-07-29) — homepage reposicionada
+     para vender claramente a oferta real de hoje (landing pages com IA),
+     sem apagar a visão futura (sistemas inteligentes, agentes de IA,
+     automações, APIs, SaaS/produtos digitais), tratada como "em
+     desenvolvimento", não como oferta aberta de venda. Estrutura reduzida
+     a 4 seções + rodapé: Hero, "O que já entregamos hoje" (id
+     servico-principal, reaproveita .servico-destaque — glow forte, raio
+     lg, frame/cantos completos, Design DNA v3), "Também estamos
+     construindo" (id em-desenvolvimento, reaproveita a classe .valores —
+     tratamento mais discreto, sem glow/CTA forte, coerente com "ainda não
+     é oferta aberta"), CTA final. Seções "Problema", "Como funciona" e
+     "Valores" (conteúdo antigo) removidas por decisão explícita do
+     usuário — ver memory/products/landing-idistopic/DECISIONS.md.
+     CTAs principais agora apontam para /briefing (antes /diagnostico);
+     CTA secundário do Hero passa a ser âncora interna (#em-desenvolvimento).
+     Nenhuma mudança em /solucoes.html, vercel.json, script.js, dependência,
+     CDN ou fonte. Design DNA v3 (grid global, frame/cantos só no Hero,
+     divisor de gradiente, escala de radius/glow) preservado sem alteração
+     — só 2 acréscimos mínimos e justificados em styles.css: estilo de
+     lista (.servico-destaque ul/li) e uma variante neutra de badge
+     (.badge-neutro), nenhum dos dois existia antes.
 
      DEPLOY CANDIDATE (2026-07-27): cópia deste arquivo, sem alteração de
      conteúdo, preparada para servir como root de um projeto Vercel. Ver
@@ -17,7 +28,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IDISTØPIC — AI Systems Company</title>
+  <title>IDISTØPIC — Landing pages com IA</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -32,78 +43,18 @@
     <div class="container">
       <p class="eyebrow">IDISTØPIC</p>
       <span class="accent-line"></span>
-      <p class="logo-sub">AI Systems Company</p>
-      <h1>Sistemas inteligentes. Construídos para empresas que não podem esperar.</h1>
-      <p class="lead">Somos uma startup de tecnologia focada em construir sistemas inteligentes, agentes de IA e produtos digitais para empresas.</p>
-      <a class="cta cta-primary" href="/diagnostico">Começar diagnóstico</a>
-      <a class="cta cta-secondary" href="/solucoes">Ver soluções</a>
+      <h1>Landing pages com IA para transformar interesse em cliente.</h1>
+      <p class="lead">A IDISTØPIC cria páginas estratégicas para apresentar sua oferta, captar contatos e validar demanda — com automação, checagem técnica e validação de qualidade em cada etapa.</p>
+      <a class="cta cta-primary" href="/briefing">Começar briefing</a>
+      <a class="cta cta-secondary" href="#em-desenvolvimento">Ver visão futura</a>
     </div>
   </header>
 
-  <section class="problema" id="problema">
-    <div class="container reveal">
-      <p class="eyebrow eyebrow-inline">O problema</p>
-      <span class="accent-line"></span>
-      <h2>Empresas perdem velocidade quando ideias e operações ficam presas em processos manuais</h2>
-      <p>Cada processo manual, cada decisão sem dado, cada sistema que não conversa com outro é tempo e oportunidade que não voltam. A questão raramente é falta de vontade — é falta de sistema.</p>
-    </div>
-  </section>
-
-  <section class="solucao" id="solucao">
-    <div class="container reveal">
-      <p class="eyebrow eyebrow-inline">Serviço líder</p>
-      <span class="accent-line"></span>
-      <h2>Sistemas inteligentes e agentes de IA para empresas</h2>
-      <p>Construímos sistemas sob medida e agentes de IA que assumem tarefas, conectam ferramentas e dão decisão mais rápida ao seu time — sem depender de processo manual para escalar.</p>
-      <div class="badges">
-        <span class="badge badge-cyan">Sistemas inteligentes</span>
-        <span class="badge badge-green">Agentes de IA</span>
-        <span class="badge badge-orange">Automação de operações</span>
-      </div>
-      <a class="cta cta-secondary" href="/solucoes">Ver serviços</a>
-    </div>
-  </section>
-
-  <section class="como-funciona" id="como-funciona">
+  <section class="servicos" id="servico-principal">
     <div class="container">
-      <p class="eyebrow eyebrow-inline">Como funciona</p>
+      <p class="eyebrow eyebrow-inline">Serviço principal</p>
       <span class="accent-line"></span>
-      <h2>Um caminho claro, do problema ao impacto</h2>
-      <div class="timeline">
-        <div class="step step-cyan reveal">
-          <span class="step-num">01</span>
-          <h3>Idear</h3>
-          <p>Entender o problema</p>
-        </div>
-        <div class="step step-cyan reveal">
-          <span class="step-num">02</span>
-          <h3>Construir</h3>
-          <p>Criar com propósito</p>
-        </div>
-        <div class="step step-green reveal">
-          <span class="step-num">03</span>
-          <h3>Validar</h3>
-          <p>Testar com dados</p>
-        </div>
-        <div class="step step-orange reveal">
-          <span class="step-num">04</span>
-          <h3>Escalar</h3>
-          <p>Evoluir e crescer</p>
-        </div>
-        <div class="step step-orange reveal">
-          <span class="step-num">05</span>
-          <h3>Impactar</h3>
-          <p>Gerar valor real</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="servicos" id="servicos">
-    <div class="container">
-      <p class="eyebrow eyebrow-inline">Serviços</p>
-      <span class="accent-line"></span>
-      <h2>Nossos serviços</h2>
+      <h2>O que já entregamos hoje</h2>
 
       <div class="servico-destaque reveal">
         <div class="destaque-tech-frame" aria-hidden="true"></div>
@@ -111,108 +62,50 @@
         <span class="destaque-tech-corner destaque-tech-corner-tr" aria-hidden="true"></span>
         <span class="destaque-tech-corner destaque-tech-corner-bl" aria-hidden="true"></span>
         <span class="destaque-tech-corner destaque-tech-corner-br" aria-hidden="true"></span>
-        <span class="badge-destaque">Serviço principal</span>
+        <span class="badge-destaque">Landing pages com IA</span>
         <span class="card-icon icon-cyan">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="2.5"/>
-            <circle cx="5" cy="6" r="1.4"/>
-            <circle cx="19" cy="6" r="1.4"/>
-            <circle cx="12" cy="20" r="1.4"/>
-            <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
-            <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
-            <line x1="12" y1="14.5" x2="12" y2="18.3"/>
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5" width="17" height="14" rx="2"/>
+            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
           </svg>
         </span>
-        <h3>Sistemas inteligentes e agentes de IA</h3>
-        <p>Sistemas sob medida e agentes de IA que assumem tarefas, conectam ferramentas e aceleram decisões — nossa frente principal.</p>
+        <p>Nosso serviço principal é a criação de landing pages para negócios que precisam vender, validar ou apresentar uma oferta sem montar uma equipe técnica.</p>
+        <ul>
+          <li>Briefing guiado para entender oferta, público e objetivo da página</li>
+          <li>Estrutura de página pensada para clareza e conversão</li>
+          <li>Construção com apoio de IA e checagens automatizadas</li>
+          <li>Validação técnica e visual antes da entrega</li>
+          <li>Caminho simples para captar interessados e iniciar conversas</li>
+        </ul>
+        <a class="cta cta-primary" href="/briefing">Criar minha landing page</a>
       </div>
-
-      <div class="cards-grid cards-grid-servicos">
-        <a class="card reveal" href="https://www.idistopic.com/briefing" target="_blank" rel="noopener noreferrer">
-          <span class="card-tech-corner" aria-hidden="true"></span>
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-              <line x1="3.5" y1="9" x2="20.5" y2="9"/>
-            </svg>
-          </span>
-          <h3>Sites e landing pages</h3>
-          <p>Páginas rápidas, com IA, prontas para captar e converter.</p>
-          <span class="card-link">Começar briefing →</span>
-        </a>
-        <div class="card reveal">
-          <span class="card-tech-corner" aria-hidden="true"></span>
-          <span class="card-icon icon-orange">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="4" width="12" height="7" rx="1.5"/>
-              <rect x="8" y="13" width="12" height="7" rx="1.5"/>
-            </svg>
-          </span>
-          <h3>SaaS e produtos digitais</h3>
-          <p>Produtos escaláveis, pensados para crescer com o negócio.</p>
-        </div>
-        <div class="card reveal">
-          <span class="card-tech-corner" aria-hidden="true"></span>
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="8" cy="8" r="3.5"/>
-              <circle cx="16" cy="16" r="3.5"/>
-              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/>
-            </svg>
-          </span>
-          <h3>APIs e integrações</h3>
-          <p>Conectando ferramentas que hoje não conversam entre si — inclui também ferramentas para devs.</p>
-        </div>
-        <div class="card reveal">
-          <span class="card-tech-corner" aria-hidden="true"></span>
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"/>
-              <circle cx="12" cy="12" r="1.6"/>
-              <line x1="12" y1="3.5" x2="12" y2="6"/>
-              <line x1="12" y1="18" x2="12" y2="20.5"/>
-              <line x1="3.5" y1="12" x2="6" y2="12"/>
-              <line x1="18" y1="12" x2="20.5" y2="12"/>
-            </svg>
-          </span>
-          <h3>Automações</h3>
-          <p>Processos manuais viram fluxos automáticos, sem depender de esforço repetitivo.</p>
-        </div>
-      </div>
-
-      <p><a class="card-link" href="/solucoes">Ver soluções completas →</a></p>
     </div>
   </section>
 
-  <section class="valores" id="valores">
+  <section class="valores" id="em-desenvolvimento">
     <div class="container">
-      <p class="eyebrow eyebrow-inline">Nossos valores</p>
+      <p class="eyebrow eyebrow-inline">Visão futura</p>
       <span class="accent-line"></span>
-      <h2>Como pensamos</h2>
+      <h2>Também estamos construindo</h2>
+      <p class="lead">A IDISTØPIC está evoluindo para criar sistemas inteligentes, agentes de IA, automações, APIs e produtos digitais. Essas frentes fazem parte da visão do produto, mas ainda não são ofertas abertas de venda.</p>
       <div class="cards-grid cards-grid-5">
         <div class="card card-compact reveal">
           <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="4,17 10,11 14,15 20,7"/>
-              <polyline points="15,7 20,7 20,12"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="2.5"/>
+              <circle cx="5" cy="6" r="1.4"/>
+              <circle cx="19" cy="6" r="1.4"/>
+              <circle cx="12" cy="20" r="1.4"/>
+              <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
+              <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
+              <line x1="12" y1="14.5" x2="12" y2="18.3"/>
             </svg>
           </span>
-          <h3>Inovação com propósito</h3>
-          <p>Tecnologia de ponta para resolver problemas reais.</p>
+          <h3>Sistemas inteligentes</h3>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
         </div>
         <div class="card card-compact reveal">
           <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="16" width="4" height="4"/>
-              <rect x="10" y="11" width="4" height="9"/>
-              <rect x="16" y="5" width="4" height="15"/>
-            </svg>
-          </span>
-          <h3>Sistemas escaláveis</h3>
-          <p>Soluções pensadas para crescer e gerar valor contínuo.</p>
-        </div>
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-cyan">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="7" y="7" width="10" height="10" rx="1.5"/>
               <line x1="9" y1="4" x2="9" y2="7"/>
@@ -225,39 +118,54 @@
               <line x1="17" y1="15" x2="20" y2="15"/>
             </svg>
           </span>
-          <h3>Inteligência artificial real</h3>
-          <p>IA aplicada de forma prática, estratégica e responsável.</p>
+          <h3>Agentes de IA</h3>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
         </div>
         <div class="card card-compact reveal">
           <span class="card-icon icon-orange">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-              <circle cx="12" cy="12" r="8"/>
-              <circle cx="12" cy="12" r="4.5"/>
-              <circle cx="12" cy="12" r="1"/>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="12" cy="12" r="1.6"/>
+              <line x1="12" y1="3.5" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="20.5"/>
+              <line x1="3.5" y1="12" x2="6" y2="12"/>
+              <line x1="18" y1="12" x2="20.5" y2="12"/>
             </svg>
           </span>
-          <h3>Foco no essencial</h3>
-          <p>Simplificamos o que é complexo.</p>
+          <h3>Automações</h3>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
         </div>
         <div class="card card-compact reveal">
-          <span class="card-icon icon-orange">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3.5 L19 6.5 V12 C19 16 16 18.5 12 20.5 C8 18.5 5 16 5 12 V6.5 Z"/>
-              <polyline points="9,12 11.2,14.2 15.5,9.5"/>
+          <span class="card-icon icon-cyan">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+              <circle cx="8" cy="8" r="3.5"/>
+              <circle cx="16" cy="16" r="3.5"/>
+              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/>
             </svg>
           </span>
-          <h3>Autonomia &amp; dono</h3>
-          <p>Assumimos responsabilidade e entregamos resultado.</p>
+          <h3>APIs e integrações</h3>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
+        </div>
+        <div class="card card-compact reveal">
+          <span class="card-icon icon-green">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="4" width="12" height="7" rx="1.5"/>
+              <rect x="8" y="13" width="12" height="7" rx="1.5"/>
+            </svg>
+          </span>
+          <h3>SaaS e produtos digitais</h3>
+          <span class="badge badge-neutro">Em desenvolvimento</span>
         </div>
       </div>
+      <p><a class="card-link" href="/solucoes">Acompanhar evolução →</a></p>
     </div>
   </section>
 
   <section class="cta-final" id="cta-final">
     <div class="container reveal">
-      <h2>Vamos construir o próximo sistema da sua empresa?</h2>
-      <p class="lead lead-invertido">Conheça nossos serviços e veja se faz sentido para você.</p>
-      <a class="cta cta-primary" href="/solucoes">Ver serviços</a>
+      <h2>Precisa de uma landing page que já comece com estratégia?</h2>
+      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
+      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
     </div>
   </section>
   </main>
@@ -265,13 +173,10 @@
   <footer class="rodape" id="rodape">
     <div class="container footer-inner">
       <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
-      <span>AI Systems Company</span>
+      <span>Landing pages com IA</span>
     </div>
   </footer>
 
   <script src="script.js" defer></script>
 </body>
 </html>
-
-
-
