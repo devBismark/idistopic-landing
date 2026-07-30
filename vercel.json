@@ -1,7 +1,7 @@
 {
   "rewrites": [
     { "source": "/briefing", "destination": "https://client-flow-ekgp.onrender.com/index.html" },
-    { "source": "/painel", "destination": "https://client-flow-ekgp.onrender.com/admin.html" },
+    { "source": "/painel", "destination": "https://client-flow-ekgp.onrender.com/central.html" },
     { "source": "/login.html", "destination": "https://client-flow-ekgp.onrender.com/login.html" },
     { "source": "/proposta.html", "destination": "https://client-flow-ekgp.onrender.com/proposta.html" },
     { "source": "/api/:path*", "destination": "https://client-flow-ekgp.onrender.com/api/:path*" },
