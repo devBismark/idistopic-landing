@@ -7,6 +7,8 @@
     { "source": "/api/:path*", "destination": "https://client-flow-ekgp.onrender.com/api/:path*" },
     { "source": "/diagnostico", "destination": "https://client-flow-ekgp.onrender.com/diagnostico" },
     { "source": "/admin-diagnostico.html", "destination": "https://client-flow-ekgp.onrender.com/admin-diagnostico.html" },
+    { "source": "/admin.html", "destination": "https://client-flow-ekgp.onrender.com/admin.html" },
+    { "source": "/admin-radar.html", "destination": "https://client-flow-ekgp.onrender.com/admin-radar.html" },
     { "source": "/solucoes", "destination": "/solucoes.html" }
   ]
 }
