@@ -12,6 +12,7 @@
     { "source": "/solucoes", "destination": "/solucoes.html" },
     { "source": "/painel/briefings", "destination": "https://client-flow-ekgp.onrender.com/painel/briefings" },
     { "source": "/painel/diagnostico", "destination": "https://client-flow-ekgp.onrender.com/painel/diagnostico" },
-    { "source": "/painel/radar", "destination": "https://client-flow-ekgp.onrender.com/painel/radar" }
+    { "source": "/painel/radar", "destination": "https://client-flow-ekgp.onrender.com/painel/radar" },
+    { "source": "/trabalhos", "destination": "/trabalhos.html" }
   ]
 }

@@ -1,0 +1,95 @@
+<!-- TRABALHOS PASS (2026-07-31) — página estática /trabalhos.html, servida via
+     rewrite interno /trabalhos -> /trabalhos.html em vercel.json (mesmo padrão
+     do rewrite local já usado por /solucoes). Reaproveita 100% de styles.css e
+     script.js já existentes — .solucoes-lista/.solucao-bloco/.badge/.card-link/
+     .cta já validados em produção via solucoes.html, nenhuma classe CSS nova
+     criada. Sem CDN, sem dependência nova, sem build. Não altera index.html
+     (decisão registrada: sem link na homepage nesta v1).
+
+     4 cards: Comanda Loca, Jessie Nails e FB Restaurações — tipo "Trabalho
+     publicado / Vitrine real" (badge-green), autoria "Criado e desenvolvido
+     pela IDISTØPIC"/"Criado por IDISTØPIC" autorizada explicitamente pelo
+     usuário, sem métrica/resultado/depoimento inventado — e Homepage
+     IDISTØPIC — tipo "Demo interna / produto próprio" (badge-orange),
+     mantida separada dos 3 trabalhos reais.
+
+     Ver memory/products/landing-idistopic/trabalhos-implementation-plan-v1.md
+     e DECISIONS.md (aprovação Nível 2 registrada antes desta implementação). -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trabalhos — IDISTØPIC | Vitrine de projetos publicados</title>
+  <meta name="description" content="Vitrine de trabalhos reais publicados pela IDISTØPIC, e a homepage institucional como demonstração interna." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <main>
+  <header class="hero" id="hero">
+    <div class="container">
+      <a class="voltar-home" href="/">← Voltar para a home</a>
+      <p class="eyebrow">Trabalhos</p>
+      <span class="accent-line"></span>
+      <h1>Trabalhos publicados pela IDISTØPIC</h1>
+      <p class="lead">Uma vitrine dos projetos reais que já colocamos no ar, mais a nossa própria homepage como demonstração interna.</p>
+      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+    </div>
+  </header>
+
+  <section class="solucao" id="trabalhos">
+    <div class="container">
+      <div class="solucoes-lista">
+
+        <article class="solucao-bloco reveal">
+          <h2 class="solucao-titulo">Comanda Loca</h2>
+          <span class="badge badge-green">Trabalho publicado</span>
+          <p>Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+          <a class="cta cta-secondary" href="https://comanda-local.netlify.app/#demonstracao" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
+        </article>
+
+        <article class="solucao-bloco reveal">
+          <h2 class="solucao-titulo">Jessie Nails</h2>
+          <span class="badge badge-green">Trabalho publicado</span>
+          <p>Criado por IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+          <a class="cta cta-secondary" href="https://jessie-nails.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
+        </article>
+
+        <article class="solucao-bloco reveal">
+          <h2 class="solucao-titulo">FB Restaurações</h2>
+          <span class="badge badge-green">Trabalho publicado</span>
+          <p>Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+          <a class="cta cta-secondary" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
+        </article>
+
+        <article class="solucao-bloco reveal">
+          <h2 class="solucao-titulo">Homepage IDISTØPIC</h2>
+          <span class="badge badge-orange">Demo interna</span>
+          <p>Produto próprio da IDISTØPIC, não é entrega para cliente — a nossa própria vitrine institucional, em evolução, construída com a mesma abordagem que oferecemos.</p>
+          <a class="cta cta-secondary" href="/">Ver homepage</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final" id="cta-final">
+    <div class="container reveal">
+      <h2>Quer um trabalho assim para o seu negócio?</h2>
+      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
+      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+    </div>
+  </section>
+  </main>
+
+  <footer class="rodape" id="rodape">
+    <div class="container footer-inner">
+      <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
+      <span>Landing pages com IA</span>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
