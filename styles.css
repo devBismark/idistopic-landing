@@ -884,3 +884,61 @@ footer.rodape {
     grid-template-columns: 1fr;
   }
 }
+
+/* TRABALHOS VISUAL PREVIEWS (2026-08-01) — baralho/stack estático de 3
+   imagens por card (assets/trabalhos/*.webp), puramente decorativo, sem
+   interação/carrossel/JS. Ver
+   memory/products/landing-idistopic/trabalhos-visual-preview-plan-v1.md. */
+
+.trabalho-preview {
+  position: relative;
+  width: 100%;
+  max-width: 22rem;
+  aspect-ratio: 16 / 10;
+  margin: 0 auto 1.5rem;
+}
+
+.trabalho-preview img {
+  position: absolute;
+  display: block;
+  width: 78%;
+  height: auto;
+  border-radius: var(--raio-sm);
+  border: 1px solid var(--linha-fina);
+  object-fit: cover;
+}
+
+.trabalho-preview .preview-back,
+.trabalho-preview .preview-mid {
+  filter: brightness(0.82) saturate(0.9);
+}
+
+.trabalho-preview .preview-back {
+  top: 2%;
+  left: 0;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.trabalho-preview .preview-mid {
+  top: 0;
+  right: 0;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+
+.trabalho-preview .preview-front {
+  top: 14%;
+  left: 11%;
+  width: 82%;
+  transform: rotate(-1deg);
+  z-index: 3;
+  box-shadow: var(--glow-cyan);
+}
+
+@media (max-width: 560px) {
+  .trabalho-preview {
+    max-width: 18rem;
+    margin-bottom: 1.25rem;
+  }
+}
