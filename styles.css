@@ -885,55 +885,102 @@ footer.rodape {
   }
 }
 
-/* TRABALHOS VISUAL PREVIEWS (2026-08-01) — baralho/stack estático de 3
-   imagens por card (assets/trabalhos/*.webp), puramente decorativo, sem
-   interação/carrossel/JS. Ver
+/* TRABALHOS VISUAL PREVIEWS (2026-08-01, revisão de layout) — baralho/stack
+   estático de 3 imagens por card (assets/trabalhos/*.webp), puramente
+   decorativo, sem interação/carrossel/JS. Em telas largas o card vira
+   2 colunas (preview | texto), alternando o lado do preview a cada card
+   (nth-of-type par/ímpar) para dar ritmo e sensação de composição editorial;
+   o preview "sangra" verticalmente um pouco para fora do card (margem
+   negativa, sem overflow horizontal) para parecer flutuar, não uma
+   miniatura presa dentro da borda. Em mobile volta a empilhar (imagem no
+   topo, texto abaixo), mesmo comportamento de antes. Ver
    memory/products/landing-idistopic/trabalhos-visual-preview-plan-v1.md. */
 
 .trabalho-preview {
   position: relative;
   width: 100%;
   max-width: 22rem;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
   margin: 0 auto 1.5rem;
 }
 
 .trabalho-preview img {
   position: absolute;
   display: block;
-  width: 78%;
+  width: 80%;
   height: auto;
   border-radius: var(--raio-sm);
   border: 1px solid var(--linha-fina);
   object-fit: cover;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
 }
 
 .trabalho-preview .preview-back,
 .trabalho-preview .preview-mid {
-  filter: brightness(0.82) saturate(0.9);
+  width: 60%;
+  filter: brightness(0.8) saturate(0.9);
 }
 
 .trabalho-preview .preview-back {
-  top: 2%;
-  left: 0;
-  transform: rotate(-6deg);
+  top: 0;
+  left: -2%;
+  transform: rotate(-9deg);
   z-index: 1;
 }
 
 .trabalho-preview .preview-mid {
-  top: 0;
-  right: 0;
-  transform: rotate(4deg);
+  top: -4%;
+  right: -2%;
+  transform: rotate(7deg);
   z-index: 2;
 }
 
 .trabalho-preview .preview-front {
-  top: 14%;
-  left: 11%;
-  width: 82%;
-  transform: rotate(-1deg);
+  top: 16%;
+  left: 15%;
+  width: 80%;
+  transform: rotate(-2deg);
   z-index: 3;
-  box-shadow: var(--glow-cyan);
+  box-shadow: var(--glow-cyan), 0 22px 44px rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 721px) {
+  .solucao-bloco.tem-preview {
+    display: grid;
+    grid-template-columns: minmax(260px, 44%) 1fr;
+    align-items: center;
+    column-gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .solucao-bloco.tem-preview .trabalho-preview {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    max-width: none;
+    margin: -1.25rem 0;
+  }
+
+  .solucao-bloco.tem-preview .solucao-titulo,
+  .solucao-bloco.tem-preview .badge,
+  .solucao-bloco.tem-preview p,
+  .solucao-bloco.tem-preview .cta {
+    grid-column: 2;
+  }
+
+  /* Alterna o lado do preview a cada card (2º, 4º...) para dar ritmo */
+  .solucao-bloco.tem-preview:nth-of-type(even) {
+    grid-template-columns: 1fr minmax(260px, 44%);
+  }
+
+  .solucao-bloco.tem-preview:nth-of-type(even) .trabalho-preview {
+    grid-column: 2;
+  }
+
+  .solucao-bloco.tem-preview:nth-of-type(even) .solucao-titulo,
+  .solucao-bloco.tem-preview:nth-of-type(even) .badge,
+  .solucao-bloco.tem-preview:nth-of-type(even) p,
+  .solucao-bloco.tem-preview:nth-of-type(even) .cta {
+    grid-column: 1;
+  }
 }
 
 @media (max-width: 560px) {
