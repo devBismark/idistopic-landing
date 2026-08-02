@@ -562,6 +562,17 @@ a.card {
   padding: clamp(0.9rem, 2.4vw, 1.25rem);
 }
 
+/* Hotfix pontual (2026-08-02) — em /solucoes.html, o badge "Em
+   desenvolvimento" quebra em 2 linhas dentro dos cards compactos de 4
+   colunas (mais estreitos que os 5 da homepage). Escopado só a
+   #em-desenvolvimento (a seção de visão futura de /solucoes) para não
+   afetar nenhum outro badge do site, incluindo o mesmo .valores da
+   homepage, que já cabe bem com 5 colunas. */
+#em-desenvolvimento .card-compact .badge {
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
 /* Design DNA v3 — Fase 1.1: cards de Valores recebem tratamento mais leve
    que os de Serviços — só borda superior colorida, sem canto (densidade
    proporcional: 5 cards compactos lado a lado não pedem o mesmo reforço). */
