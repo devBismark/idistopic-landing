@@ -20,7 +20,27 @@
      outro conteúdo desta página alterado. Classe já existente reaproveitada
      (.card-link) — nenhuma mudança em styles.css. Ver
      memory/products/landing-idistopic/trabalhos-implementation-plan-v1.md.
-     Ver memory/products/landing-idistopic/DECISIONS.md. -->
+     Ver memory/products/landing-idistopic/DECISIONS.md.
+
+     PREMIUM PASS v0 (2026-08-02, branch feature/solucoes-premium-v0) — a
+     seção única "Soluções" (5 cards `.solucao-bloco` idênticos, só o badge
+     mudava) virou 2 seções que reaproveitam exatamente os componentes já
+     validados e em produção na homepage (index.html): "Sites e landing
+     pages" (oferta real) agora usa `.servico-destaque` + `.destaque-tech-
+     frame`/`.destaque-tech-corner-*` (frame completo, mesmo tratamento do
+     serviço principal da homepage); as 4 frentes futuras agora usam
+     `.valores`/`.card-compact` (ícone + título + badge, sem os 4 campos
+     detalhados que tinham antes). Hero ganhou `.hero-tech-frame`/`.hero-
+     tech-corner-*`, igual ao da homepage. Nenhum token/cor/fonte/componente
+     novo — só classes já existentes em styles.css, reaproveitadas. Copy do
+     serviço principal (parágrafo + 5 bullets de mecanismo) e da seção de
+     visão futura (eyebrow/h2/lead) reaproveitada literalmente de index.html
+     — mesma oferta, mesmo texto já aprovado, nada inventado. Distinção
+     badge-cyan "Disponível agora" vs. badge-neutro "Em desenvolvimento"
+     preservada; CTAs para /briefing e link para /trabalhos preservados.
+     Local/branch only — NÃO promovido a produção. Ver
+     memory/products/landing-idistopic/solucoes-premium-diagnosis-v0.md e
+     premium-page-system-v0.md. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -34,6 +54,11 @@
 
   <main>
   <header class="hero" id="hero">
+    <div class="hero-tech-frame" aria-hidden="true"></div>
+    <span class="hero-tech-corner hero-tech-corner-tl" aria-hidden="true"></span>
+    <span class="hero-tech-corner hero-tech-corner-tr" aria-hidden="true"></span>
+    <span class="hero-tech-corner hero-tech-corner-bl" aria-hidden="true"></span>
+    <span class="hero-tech-corner hero-tech-corner-br" aria-hidden="true"></span>
     <div class="container">
       <a class="voltar-home" href="/">← Voltar para a home</a>
       <p class="eyebrow">Soluções</p>
@@ -44,43 +69,48 @@
     </div>
   </header>
 
-  <section class="solucoes" id="solucoes">
+  <section class="servicos" id="servico-principal">
     <div class="container">
-      <div class="solucoes-lista">
+      <p class="eyebrow eyebrow-inline">Oferta atual</p>
+      <span class="accent-line"></span>
+      <h2>Sites e landing pages</h2>
 
-        <article class="solucao-bloco reveal">
-          <span class="card-icon icon-orange">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-              <line x1="3.5" y1="9" x2="20.5" y2="9"/>
-            </svg>
-          </span>
-          <h2 class="solucao-titulo">Sites e landing pages</h2>
-          <span class="badge badge-cyan">Disponível agora</span>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Página lenta, genérica ou que não converte.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Empresas que precisam de presença digital rápida e orientada a conversão.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Site ou landing page rápida, com IA, pronta para captar lead.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p>Exemplo próprio: a homepage da IDISTØPIC como vitrine institucional em evolução.</p>
-              <a class="card-link" href="/trabalhos">Ver trabalhos publicados →</a>
-            </div>
-          </div>
-          <p class="solucao-nota">Já sabe que precisa de uma página? Este briefing é o caminho mais direto.</p>
-          <a class="cta cta-secondary" href="/briefing">Preencher briefing</a>
-        </article>
+      <div class="servico-destaque reveal">
+        <div class="destaque-tech-frame" aria-hidden="true"></div>
+        <span class="destaque-tech-corner destaque-tech-corner-tl" aria-hidden="true"></span>
+        <span class="destaque-tech-corner destaque-tech-corner-tr" aria-hidden="true"></span>
+        <span class="destaque-tech-corner destaque-tech-corner-bl" aria-hidden="true"></span>
+        <span class="destaque-tech-corner destaque-tech-corner-br" aria-hidden="true"></span>
+        <span class="badge badge-cyan">Disponível agora</span>
+        <span class="card-icon icon-orange">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="5" width="17" height="14" rx="2"/>
+            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
+          </svg>
+        </span>
+        <p>Nosso serviço principal é a criação de landing pages para negócios que precisam vender, validar ou apresentar uma oferta sem montar uma equipe técnica.</p>
+        <ul>
+          <li>Briefing guiado para entender oferta, público e objetivo da página</li>
+          <li>Estrutura de página pensada para clareza e conversão</li>
+          <li>Construção com apoio de IA e checagens automatizadas</li>
+          <li>Validação técnica e visual antes da entrega</li>
+          <li>Caminho simples para captar interessados e iniciar conversas</li>
+        </ul>
+        <p class="solucao-nota">Exemplo próprio: a homepage da IDISTØPIC como vitrine institucional em evolução.</p>
+        <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+        <a class="card-link" href="/trabalhos">Ver trabalhos publicados →</a>
+      </div>
+    </div>
+  </section>
 
-        <article class="solucao-bloco reveal">
+  <section class="valores" id="em-desenvolvimento">
+    <div class="container">
+      <p class="eyebrow eyebrow-inline">Visão futura</p>
+      <span class="accent-line"></span>
+      <h2>Também estamos construindo</h2>
+      <p class="lead">A IDISTØPIC está evoluindo para criar sistemas inteligentes, agentes de IA, automações, APIs e produtos digitais. Essas frentes fazem parte da visão do produto, mas ainda não são ofertas abertas de venda.</p>
+      <div class="cards-grid cards-grid-servicos">
+        <div class="card card-compact reveal">
           <span class="card-icon icon-cyan">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
               <circle cx="12" cy="12" r="2.5"/>
@@ -92,29 +122,11 @@
               <line x1="12" y1="14.5" x2="12" y2="18.3"/>
             </svg>
           </span>
-          <h2 class="solucao-titulo">Sistemas inteligentes e agentes de IA</h2>
+          <h3>Sistemas inteligentes e agentes de IA</h3>
           <span class="badge badge-neutro">Em desenvolvimento</span>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Times presos em decisões manuais e tarefas repetitivas que não escalam.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Empresas que já sentem o limite operacional de fazer tudo manualmente.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Sistema sob medida com agente de IA integrado aos processos existentes.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> agente que faz triagem e prioriza solicitações internas antes de chegar a um humano.</p>
-            </div>
-          </div>
-        </article>
+        </div>
 
-        <article class="solucao-bloco reveal">
+        <div class="card card-compact reveal">
           <span class="card-icon icon-green">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
               <circle cx="12" cy="12" r="5"/>
@@ -125,29 +137,11 @@
               <line x1="18" y1="12" x2="20.5" y2="12"/>
             </svg>
           </span>
-          <h2 class="solucao-titulo">Automações</h2>
+          <h3>Automações</h3>
           <span class="badge badge-neutro">Em desenvolvimento</span>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Processos manuais consomem tempo do time e geram erro humano.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Times operacionais e administrativos com fluxo repetitivo.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Fluxos automatizados ponta a ponta, conectando as ferramentas que a empresa já usa.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> automação de onboarding de cliente disparada por evento.</p>
-            </div>
-          </div>
-        </article>
+        </div>
 
-        <article class="solucao-bloco reveal">
+        <div class="card card-compact reveal">
           <span class="card-icon icon-cyan">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
               <circle cx="8" cy="8" r="3.5"/>
@@ -155,57 +149,20 @@
               <line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/>
             </svg>
           </span>
-          <h2 class="solucao-titulo">APIs e integrações</h2>
+          <h3>APIs e integrações</h3>
           <span class="badge badge-neutro">Em desenvolvimento</span>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Ferramentas que não conversam entre si, dados duplicados ou perdidos.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Empresas com stack fragmentado — inclui também times de dev que precisam de uma integração específica.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Construção de APIs e integrações sob medida entre sistemas.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> integração entre CRM e ferramenta de comunicação.</p>
-            </div>
-          </div>
-        </article>
+        </div>
 
-        <article class="solucao-bloco reveal">
+        <div class="card card-compact reveal">
           <span class="card-icon icon-green">
             <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
               <rect x="4" y="4" width="12" height="7" rx="1.5"/>
               <rect x="8" y="13" width="12" height="7" rx="1.5"/>
             </svg>
           </span>
-          <h2 class="solucao-titulo">SaaS e produtos digitais</h2>
+          <h3>SaaS e produtos digitais</h3>
           <span class="badge badge-neutro">Em desenvolvimento</span>
-          <div class="solucao-meta">
-            <div>
-              <span class="solucao-label">Problema</span>
-              <p>Ideia de produto sem capacidade técnica interna para tirar do papel.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Para quem</span>
-              <p>Founders e empresas que querem lançar um produto digital escalável.</p>
-            </div>
-            <div>
-              <span class="solucao-label">O que entregamos</span>
-              <p>Produto SaaS construído do zero, pensado para crescer com o negócio.</p>
-            </div>
-            <div>
-              <span class="solucao-label">Exemplo</span>
-              <p><em>Demo:</em> MVP de um produto vertical de nicho.</p>
-            </div>
-          </div>
-        </article>
-
+        </div>
       </div>
     </div>
   </section>
