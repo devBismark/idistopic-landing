@@ -22,7 +22,13 @@
      PREVIEWS VISUAIS (2026-08-01) — baralho/stack estático de 3 imagens reais
      por card (assets/trabalhos/*.webp, 12 no total), decorativo, sem
      iframe/carrossel/JS novo. CSS em .trabalho-preview (styles.css). Ver
-     memory/products/landing-idistopic/trabalhos-visual-preview-plan-v1.md. -->
+     memory/products/landing-idistopic/trabalhos-visual-preview-plan-v1.md.
+
+     REDESIGN DOS PREVIEWS (2026-08-02) — stack/baralho substituído por uma
+     única imagem grande por card (a *-01.webp de cada trabalho, já existente,
+     nenhum asset novo), emoldurada como janela de navegador (.trabalho-preview
+     + .trabalho-preview-bar/.trabalho-preview-url/.trabalho-preview-img em
+     styles.css). Layout volta a coluna única (imagem no topo, texto abaixo). -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -50,11 +56,15 @@
     <div class="container">
       <div class="solucoes-lista">
 
-        <article class="solucao-bloco reveal tem-preview">
+        <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <img class="preview-back" src="assets/trabalhos/comanda-local-03.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-mid" src="assets/trabalhos/comanda-local-02.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-front" src="assets/trabalhos/comanda-local-01.webp" width="720" height="450" alt="Tela inicial do site Comanda Local, sistema de comandas para restaurantes" />
+            <div class="trabalho-preview-bar">
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-url">comanda-local.netlify.app</span>
+            </div>
+            <img class="trabalho-preview-img" src="assets/trabalhos/comanda-local-01.webp" width="720" height="450" alt="Tela inicial do site Comanda Local, sistema de comandas para restaurantes" />
           </div>
           <h2 class="solucao-titulo">Comanda Local</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -62,11 +72,15 @@
           <a class="cta cta-secondary" href="https://comanda-local.netlify.app/#demonstracao" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
         </article>
 
-        <article class="solucao-bloco reveal tem-preview">
+        <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <img class="preview-back" src="assets/trabalhos/jessie-nails-03.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-mid" src="assets/trabalhos/jessie-nails-02.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-front" src="assets/trabalhos/jessie-nails-01.webp" width="720" height="450" alt="Tela inicial do site Jessie Nails, nail designer em Campanhã, Porto" loading="lazy" />
+            <div class="trabalho-preview-bar">
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-url">jessie-nails.netlify.app</span>
+            </div>
+            <img class="trabalho-preview-img" src="assets/trabalhos/jessie-nails-01.webp" width="720" height="450" alt="Tela inicial do site Jessie Nails, nail designer em Campanhã, Porto" loading="lazy" />
           </div>
           <h2 class="solucao-titulo">Jessie Nails</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -74,11 +88,15 @@
           <a class="cta cta-secondary" href="https://jessie-nails.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
         </article>
 
-        <article class="solucao-bloco reveal tem-preview">
+        <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <img class="preview-back" src="assets/trabalhos/fb-restauracoes-03.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-mid" src="assets/trabalhos/fb-restauracoes-02.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-front" src="assets/trabalhos/fb-restauracoes-01.webp" width="720" height="450" alt="Tela inicial do site FB Restaurações, restauração artesanal de móveis" loading="lazy" />
+            <div class="trabalho-preview-bar">
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-url">fb-restauracoes.netlify.app</span>
+            </div>
+            <img class="trabalho-preview-img" src="assets/trabalhos/fb-restauracoes-01.webp" width="720" height="450" alt="Tela inicial do site FB Restaurações, restauração artesanal de móveis" loading="lazy" />
           </div>
           <h2 class="solucao-titulo">FB Restaurações</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -86,11 +104,15 @@
           <a class="cta cta-secondary" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
         </article>
 
-        <article class="solucao-bloco reveal tem-preview">
+        <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <img class="preview-back" src="assets/trabalhos/homepage-idistopic-03.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-mid" src="assets/trabalhos/homepage-idistopic-02.webp" width="460" height="287" alt="" loading="lazy" />
-            <img class="preview-front" src="assets/trabalhos/homepage-idistopic-01.webp" width="720" height="450" alt="Tela inicial da homepage da IDISTØPIC, landing pages com IA" loading="lazy" />
+            <div class="trabalho-preview-bar">
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-dot"></span>
+              <span class="trabalho-preview-url">idistopic.com</span>
+            </div>
+            <img class="trabalho-preview-img" src="assets/trabalhos/homepage-idistopic-01.webp" width="720" height="450" alt="Tela inicial da homepage da IDISTØPIC, landing pages com IA" loading="lazy" />
           </div>
           <h2 class="solucao-titulo">Homepage IDISTØPIC</h2>
           <span class="badge badge-orange">Demo interna</span>
