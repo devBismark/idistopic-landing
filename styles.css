@@ -885,58 +885,26 @@ footer.rodape {
   }
 }
 
-/* TRABALHOS VISUAL PREVIEWS — redesign (2026-08-02) — substitui o baralho/
-   stack de 3 imagens sobrepostas (não aprovado visualmente pelo usuário,
-   ver memory/products/landing-idistopic/STATUS.md) por uma única imagem
-   grande por card (assets/trabalhos/*-01.webp, a de maior resolução das 3
-   já existentes — nenhum asset novo gerado), emoldurada como uma janela de
-   navegador (barra superior com 3 pontos + domínio real em fonte mono) para
-   ler como amostra real da página, não como miniatura solta. Puramente
-   decorativo, sem iframe/carrossel/JS. Layout volta a ser empilhado em coluna
-   única (imagem no topo, texto abaixo) em vez do split 2-colunas anterior —
-   mais simples, evita poluição visual, e já é responsivo por natureza (sem
-   grid dependente de breakpoint para o preview em si). */
+/* TRABALHOS VISUAL PREVIEWS — redesign v2 (2026-08-02) — a v1 (moldura de
+   navegador genérica, barra + 3 pontos) não foi aprovada pelo usuário por
+   ficar "genérica/básica demais". Troca por uma moldura proprietária,
+   reaproveitando a mesma linguagem técnica já validada em produção em
+   index.html (core/identity.md, "DNA visual — tokens consolidados"):
+   frame/inset fino + 4 cantos angulares em --cor-ciano (mesmo padrão de
+   .hero-tech-frame/.hero-tech-corner e .destaque-tech-frame/
+   .destaque-tech-corner) + label discreto em --fonte-mono (índice do case +
+   domínio real, chip sobreposto no canto superior esquerdo da imagem) +
+   glow sutil (--glow-cyan, nível "sutil" de core/identity.md) só no hover do
+   card. Sem barra de navegador, sem "pontos", sem gradiente chamativo.
+   Continua puramente decorativo (cantos/frame com aria-hidden), sem
+   iframe/carrossel/JS, e reaproveitando o único asset já usado na v1
+   (assets/trabalhos/*-01.webp) — nenhum asset novo. */
 
 .trabalho-preview {
+  position: relative;
   border-radius: var(--raio-md);
-  border: 1px solid var(--linha-fina);
-  background: var(--cor-painel);
-  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   margin-bottom: calc(var(--espaco) * 1.25);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.solucao-bloco:hover .trabalho-preview {
-  border-color: rgba(0, 240, 255, 0.25);
-  box-shadow: var(--glow-cyan), 0 20px 44px rgba(0, 0, 0, 0.45);
-}
-
-.trabalho-preview-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 0.85rem;
-  border-bottom: 1px solid var(--linha-fina);
-  background: rgba(245, 247, 248, 0.03);
-}
-
-.trabalho-preview-dot {
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 50%;
-  background: var(--linha-fina);
-  flex-shrink: 0;
-}
-
-.trabalho-preview-url {
-  margin-left: 0.4rem;
-  font-family: var(--fonte-mono);
-  font-size: 0.72rem;
-  color: var(--cor-texto-suave);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .trabalho-preview-img {
@@ -945,4 +913,56 @@ footer.rodape {
   height: auto;
   aspect-ratio: 720 / 450;
   object-fit: cover;
+  border-radius: var(--raio-md);
+  border: 1px solid var(--linha-fina);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.solucao-bloco:hover .trabalho-preview-img {
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: var(--glow-cyan);
+}
+
+.trabalho-preview-frame {
+  position: absolute;
+  inset: 10px;
+  border: 1px solid var(--linha-fina);
+  pointer-events: none;
+}
+
+.trabalho-preview-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--cor-ciano);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.trabalho-preview-corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.trabalho-preview-corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.trabalho-preview-corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.trabalho-preview-corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+.trabalho-preview-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: var(--fonte-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: rgba(5, 9, 11, 0.72);
+  border: 1px solid var(--linha-fina);
+  border-radius: var(--raio-sm);
+  padding: 0.3rem 0.6rem;
+}
+
+.trabalho-preview-tag-index {
+  color: var(--cor-ciano);
+  opacity: 0.85;
 }

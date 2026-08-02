@@ -26,9 +26,15 @@
 
      REDESIGN DOS PREVIEWS (2026-08-02) — stack/baralho substituído por uma
      única imagem grande por card (a *-01.webp de cada trabalho, já existente,
-     nenhum asset novo), emoldurada como janela de navegador (.trabalho-preview
-     + .trabalho-preview-bar/.trabalho-preview-url/.trabalho-preview-img em
-     styles.css). Layout volta a coluna única (imagem no topo, texto abaixo). -->
+     nenhum asset novo). Layout em coluna única (imagem no topo, texto abaixo).
+
+     REDESIGN v2 (2026-08-02) — moldura de janela de navegador (v1 do redesign,
+     "genérica demais") substituída por moldura técnica proprietária: frame
+     fino + 4 cantos angulares em --cor-ciano + label discreto em --fonte-mono
+     (índice do case + domínio), mesma linguagem de .hero-tech-frame/
+     .destaque-tech-frame já em produção em index.html (core/identity.md).
+     .trabalho-preview-frame/-corner/-tag em styles.css. Mesmo asset único por
+     card, sem asset novo. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -58,13 +64,13 @@
 
         <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <div class="trabalho-preview-bar">
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-url">comanda-local.netlify.app</span>
-            </div>
             <img class="trabalho-preview-img" src="assets/trabalhos/comanda-local-01.webp" width="720" height="450" alt="Tela inicial do site Comanda Local, sistema de comandas para restaurantes" />
+            <div class="trabalho-preview-frame" aria-hidden="true"></div>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tr" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-bl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-br" aria-hidden="true"></span>
+            <span class="trabalho-preview-tag"><span class="trabalho-preview-tag-index">01</span>comanda-local.netlify.app</span>
           </div>
           <h2 class="solucao-titulo">Comanda Local</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -74,13 +80,13 @@
 
         <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <div class="trabalho-preview-bar">
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-url">jessie-nails.netlify.app</span>
-            </div>
             <img class="trabalho-preview-img" src="assets/trabalhos/jessie-nails-01.webp" width="720" height="450" alt="Tela inicial do site Jessie Nails, nail designer em Campanhã, Porto" loading="lazy" />
+            <div class="trabalho-preview-frame" aria-hidden="true"></div>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tr" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-bl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-br" aria-hidden="true"></span>
+            <span class="trabalho-preview-tag"><span class="trabalho-preview-tag-index">02</span>jessie-nails.netlify.app</span>
           </div>
           <h2 class="solucao-titulo">Jessie Nails</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -90,13 +96,13 @@
 
         <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <div class="trabalho-preview-bar">
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-url">fb-restauracoes.netlify.app</span>
-            </div>
             <img class="trabalho-preview-img" src="assets/trabalhos/fb-restauracoes-01.webp" width="720" height="450" alt="Tela inicial do site FB Restaurações, restauração artesanal de móveis" loading="lazy" />
+            <div class="trabalho-preview-frame" aria-hidden="true"></div>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tr" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-bl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-br" aria-hidden="true"></span>
+            <span class="trabalho-preview-tag"><span class="trabalho-preview-tag-index">03</span>fb-restauracoes.netlify.app</span>
           </div>
           <h2 class="solucao-titulo">FB Restaurações</h2>
           <span class="badge badge-green">Trabalho publicado</span>
@@ -106,13 +112,13 @@
 
         <article class="solucao-bloco reveal">
           <div class="trabalho-preview">
-            <div class="trabalho-preview-bar">
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-dot"></span>
-              <span class="trabalho-preview-url">idistopic.com</span>
-            </div>
             <img class="trabalho-preview-img" src="assets/trabalhos/homepage-idistopic-01.webp" width="720" height="450" alt="Tela inicial da homepage da IDISTØPIC, landing pages com IA" loading="lazy" />
+            <div class="trabalho-preview-frame" aria-hidden="true"></div>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-tr" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-bl" aria-hidden="true"></span>
+            <span class="trabalho-preview-corner trabalho-preview-corner-br" aria-hidden="true"></span>
+            <span class="trabalho-preview-tag"><span class="trabalho-preview-tag-index">04</span>idistopic.com</span>
           </div>
           <h2 class="solucao-titulo">Homepage IDISTØPIC</h2>
           <span class="badge badge-orange">Demo interna</span>
