@@ -1,0 +1,28 @@
+# robots.txt — IDISTØPIC
+#
+# Orientacao de rastreamento, nao mecanismo de seguranca. As rotas listadas em
+# Disallow ja exigem autenticacao no backend (respondem 302 para /login.html);
+# o Disallow apenas evita que consumam rastreamento e sejam tratadas como URLs
+# desejadas para indexacao.
+#
+# As tres paginas publicas de conteudo (/, /solucoes, /trabalhos) e todos os
+# arquivos de estilo, script e imagem permanecem liberados de proposito: um
+# rastreador precisa deles para renderizar as paginas.
+
+User-agent: *
+Allow: /
+
+# Aplicacao reescrita para o backend. Nao e conteudo publico.
+Disallow: /admin.html
+Disallow: /admin-diagnostico.html
+Disallow: /admin-radar.html
+Disallow: /login.html
+Disallow: /proposta.html
+Disallow: /painel
+Disallow: /api/
+
+# Prototipos legados que seguem no repositorio, fora da navegacao e da vitrine.
+Disallow: /landing-pages.html
+Disallow: /mini-demo-orcamento.html
+
+Sitemap: https://www.idistopic.com/sitemap.xml

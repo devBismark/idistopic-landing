@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sitemap IDISTØPIC. Lista apenas as tres rotas publicas de conteudo, nas URLs
+  canonicas limpas servidas pelos rewrites internos do vercel.json.
+
+  Fora de proposito: rotas administrativas e de painel, os fluxos externos
+  /briefing e /diagnostico (aplicacao no backend Render, nao conteudo a indexar),
+  os prototipos legados landing-pages.html e mini-demo-orcamento.html, e as
+  variantes .html das rotas canonicas.
+
+  Sem lastmod: nao existe fonte confiavel para a data de publicacao de cada
+  pagina, e uma data inventada falharia a checagem de exatidao do padrao.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.idistopic.com/</loc>
+  </url>
+  <url>
+    <loc>https://www.idistopic.com/solucoes</loc>
+  </url>
+  <url>
+    <loc>https://www.idistopic.com/trabalhos</loc>
+  </url>
+</urlset>
