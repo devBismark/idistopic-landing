@@ -1,171 +1,351 @@
-<!-- REPOSICIONAMENTO — copy/estrutura (2026-07-29) — homepage reposicionada
-     para vender claramente a oferta real de hoje (landing pages com IA),
-     sem apagar a visão futura (sistemas inteligentes, agentes de IA,
-     automações, APIs, SaaS/produtos digitais), tratada como "em
-     desenvolvimento", não como oferta aberta de venda. Estrutura reduzida
-     a 4 seções + rodapé: Hero, "O que já entregamos hoje" (id
-     servico-principal, reaproveita .servico-destaque — glow forte, raio
-     lg, frame/cantos completos, Design DNA v3), "Também estamos
-     construindo" (id em-desenvolvimento, reaproveita a classe .valores —
-     tratamento mais discreto, sem glow/CTA forte, coerente com "ainda não
-     é oferta aberta"), CTA final. Seções "Problema", "Como funciona" e
-     "Valores" (conteúdo antigo) removidas por decisão explícita do
-     usuário — ver memory/products/landing-idistopic/DECISIONS.md.
-     CTAs principais agora apontam para /briefing (antes /diagnostico);
-     CTA secundário do Hero passa a ser âncora interna (#em-desenvolvimento).
-     Nenhuma mudança em /solucoes.html, vercel.json, script.js, dependência,
-     CDN ou fonte. Design DNA v3 (grid global, frame/cantos só no Hero,
-     divisor de gradiente, escala de radius/glow) preservado sem alteração
-     — só 2 acréscimos mínimos e justificados em styles.css: estilo de
-     lista (.servico-destaque ul/li) e uma variante neutra de badge
-     (.badge-neutro), nenhum dos dois existia antes.
+<!-- HOMEPAGE IDISTØPIC — versão consolidada (2026-09-05).
 
-     DEPLOY CANDIDATE (2026-07-27): cópia deste arquivo, sem alteração de
-     conteúdo, preparada para servir como root de um projeto Vercel. Ver
-     README.md desta pasta antes de qualquer deploy. -->
+     Arquitetura Balanced aprovada e encerrada, na ordem: Hero, Problema,
+     Lógica de operação, O que construímos (âncora #servicos), Como
+     construímos, Princípios, Próximo passo, rodapé. Hero positioning
+     LOCKED. Cinematic Perceptible Pass V2 aprovada; o roteiro da cena mora
+     em script.js e a estrutura desta página não deve mudar sem atualizá-lo.
+     Production readiness concluída: metadata, ícones e card social apontam
+     para assets oficiais em assets/brand/.
+
+     Três destinos, com papéis distintos: #servicos leva às capacidades
+     durante a navegação, /solucoes é descoberta (página estática do projeto
+     Vercel) e /briefing é conversão (rewrite para o backend, fora deste
+     repositório — não criado nem alterado aqui).
+
+     Sem formulário, sem backend, sem dependência, sem CDN, sem fonte remota.
+     Publicação só pelo processo de aprovação Nível 2 do IDISTØPIC OS, com os
+     gates deste repositório rodados sobre o deploy-candidate atualizado. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IDISTØPIC — Landing pages com IA</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>IDISTØPIC — AI Systems Company</title>
+  <meta name="description" content="Projetamos e construímos sistemas inteligentes, agentes de IA e infraestrutura digital que conectam decisões, operações e execução." />
+  <!-- A mesma cor de --cor-fundo em styles.css. Se o token mudar, este valor
+       precisa mudar junto: HTML não lê variável CSS. -->
+  <meta name="theme-color" content="#05090b" />
+  <link rel="canonical" href="https://www.idistopic.com/" />
+
+  <!-- Ícones derivados do símbolo oficial. Fundo navy opaco de propósito: o
+       símbolo é ciano e desapareceria numa aba clara, e o iOS não respeita
+       transparência no apple-touch-icon. -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/brand/favicon-192.png" />
+  <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png" />
+
+  <!-- Compartilhamento. A imagem precisa de URL absoluta: leitores de link não
+       resolvem caminho relativo. A origem vem de .unlazy/homepage-v1, onde
+       www.idistopic.com está registrada como produção oficial. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="IDISTØPIC" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:url" content="https://www.idistopic.com/" />
+  <meta property="og:title" content="IDISTØPIC — Sistemas inteligentes para empresas que não podem esperar" />
+  <meta property="og:description" content="Projetamos e construímos sistemas inteligentes, agentes de IA e infraestrutura digital que conectam decisões, operações e execução." />
+  <meta property="og:image" content="https://www.idistopic.com/assets/brand/og-idistopic-1200x630.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Marca IDISTØPIC sobre fundo azul-petróleo." />
+
+  <!-- Sem handle: nenhum perfil oficial está registrado neste repositório e
+       não se inventa um. O card grande funciona sem twitter:site. -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IDISTØPIC — Sistemas inteligentes para empresas que não podem esperar" />
+  <meta name="twitter:description" content="Projetamos e construímos sistemas inteligentes, agentes de IA e infraestrutura digital que conectam decisões, operações e execução." />
+  <meta name="twitter:image" content="https://www.idistopic.com/assets/brand/og-idistopic-1200x630.png" />
+
+  <link rel="stylesheet" href="homepage-v1.css" />
 </head>
 <body>
 
+  <!-- AMBIENTE — uma única cena atrás de toda a página. Puramente decorativa,
+       fora da árvore de acessibilidade, sem interação. A composição é autoral e
+       determinística: as mesmas coordenadas em todo carregamento. O JS apenas
+       modula presença e parallax; sem ele a cena continua inteira, parada. -->
+  <div class="ambiente" aria-hidden="true">
+    <div class="ambiente-base"></div>
+    <div class="ambiente-luz">
+      <span class="luz luz-fria"></span>
+      <span class="luz luz-profunda"></span>
+      <span class="luz luz-quente"></span>
+      <span class="luz luz-volume"></span>
+    </div>
+
+    <svg class="ambiente-neural" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <defs>
+        <linearGradient id="traco-energia" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-opacity="0" />
+          <stop offset="50%" stop-opacity="1" />
+          <stop offset="100%" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- plano de fundo: a rede quase apagada, mais lenta, com leve desfoque -->
+      <g class="plano plano-fundo">
+        <g class="conexoes">
+        <path d="M60 120 L210 60" /><path d="M60 120 L150 300" /><path d="M150 300 L40 470" />
+        <path d="M40 470 L260 420" /><path d="M260 420 L150 300" /><path d="M40 470 L120 700" />
+        <path d="M120 700 L300 820" /><path d="M300 820 L480 840" /><path d="M210 60 L430 60" />
+        <path d="M430 60 L520 300" /><path d="M520 300 L260 420" /><path d="M1010 60 L1180 180" />
+        <path d="M1180 180 L1320 120" /><path d="M1320 120 L1400 300" /><path d="M1400 300 L1240 520" />
+        <path d="M1240 520 L1080 420" /><path d="M1080 420 L1180 180" /><path d="M1240 520 L1340 700" />
+        <path d="M1340 700 L1120 760" /><path d="M1120 760 L940 840" /><path d="M940 840 L700 860" />
+        <path d="M700 860 L480 840" /><path d="M520 300 L700 860" /><path d="M1080 420 L940 840" />
+        </g>
+        <g class="nos">
+        <circle cx="60" cy="120" r="1.6" /><circle cx="210" cy="60" r="1.6" /><circle cx="150" cy="300" r="1.6" /><circle cx="40" cy="470" r="1.6" /><circle cx="260" cy="420" r="1.6" />
+        <circle cx="120" cy="700" r="1.6" /><circle cx="300" cy="820" r="1.6" /><circle cx="430" cy="60" r="1.6" /><circle cx="520" cy="300" r="1.6" /><circle cx="1010" cy="60" r="1.6" />
+        <circle cx="1180" cy="180" r="1.6" /><circle cx="1080" cy="420" r="1.6" /><circle cx="1320" cy="120" r="1.6" /><circle cx="1400" cy="300" r="1.6" /><circle cx="1240" cy="520" r="1.6" />
+        <circle cx="1120" cy="760" r="1.6" /><circle cx="1340" cy="700" r="1.6" /><circle cx="480" cy="840" r="1.6" /><circle cx="700" cy="860" r="1.6" /><circle cx="940" cy="840" r="1.6" />
+        </g>
+      </g>
+
+      <!-- plano médio: as conexões legíveis, agrupadas, com espaço negativo -->
+      <g class="plano plano-medio">
+        <g class="conexoes">
+        <path d="M170 200 L320 150" /><path d="M170 200 L250 340" /><path d="M320 150 L250 340" />
+        <path d="M250 340 L200 620" /><path d="M200 620 L360 700" /><path d="M1150 260 L1290 330" />
+        <path d="M1290 330 L1200 470" /><path d="M1200 470 L1150 260" /><path d="M1200 470 L1090 600" />
+        <path d="M1090 600 L1230 650" /><path d="M320 150 L560 180" /><path d="M1150 260 L880 120" />
+        <path d="M250 340 L640 560" /><path d="M640 560 L900 640" /><path d="M900 640 L1090 600" />
+        <path d="M360 700 L640 560" /><path d="M880 120 L1010 60" /><path d="M560 180 L430 60" />
+        </g>
+        <g class="nos">
+        <circle cx="170" cy="200" r="2" /><circle cx="320" cy="150" r="2" /><circle cx="250" cy="340" r="2" /><circle cx="1150" cy="260" r="2" /><circle cx="1290" cy="330" r="2" />
+        <circle cx="1200" cy="470" r="2" /><circle cx="200" cy="620" r="2" /><circle cx="360" cy="700" r="2" /><circle cx="1230" cy="650" r="2" /><circle cx="1090" cy="600" r="2" />
+        <circle cx="560" cy="180" r="2" /><circle cx="880" cy="120" r="2" /><circle cx="640" cy="560" r="2" /><circle cx="900" cy="640" r="2" /></g>
+      </g>
+
+      <!-- primeiro plano: pouquíssimos nós, e só eles respiram -->
+      <g class="plano plano-frente">
+        <g class="nos">
+        <circle cx="320" cy="150" r="2.6" /><circle cx="1150" cy="260" r="2.6" /><circle cx="200" cy="620" r="2.6" /><circle cx="1230" cy="650" r="2.6" /><circle cx="880" cy="120" r="2.6" />
+        <circle cx="900" cy="640" r="2.6" /></g>
+        <g class="halos">
+        <circle cx="320" cy="150" r="9" /><circle cx="1150" cy="260" r="9" /><circle cx="200" cy="620" r="9" /><circle cx="1230" cy="650" r="9" /><circle cx="880" cy="120" r="9" />
+        <circle cx="900" cy="640" r="9" /></g>
+        <g class="energia">
+          <path d="M320 150 L560 180 L880 120" />
+          <path d="M250 340 L640 560 L900 640" />
+          <path d="M1090 600 L1230 650" />
+        </g>
+      </g>
+    </svg>
+
+    <div class="luz-eixo"></div>
+
+    <div class="ambiente-sinais">
+      <span style="--x: 12%; --y: 22%"></span><span style="--x: 78%; --y: 14%"></span>
+      <span style="--x: 34%; --y: 68%"></span><span style="--x: 88%; --y: 58%"></span>
+      <span style="--x: 62%; --y: 84%"></span>
+    </div>
+
+    <div class="ambiente-grao"></div>
+    <div class="ambiente-vinheta"></div>
+  </div>
+
   <main>
   <header class="hero" id="hero">
-    <div class="hero-tech-frame" aria-hidden="true"></div>
-    <span class="hero-tech-corner hero-tech-corner-tl" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-tr" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-bl" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-br" aria-hidden="true"></span>
+    <div class="ar-proximo" aria-hidden="true">
+      <span class="ar-halo ar-halo-esq"></span>
+      <span class="ar-halo ar-halo-dir"></span>
+      <svg class="ar-fragmentos" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <path d="M-80 40 L220 -30 L90 260" />
+        <path d="M-60 480 L190 360 L40 640" />
+        <path d="M1260 -40 L1540 160 L1380 40" />
+        <path d="M1480 520 L1580 880" />
+      </svg>
+    </div>
     <div class="container">
       <p class="eyebrow">IDISTØPIC</p>
-      <span class="accent-line"></span>
-      <h1>Landing pages com IA para transformar interesse em cliente.</h1>
-      <p class="lead">A IDISTØPIC cria páginas estratégicas para apresentar sua oferta, captar contatos e validar demanda — com automação, checagem técnica e validação de qualidade em cada etapa.</p>
-      <a class="cta cta-primary" href="/briefing">Começar briefing</a>
-      <a class="cta cta-secondary" href="#em-desenvolvimento">Ver visão futura</a>
+      <span class="accent-line" aria-hidden="true"></span>
+      <p class="logo-sub">AI Systems Company</p>
+      <h1>Sistemas inteligentes. Construídos para empresas que não podem esperar.</h1>
+      <p class="lead">Projetamos e construímos sistemas inteligentes, agentes de IA e infraestrutura digital que conectam decisões, operações e execução.</p>
+      <a class="cta cta-primary" href="#servicos">Ver o que construímos</a>
     </div>
   </header>
 
-  <section class="servicos" id="servico-principal">
-    <div class="container">
-      <p class="eyebrow eyebrow-inline">Serviço principal</p>
-      <span class="accent-line"></span>
-      <h2>O que já entregamos hoje</h2>
+  <section class="problema" id="problema">
+    <div class="container reveal">
+      <p class="eyebrow eyebrow-inline">O problema</p>
+      <span class="accent-line" aria-hidden="true"></span>
+      <h2>Empresas perdem velocidade quando ideias e operações ficam presas em processos manuais</h2>
+      <p>Cada processo manual, cada decisão sem dado, cada sistema que não conversa com outro é tempo e oportunidade que não voltam. A questão raramente é falta de vontade — é falta de sistema.</p>
+    </div>
+  </section>
 
-      <div class="servico-destaque reveal">
-        <div class="destaque-tech-frame" aria-hidden="true"></div>
-        <span class="destaque-tech-corner destaque-tech-corner-tl" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-tr" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-bl" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-br" aria-hidden="true"></span>
-        <span class="badge-destaque">Landing pages com IA</span>
-        <span class="card-icon icon-cyan">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
-          </svg>
-        </span>
-        <p>Nosso serviço principal é a criação de landing pages para negócios que precisam vender, validar ou apresentar uma oferta sem montar uma equipe técnica.</p>
-        <ul>
-          <li>Briefing guiado para entender oferta, público e objetivo da página</li>
-          <li>Estrutura de página pensada para clareza e conversão</li>
-          <li>Construção com apoio de IA e checagens automatizadas</li>
-          <li>Validação técnica e visual antes da entrega</li>
-          <li>Caminho simples para captar interessados e iniciar conversas</li>
+  <!-- LÓGICA DE OPERAÇÃO — a ponte entre a tensão do Problema e as capacidades.
+       Não é o método de projeto (isso é "Como funciona", mais abaixo): é como a
+       IDISTØPIC enxerga uma operação. Os quatro estados são uma sequência real,
+       então o marcador vem de um <ol> e os números saem de um contador CSS — se
+       o CSS falhar, a lista continua numerada pelo próprio navegador. -->
+  <section class="logica" id="logica">
+    <div class="container logica-grade">
+      <div class="logica-abertura reveal">
+        <p class="eyebrow eyebrow-inline">Lógica de operação</p>
+        <span class="accent-line" aria-hidden="true"></span>
+        <h2>Da inteligência à operação.</h2>
+        <p class="logica-apoio">Todo sistema que construímos percorre os mesmos quatro estados.</p>
+      </div>
+
+      <ol class="logica-estados">
+        <li class="estado reveal">
+          <h3>Inteligência</h3>
+          <p>Entender contexto, sinais e restrições.</p>
+        </li>
+        <li class="estado reveal">
+          <h3>Decisão</h3>
+          <p>Definir o que importa e o que vale construir.</p>
+        </li>
+        <li class="estado reveal">
+          <h3>Execução</h3>
+          <p>Transformar decisões em sistemas, agentes e software.</p>
+        </li>
+        <li class="estado reveal">
+          <h3>Operação</h3>
+          <p>Colocar em produção, medir e evoluir.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="servicos" id="servicos">
+    <div class="container">
+      <p class="eyebrow eyebrow-inline">Capacidades</p>
+      <span class="accent-line" aria-hidden="true"></span>
+      <h2>O que construímos</h2>
+
+      <!-- A frente principal deixou de ser um card: sem moldura, sem raio e sem
+           sombra, ela agora é um bloco editorial marcado por uma régua ciano à
+           esquerda. A dominância vem de escala, rótulo e espaço, como no resto da
+           página — não de uma caixa. As três frentes continuam as mesmas, agora
+           como uma lista separada por filetes, numa cor só. -->
+      <div class="frente reveal">
+        <p class="frente-rotulo">Frente principal</p>
+        <h3>Sistemas inteligentes e agentes de IA</h3>
+        <p>Construímos sistemas sob medida e agentes de IA que assumem tarefas, conectam ferramentas e dão decisão mais rápida ao seu time — sem depender de processo manual para escalar.</p>
+        <ul class="frentes">
+          <li>Sistemas inteligentes</li>
+          <li>Agentes de IA</li>
+          <li>Automação de operações</li>
         </ul>
-        <a class="cta cta-primary" href="/briefing">Criar minha landing page</a>
       </div>
-    </div>
-  </section>
 
-  <section class="valores" id="em-desenvolvimento">
-    <div class="container">
-      <p class="eyebrow eyebrow-inline">Visão futura</p>
-      <span class="accent-line"></span>
-      <h2>Também estamos construindo</h2>
-      <p class="lead">A IDISTØPIC está evoluindo para criar sistemas inteligentes, agentes de IA, automações, APIs e produtos digitais. Essas frentes fazem parte da visão do produto, mas ainda não são ofertas abertas de venda.</p>
-      <div class="cards-grid cards-grid-5">
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="2.5"/>
-              <circle cx="5" cy="6" r="1.4"/>
-              <circle cx="19" cy="6" r="1.4"/>
-              <circle cx="12" cy="20" r="1.4"/>
-              <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
-              <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
-              <line x1="12" y1="14.5" x2="12" y2="18.3"/>
-            </svg>
-          </span>
-          <h3>Sistemas inteligentes</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
-        </div>
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="7" y="7" width="10" height="10" rx="1.5"/>
-              <line x1="9" y1="4" x2="9" y2="7"/>
-              <line x1="15" y1="4" x2="15" y2="7"/>
-              <line x1="9" y1="17" x2="9" y2="20"/>
-              <line x1="15" y1="17" x2="15" y2="20"/>
-              <line x1="4" y1="9" x2="7" y2="9"/>
-              <line x1="4" y1="15" x2="7" y2="15"/>
-              <line x1="17" y1="9" x2="20" y2="9"/>
-              <line x1="17" y1="15" x2="20" y2="15"/>
-            </svg>
-          </span>
-          <h3>Agentes de IA</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
-        </div>
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-orange">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"/>
-              <circle cx="12" cy="12" r="1.6"/>
-              <line x1="12" y1="3.5" x2="12" y2="6"/>
-              <line x1="12" y1="18" x2="12" y2="20.5"/>
-              <line x1="3.5" y1="12" x2="6" y2="12"/>
-              <line x1="18" y1="12" x2="20.5" y2="12"/>
-            </svg>
-          </span>
-          <h3>Automações</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
-        </div>
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="8" cy="8" r="3.5"/>
-              <circle cx="16" cy="16" r="3.5"/>
-              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/>
-            </svg>
-          </span>
-          <h3>APIs e integrações</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
-        </div>
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="4" width="12" height="7" rx="1.5"/>
-              <rect x="8" y="13" width="12" height="7" rx="1.5"/>
-            </svg>
-          </span>
+      <p class="nota-capacidades">Formas pelas quais esses sistemas entram em produção</p>
+
+      <!-- Os quatro meios de execução saíram da grade de cards para uma matriz 2x2
+           cortada por filetes. É a mesma gramática de linha do Método e dos
+           Princípios, mas em figura própria: nem faixa de quatro colunas, nem pauta
+           de linhas cheias. Sem ícone e sem cor por item — a única cor que sobra é o
+           ciano do briefing, que é a única ação real dos quatro. -->
+      <div class="capacidades">
+        <a class="capacidade reveal" href="/briefing">
+          <h3>Sites e landing pages</h3>
+          <p>A parte pública do sistema: páginas rápidas, ligadas aos mesmos dados que rodam atrás.</p>
+          <span class="capacidade-acao">Começar briefing →</span>
+        </a>
+        <div class="capacidade reveal">
           <h3>SaaS e produtos digitais</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <p>Quando o sistema precisa virar produto, com contas, permissões e cobrança próprias.</p>
+        </div>
+        <div class="capacidade reveal">
+          <h3>APIs e integrações</h3>
+          <p>A ligação entre ferramentas que hoje não trocam dados, incluindo as internas do time.</p>
+        </div>
+        <div class="capacidade reveal">
+          <h3>Automações</h3>
+          <p>Processos que hoje dependem de alguém repetindo passos passam a rodar sozinhos.</p>
         </div>
       </div>
-      <p><a class="card-link" href="/solucoes">Acompanhar evolução →</a></p>
+
+      <!-- DESCOBERTA — /solucoes é rota pública real, servida direto pela Vercel,
+           e está em mustKeep no routes.json. O rótulo é o mesmo que a homepage em
+           produção usa, lido do DOM real em 2026-09-03 e registrado em
+           LINK-PARITY.md. Fica subordinado ao "Começar briefing →": mesmo corpo
+           de texto, cor apagada em vez de ciano, e alinhado à esquerda com a
+           matriz. A altura mínima existe só para o alvo de toque no mobile. -->
+      <a class="link-descoberta" href="/solucoes">
+        <span class="link-descoberta-texto">Acompanhar evolução <span aria-hidden="true">&rarr;</span></span>
+      </a>
     </div>
   </section>
 
+  <section class="como-funciona" id="como-funciona">
+    <div class="container">
+      <p class="eyebrow eyebrow-inline">Método</p>
+      <span class="accent-line" aria-hidden="true"></span>
+      <h2>Como construímos</h2>
+      <div class="metodo reveal">
+        <div class="fase">
+          <h3>Entender a operação</h3>
+          <p>Antes de propor software, mapeamos onde a operação trava hoje.</p>
+        </div>
+        <div class="fase">
+          <h3>Definir o menor sistema</h3>
+          <p>O recorte que entra em operação primeiro, não a plataforma inteira.</p>
+        </div>
+        <div class="fase">
+          <h3>Construir em ciclos curtos</h3>
+          <p>Entregas frequentes, validadas com dados reais e não com opinião.</p>
+        </div>
+        <div class="fase">
+          <h3>Entregar em produção</h3>
+          <p>O sistema roda com quem vai usar, e evolui a partir do uso.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCÍPIOS — antes eram cinco cards de valores institucionais. Não é a
+       sequência do Método nem o eixo da Lógica: são critérios simultâneos de
+       decisão, então a gramática é uma pauta de linhas horizontais — sem
+       número, sem eixo, sem card e sem ícone. Nada aqui deve sugerir ordem.
+       Cor reduzida de propósito: só ciano e neutros, sem a rotação decorativa
+       verde/laranja dos blocos anteriores. Esta é a zona mais silenciosa da
+       página e o conteúdo carrega sozinho. -->
+  <section class="principios" id="principios">
+    <div class="container principios-grade">
+      <div class="principios-abertura reveal">
+        <p class="eyebrow eyebrow-inline">Princípios</p>
+        <span class="accent-line" aria-hidden="true"></span>
+        <h2>O que orienta cada decisão.</h2>
+      </div>
+
+      <div class="principios-pauta">
+        <div class="principio reveal">
+          <h3>Sistema antes de ferramenta.</h3>
+          <p>Uma ferramenta resolve uma tarefa. Um sistema muda como a operação funciona. Entre as duas saídas, escolhemos a segunda.</p>
+        </div>
+        <div class="principio reveal">
+          <h3>IA só onde há julgamento.</h3>
+          <p>Se uma regra explícita resolve, ela resolve. Modelo entra quando existe decisão a tomar, nunca para justificar o projeto.</p>
+        </div>
+        <div class="principio reveal">
+          <h3>Complexidade precisa se pagar.</h3>
+          <p>Toda camada nova cobra manutenção depois. Só entra quando o ganho na operação é maior que o custo que ela cria.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL — o fechamento da página. Deixou de apontar para #servicos:
+       mandar o visitante de volta ao meio da página no último bloco é
+       navegação circular. O destino agora é /briefing, o endpoint principal
+       de conversão da página. Um CTA só, sem link secundário — um segundo
+       destino aqui divide a decisão em vez de ajudar. Os CTAs de #servicos
+       acima continuam válidos: durante a navegação eles levam às capacidades.
+       A eyebrow existe para marcar que este é outro capítulo, não mais uma
+       seção de conteúdo. -->
   <section class="cta-final" id="cta-final">
     <div class="container reveal">
-      <h2>Precisa de uma landing page que já comece com estratégia?</h2>
-      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
-      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+      <p class="eyebrow eyebrow-inline">Próximo passo</p>
+      <span class="accent-line" aria-hidden="true"></span>
+      <h2>Comece pelo que precisa mudar.</h2>
+      <p class="lead lead-invertido">Descreva a operação, o gargalo ou a oportunidade. A partir daí, definimos o menor sistema que vale colocar em produção.</p>
+      <a class="cta cta-primary cta-fechamento" href="/briefing">Iniciar briefing</a>
     </div>
   </section>
   </main>
@@ -173,10 +353,10 @@
   <footer class="rodape" id="rodape">
     <div class="container footer-inner">
       <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
-      <span>Landing pages com IA</span>
+      <span>AI Systems Company</span>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="homepage-v1.js" defer></script>
 </body>
 </html>

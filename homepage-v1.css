@@ -1,0 +1,1622 @@
+/* LANDING BRAND REBUILD PASS — dark premium tech, acentos neon.
+   Paleta e tipografia pretendida vêm de core/identity.md (Brand Pivot, 2026-07-27).
+   Inspirado no brand book de referência do usuário — CSS escrito do zero, não copiado.
+   Sem fonte externa/CDN: "Space Grotesk"/"Inter" são só preferência de nome de fonte
+   (fallback silencioso para fontes de sistema se não estiverem instaladas — nenhuma
+   rede é acessada). Sem framework, sem dependência. */
+
+:root {
+  --cor-fundo: #05090b;
+  --cor-painel: #091014;
+  --cor-borda: #263238;
+  --linha-fina: rgba(245, 247, 248, 0.08);
+  --cor-texto: #f5f7f8;
+  --cor-texto-suave: #aeb8bd;
+  --cor-ciano: #00f0ff;
+  --cor-verde: #39ff14;
+  --cor-laranja: #ff8a00;
+  --cor-cta-texto: #04121a;
+  --fonte-titulo: "Space Grotesk", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fonte-texto: "Inter", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Escala tipográfica — um único sistema, do microcopy ao display do Hero.
+     Cada tamanho da página resolve para um destes degraus. */
+  --texto-3xs: 0.72rem;
+  --texto-2xs: 0.78rem;
+  --texto-xs: 0.85rem;
+  --texto-sm: 0.9375rem;
+  --texto-md: 1rem;
+  --texto-lg: 1.125rem;
+  --texto-xl: 1.3125rem;
+  --texto-2xl: 1.5rem;
+  --texto-3xl: 2.125rem;
+  --texto-4xl: 2.25rem;
+  --texto-5xl: 3.75rem;
+
+  /* Rampa fluida dos títulos — o termo variável mora aqui, junto do token */
+  --titulo-display: clamp(var(--texto-3xl), 5vw, var(--texto-5xl));
+  --titulo-secao: clamp(var(--texto-2xl), 3vw, var(--texto-4xl));
+  /* O fechamento fica entre os dois: mais presença que um título de seção,
+     sem chegar ao display do Hero — o closing shot não repete a abertura. */
+  --titulo-fechamento: clamp(var(--texto-3xl), 3.4vw, var(--texto-5xl));
+
+  /* Alturas de linha — display apertado, título curto, texto respirado */
+  --altura-display: 1.05;
+  --altura-titulo: 1.15;
+  --altura-texto: 1.6;
+  /* Escala de espaçamento — passo base 0.25rem, um único sistema para toda a
+     página. core/identity.md registra spacing como lacuna explícita, sem valor
+     aprovado; esta escala é local desta homepage e não foi promovida ao OS. */
+  --espaco-3xs: 0.25rem;
+  --espaco-2xs: 0.375rem;
+  --espaco-xs: 0.5rem;
+  --espaco-sm: 0.75rem;
+  --espaco-md: 1rem;
+  --espaco-lg: 1.5rem;
+  --espaco-xl: 2rem;
+  --espaco-2xl: 2.5rem;
+  --espaco-3xl: 3.5rem;
+  --espaco-4xl: 4.5rem;
+  --espaco-5xl: 5rem;
+  --espaco-6xl: 6rem;
+
+  /* Ritmo vertical dos blocos — quatro degraus deliberados, não um padding único:
+     o Hero respira mais que uma seção comum, o CTA final respira mais que o Hero. */
+  --ritmo-hero: clamp(var(--espaco-3xl), 9vw, var(--espaco-6xl));
+  --ritmo-secao: clamp(var(--espaco-2xl), 7vw, var(--espaco-4xl));
+  --ritmo-destaque: clamp(var(--espaco-3xl), 8vw, var(--espaco-5xl));
+  --ritmo-rodape: var(--espaco-2xl);
+
+  /* Ritmo interno de cada bloco — a mesma lógica em todas as seções:
+     eyebrow, linha e título formam uma unidade; o título respira até a copy;
+     a copy abre um degrau maior antes do conteúdo (cards, fases, grades). */
+  --ritmo-titulo-copy: var(--espaco-lg);
+  --ritmo-copy-conteudo: var(--espaco-2xl);
+  --ritmo-cta: var(--espaco-md);
+
+  /* Padding interno dos componentes, derivado da mesma escala */
+  /* Larguras — o container abre no desktop para dar presença horizontal às
+     fases e às grades, enquanto texto e título mantêm medida própria, para
+     que abrir o container não alargue linha de leitura. */
+  --largura-container: 1120px;
+  --medida-titulo: 46rem;
+  --medida-copy: 34rem;
+  --padding-container: var(--espaco-lg);
+  --padding-destaque: clamp(var(--espaco-lg), 4vw, var(--espaco-2xl));
+
+  /* Base em RGB para os véus por seção poderem variar só a opacidade */
+  --cor-fundo-rgb: 5, 9, 11;
+  --cor-painel-rgb: 9, 16, 20;
+
+  /* AMBIENTE — cor, opacidade, desfoque, duração e intensidade da cena.
+     Ajustar o clima acontece aqui, nunca na estrutura. */
+  --ambiente-cor: var(--cor-ciano);
+  --ambiente-cor-viva: var(--cor-verde);
+  --ambiente-cor-quente: var(--cor-laranja);
+
+  /* Presença da rede. O JS modula entre os limites conforme a seção;
+     sem JS este valor fica e a cena continua composta. */
+  --ambiente-presenca: 0.62;
+  /* Fator de escala da cena. O CSS decide o quanto o ambiente pode aparecer
+     em cada largura; o JS apenas narra a variacao por secao dentro disso. */
+  --ambiente-escala: 1;
+  --ambiente-presenca-min: 0.08;
+  --ambiente-presenca-max: 1;
+  /* Canais da mesma cena: luz, ar próximo e energia. O JS interpola. */
+  --ambiente-luz: 1;
+  --ambiente-ar: 1;
+  --ambiente-energia: 1;
+
+  /* Três planos de profundidade — DOF estático, não filtro animado */
+  --plano-fundo-opacidade: 0.34;
+  --plano-fundo-blur: 2.4px;
+  --plano-fundo-conexao: 0.04;
+  --plano-fundo-no: 0.07;
+  --plano-medio-conexao: 0.17;
+  --plano-medio-no: 0.22;
+  --malha-opacidade-max: 0.34;
+  --plano-frente-no: var(--malha-opacidade-max);
+  --plano-frente-halo: 0.16;
+  --plano-frente-energia: var(--malha-opacidade-max);
+
+  /* Campo de luz — massa direcional, cyan profundo; âmbar raro */
+  --luz-fria: 0.09;
+  --luz-profunda: 0.1;
+  --luz-quente: 0.036;
+  --luz-volume: 0.18;
+  --luz-blur: 88px;
+  /* Eixo de luz — a massa direcional que atravessa a cena. Força do núcleo e
+     teto por breakpoint, para o mobile receber a mesma cena, mais discreta. */
+  --luz-eixo-forca: 0.17;
+  --luz-eixo-blur: 110px;
+  --luz-canal-max: 1;
+  --grao: 0.04;
+
+  /* Parallax: o JS escreve estes deslocamentos, sempre pequenos */
+  --ambiente-y-fundo: 0px;
+  --ambiente-y-medio: 0px;
+  --ambiente-y-frente: 0px;
+  --ambiente-y-ar: 0px;
+  --ambiente-ponteiro-x: 0px;
+  --ambiente-ponteiro-y: 0px;
+
+  /* Fator de profundidade do ponteiro: longe quase não reage, perto reage pouco */
+  --profundidade-ponteiro-fundo: 0.28;
+  --profundidade-ponteiro-medio: 0.72;
+  --profundidade-ponteiro-frente: 1.12;
+  --profundidade-ponteiro-ar: 1.45;
+
+  /* Tempos cinematográficos: amplitude maior, duração ainda longa */
+  --tempo-base: 80s;
+  --tempo-luz: 46s;
+  --tempo-eixo: 52s;
+  --tempo-drift-fundo: 72s;
+  --tempo-drift-medio: 48s;
+  --tempo-drift-frente: 36s;
+  --tempo-drift-ar: 40s;
+  --tempo-respiro: 11s;
+  --tempo-energia: 16s;
+  --tempo-sinal: 8s;
+
+  /* Véus por seção. As bordas são mais abertas que o miolo, para a cena
+     continuar através das divisórias em vez de ser cortada por elas. */
+  --veu-suave: 0.5;
+  --veu-medio: 0.7;
+  --veu-forte: 0.88;
+  --veu-borda: 0.34;
+
+  --raio: 16px;
+  --glow-cyan: 0 0 24px rgba(0, 240, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fonte-texto);
+  color: var(--cor-texto);
+  font-size: var(--texto-md);
+  background: var(--cor-fundo);
+  line-height: var(--altura-texto);
+}
+
+.container {
+  max-width: var(--largura-container);
+  margin: 0 auto;
+  padding: 0 var(--padding-container);
+}
+
+h1, h2, h3 {
+  font-family: var(--fonte-titulo);
+  line-height: var(--altura-titulo);
+  margin-top: 0;
+  color: var(--cor-texto);
+  /* Equilibra a quebra dos títulos curtos; sem suporte, quebra normalmente */
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--titulo-display);
+  line-height: var(--altura-display);
+  letter-spacing: -0.02em;
+  max-width: 26ch;
+  margin: var(--espaco-xs) auto var(--espaco-md);
+}
+
+h2 {
+  font-size: var(--titulo-secao);
+  letter-spacing: -0.01em;
+  text-align: center;
+  max-width: min(34ch, var(--medida-titulo));
+  margin: 0 auto var(--ritmo-titulo-copy);
+}
+
+h3 {
+  font-size: var(--texto-lg);
+  margin-bottom: var(--espaco-2xs);
+}
+
+p {
+  margin: 0 0 var(--espaco-md);
+  color: var(--cor-texto-suave);
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--texto-2xs);
+  font-weight: 700;
+  color: var(--cor-ciano);
+  margin-bottom: var(--espaco-xs);
+  text-align: center;
+}
+
+.eyebrow-inline {
+  margin-bottom: var(--espaco-sm);
+}
+
+.accent-line {
+  display: block;
+  width: 28px;
+  height: 2px;
+  margin: 0 auto var(--espaco-sm);
+  background: var(--cor-ciano);
+  opacity: 0.7;
+}
+
+.logo-sub {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: var(--texto-xs);
+  color: var(--cor-verde);
+  margin: 0 0 var(--espaco-lg);
+}
+
+.lead {
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-lg);
+  max-width: 50ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+header.hero {
+  position: relative;
+  isolation: isolate;
+  text-align: center;
+  padding: var(--ritmo-hero) 0 var(--ritmo-secao);
+  border-bottom: 1px solid var(--linha-fina);
+  overflow: hidden;
+}
+
+header.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+section {
+  padding: var(--ritmo-secao) 0;
+  scroll-margin-top: var(--espaco-lg);
+  border-bottom: 1px solid var(--linha-fina);
+  text-align: center;
+}
+
+/* Presença da cena por seção. O miolo de cada bloco fecha mais, as bordas
+   abrem, então a divisória separa editorialmente sem cortar a atmosfera. */
+
+.problema {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-fundo-rgb), var(--veu-borda)),
+    rgba(var(--cor-fundo-rgb), var(--veu-suave)) 26%,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio)) 60%,
+    rgba(var(--cor-fundo-rgb), var(--veu-borda))
+  );
+}
+
+.como-funciona {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-fundo-rgb), var(--veu-borda)),
+    rgba(var(--cor-fundo-rgb), var(--veu-medio)) 28%,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio)) 72%,
+    rgba(var(--cor-fundo-rgb), var(--veu-borda))
+  );
+}
+
+/* Lógica de operação — o véu invertido: todas as outras seções fecham no miolo
+   e abrem nas bordas; esta abre no miolo. É a única parte da página onde a cena
+   aparece mais atrás do conteúdo, e é justamente onde a energia se reorganiza. */
+
+.logica {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio)),
+    rgba(var(--cor-fundo-rgb), var(--veu-suave)) 34%,
+    rgba(var(--cor-fundo-rgb), var(--veu-suave)) 66%,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio))
+  );
+}
+
+.servicos {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-painel-rgb), var(--veu-medio)),
+    rgba(var(--cor-painel-rgb), var(--veu-forte)) 22%,
+    rgba(var(--cor-painel-rgb), var(--veu-forte)) 78%,
+    rgba(var(--cor-painel-rgb), var(--veu-medio))
+  );
+}
+
+.principios {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio)),
+    rgba(var(--cor-fundo-rgb), var(--veu-forte)) 22%,
+    rgba(var(--cor-fundo-rgb), var(--veu-forte)) 78%,
+    rgba(var(--cor-fundo-rgb), var(--veu-medio))
+  );
+}
+
+.cta-final {
+  background: linear-gradient(
+    180deg,
+    rgba(var(--cor-painel-rgb), var(--veu-borda)),
+    rgba(var(--cor-painel-rgb), var(--veu-suave)) 34%,
+    rgba(var(--cor-painel-rgb), var(--veu-suave)) 66%,
+    rgba(var(--cor-painel-rgb), var(--veu-borda))
+  );
+}
+
+.problema p {
+  max-width: var(--medida-copy);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Lógica de operação — a primeira seção da página com gramática própria.
+   Todas as outras são eyebrow, linha, título central e grade central; esta é
+   assimétrica: o título fica à esquerda com espaço negativo e os quatro estados
+   descem por um eixo à direita. Nenhuma caixa, nenhuma sombra, nenhum ícone —
+   a hierarquia vem de composição, escala e ritmo. */
+
+.logica {
+  text-align: left;
+}
+
+.logica-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 6fr);
+  gap: var(--espaco-4xl);
+  align-items: start;
+}
+
+/* .eyebrow declara text-align: center, então herdar da seção não basta: sem
+   estas duas regras o rótulo fica desencontrado da linha de acento e do H2. */
+.logica .eyebrow {
+  text-align: left;
+}
+
+.logica .accent-line {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.logica h2 {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 13ch;
+}
+
+.logica-apoio {
+  max-width: 30ch;
+  font-size: var(--texto-sm);
+  margin-bottom: 0;
+}
+
+/* O eixo: uma linha contínua, um nó por estado. É o conector, não uma borda de
+   card — por isso vive na lista, e não em cada item. */
+
+.logica-estados {
+  counter-reset: estado;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--espaco-xl);
+  border-left: 1px solid var(--linha-fina);
+}
+
+.estado {
+  counter-increment: estado;
+  position: relative;
+  padding-bottom: var(--espaco-2xl);
+}
+
+.estado:last-child {
+  padding-bottom: 0;
+}
+
+/* O número é o marcador do estado, gerado pela própria ordem da lista. */
+.estado::before {
+  content: counter(estado, decimal-leading-zero);
+  display: block;
+  margin-bottom: var(--espaco-2xs);
+  color: var(--cor-ciano);
+  font-size: var(--texto-3xs);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* O nó sobre o eixo, alinhado com o número. */
+.estado::after {
+  content: "";
+  position: absolute;
+  left: calc((var(--espaco-xl) + 3px) * -1);
+  top: 0.34em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cor-ciano);
+  opacity: 0.6;
+}
+
+.estado h3 {
+  font-size: var(--texto-xl);
+}
+
+.estado p {
+  max-width: 38ch;
+  margin-bottom: 0;
+}
+
+/* Método — um bloco contínuo cortado em fases, não uma segunda linha do tempo.
+   Sem eixo, sem círculo numerado, sem card: a progressão vem da leitura da
+   esquerda para a direita e do corte entre as fases. É deliberadamente mais
+   contido que a Lógica de operação — aqui o método confirma, não disputa. */
+
+.metodo {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: var(--ritmo-copy-conteudo);
+  padding-top: var(--espaco-lg);
+  text-align: left;
+}
+
+/* A régua superior é o único sinal de direção: começa em cyan e se apaga para
+   a direita. Uma linha só, sem nó nenhum — não é um eixo. */
+.metodo::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 240, 255, 0.45),
+    var(--linha-fina) 52%,
+    transparent
+  );
+}
+
+.fase {
+  padding: 0 var(--espaco-lg);
+}
+
+.fase:first-child {
+  padding-left: 0;
+}
+
+.fase:last-child {
+  padding-right: 0;
+}
+
+/* O corte entre fases: uma divisória, não uma borda de caixa. */
+.fase + .fase {
+  border-left: 1px solid var(--linha-fina);
+}
+
+.fase h3 {
+  font-size: var(--texto-md);
+  color: var(--cor-texto);
+  margin-bottom: var(--espaco-2xs);
+}
+
+.fase p {
+  font-size: var(--texto-xs);
+  margin: 0;
+}
+
+/* CAPACIDADES — a seção concreta. Era a última da página com gramática de
+   card: moldura, raio, sombra colorida, ícone e rotação cyan/verde/laranja sem
+   semântica. Depois que o Método e os Princípios viraram linha e tipografia,
+   ela passou a ler como um bloco de uma versão anterior do site. A hierarquia
+   e o enquadramento não mudaram — frente principal dominante, quatro meios de
+   execução subordinados. Só a representação mudou.
+
+   Cor: só ciano e neutros. O único acento que sobrou é o do briefing, que é a
+   única ação real dos quatro itens — deixou de ser decoração e virou sinal. */
+
+/* A frente principal: bloco editorial com régua ciano à esquerda, sem caixa.
+   A régua é sólida e colorida de propósito, para não se confundir com o eixo
+   de filete fino da Lógica de operação. */
+
+.frente {
+  text-align: left;
+  margin-top: var(--ritmo-copy-conteudo);
+  /* A régua passa um pouco do texto em cima e embaixo: sem a caixa, é o
+     comprimento dela que dá corpo ao bloco. */
+  padding: var(--espaco-sm) 0 var(--espaco-sm) var(--padding-destaque);
+  border-left: 2px solid var(--cor-ciano);
+}
+
+/* Mesma gramática da eyebrow da seção, mas alinhado à esquerda e dentro do
+   bloco: diz que este é o item dominante, sem virar pílula. */
+.frente-rotulo {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: var(--texto-3xs);
+  font-weight: 700;
+  color: var(--cor-ciano);
+  margin-bottom: var(--espaco-xs);
+}
+
+/* Sem moldura nem brilho, a hierarquia passa a ser tipográfica: o título da
+   seção, depois este, depois os quatro meios. A rampa desce 36 / 30 / 18 no
+   desktop e volta ao degrau da escala quando a tela encolhe. */
+.frente h3 {
+  font-size: clamp(var(--texto-2xl), 2vw, var(--texto-3xl));
+  max-width: var(--medida-titulo);
+}
+
+.frente > p {
+  max-width: var(--medida-copy);
+  margin-bottom: 0;
+}
+
+/* As três frentes: continuam as mesmas três, agora numa cor só e separadas
+   por filete em vez de três pílulas de cores diferentes. */
+.frentes {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-xs) var(--espaco-lg);
+  margin: var(--espaco-lg) 0 0;
+  padding: 0;
+}
+
+.frentes li {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--texto-3xs);
+  font-weight: 700;
+  color: var(--cor-ciano);
+}
+
+.frentes li + li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--espaco-lg) / -2);
+  top: 0.05em;
+  bottom: 0.05em;
+  width: 1px;
+  background: var(--linha-fina);
+}
+
+/* Liga a frente principal aos meios de execução. Alinhada à esquerda para
+   encabeçar a matriz, e não flutuar centralizada acima dela. */
+.nota-capacidades {
+  margin: var(--ritmo-copy-conteudo) 0 var(--espaco-sm);
+  text-align: left;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* A matriz 2x2. Os filetes são a única moldura: nenhum item tem fundo, raio,
+   sombra ou ícone. A figura é própria da seção — o Método é uma faixa de
+   quatro colunas, os Princípios são uma pauta de linhas cheias, e esta é uma
+   matriz cruzada. Se um item voltar a ter caixa, volta a ler como catálogo. */
+
+.capacidades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: left;
+}
+
+.capacidade {
+  padding: var(--espaco-lg) 0;
+  border-top: 1px solid var(--linha-fina);
+}
+
+.capacidade:nth-child(odd) {
+  padding-right: var(--espaco-2xl);
+  border-right: 1px solid var(--linha-fina);
+}
+
+.capacidade:nth-child(even) {
+  padding-left: var(--espaco-2xl);
+}
+
+/* Fecha a matriz embaixo: sem isto o bloco termina no ar antes do link. */
+.capacidade:nth-last-child(-n + 2) {
+  border-bottom: 1px solid var(--linha-fina);
+}
+
+.capacidade p {
+  margin-bottom: 0;
+  font-size: var(--texto-sm);
+}
+
+a.capacidade {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Dos quatro meios, só este leva a algum lugar. O ciano marca a ação, não o
+   item — por isso nenhum dos outros três recebe cor. */
+.capacidade-acao {
+  display: inline-block;
+  margin-top: var(--espaco-sm);
+  padding-bottom: var(--espaco-3xs);
+  color: var(--cor-ciano);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a.capacidade:hover .capacidade-acao {
+  border-bottom-color: var(--cor-ciano);
+}
+
+/* O link de descoberta da seção. Deliberadamente mais fraco que a ação de
+   briefing logo acima: mesmo tamanho de texto, mas cinza em vez de ciano, e
+   fora da matriz. Alinhado à esquerda com ela — a seção só centraliza o
+   cabeçalho. O corpo é flex com min-height para o alvo de toque chegar a 44px
+   no mobile sem que o link vire botão: o filete continua colado ao texto,
+   porque mora no span interno e não na âncora. */
+
+.link-descoberta {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  margin: var(--espaco-xs) auto 0 0;
+  color: var(--cor-texto-suave);
+  font-size: var(--texto-xs);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link-descoberta-texto {
+  padding-bottom: var(--espaco-3xs);
+  border-bottom: 1px solid var(--linha-fina);
+  transition: border-color 0.2s ease;
+}
+
+.link-descoberta:hover {
+  color: var(--cor-ciano);
+}
+
+.link-descoberta:hover .link-descoberta-texto {
+  border-bottom-color: var(--cor-ciano);
+}
+
+
+/* PRINCÍPIOS — a pauta. Substituiu a grade de cinco cards de valores.
+   Título de um lado, três princípios em linhas horizontais do outro. Cada
+   linha é cortada por uma divisória fina: sem fundo, sem raio, sem sombra e
+   sem ícone — se um item voltar a ter caixa, a seção volta a ler como
+   catálogo. As linhas são simultâneas de propósito: nada de número, nó, seta
+   ou eixo, que pertencem à Lógica e ao Método. Pôr o título ao lado, e não
+   acima, é também o que encurta a seção. A cor aqui é só ciano e neutros. */
+
+.principios {
+  text-align: left;
+}
+
+.principios-grade {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+  gap: var(--espaco-4xl);
+  /* Centrado, e não alinhado ao topo como na Lógica: o título fica de frente
+     para o meio da pauta, o que lê como síntese simultânea em vez de cabeçalho
+     de uma lista — e equilibra o espaço negativo da coluna da esquerda. */
+  align-items: center;
+}
+
+/* .eyebrow, .accent-line e h2 centralizam por padrão; a abertura desta seção é
+   alinhada à esquerda, então os três precisam ser reancorados juntos. */
+.principios .eyebrow {
+  text-align: left;
+}
+
+.principios .accent-line {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.principios h2 {
+  text-align: left;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  max-width: 16ch;
+}
+
+.principio {
+  padding: var(--espaco-lg) 0;
+  border-top: 1px solid var(--linha-fina);
+}
+
+/* A primeira divisória é a régua da pauta e recebe o único traço de cor da
+   seção — a mesma abertura em ciano do Método, sem repetir o degradê dele. */
+.principio:first-child {
+  border-top-color: rgba(0, 240, 255, 0.28);
+}
+
+/* A última divisória fecha a pauta: sem ela o bloco termina no ar e a seção
+   parece cortada antes do CTA. */
+.principio:last-child {
+  border-bottom: 1px solid var(--linha-fina);
+}
+
+.principio h3 {
+  font-size: var(--texto-xl);
+  margin-bottom: var(--espaco-3xs);
+}
+
+.principio p {
+  margin: 0;
+  font-size: var(--texto-sm);
+  max-width: 62ch;
+}
+
+/* CTA final */
+
+/* O fechamento é o único bloco da página com responsabilidade de conversão,
+   então ganha mais ar que uma seção comum e um título um degrau acima. Nada
+   de caixa, ícone ou badge: a presença vem de escala, espaço e de haver uma
+   só ação. A pausa é assimétrica de propósito — mais ar depois da linha
+   colorida, um pouco menos antes do rodapé, que é a cauda do mesmo plano. */
+.cta-final {
+  padding: var(--ritmo-hero) 0 var(--ritmo-destaque);
+  border-top: 2px solid;
+  border-image: linear-gradient(90deg, var(--cor-ciano), var(--cor-verde), var(--cor-laranja)) 1;
+}
+
+.cta-final h2 {
+  font-size: var(--titulo-fechamento);
+  letter-spacing: -0.02em;
+  line-height: var(--altura-display);
+  max-width: 20ch;
+  margin-bottom: var(--ritmo-titulo-copy);
+}
+
+.lead-invertido {
+  color: var(--cor-texto-suave);
+}
+
+/* A copy do fechamento cai em três linhas; sem equilibrar, a última fica com
+   duas palavras soltas embaixo de um H2 grande. Onde balance não existir, o
+   parágrafo simplesmente quebra como antes. */
+.cta-final .lead {
+  text-wrap: balance;
+}
+
+/* Rodapé */
+
+footer.rodape {
+  background: linear-gradient(180deg, rgba(var(--cor-fundo-rgb), var(--veu-borda)), rgba(var(--cor-fundo-rgb), var(--veu-forte)) 55%);
+  padding: var(--ritmo-rodape) 0 var(--espaco-xl);
+  font-size: var(--texto-xs);
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--espaco-sm) var(--espaco-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: var(--texto-2xs);
+}
+
+.footer-logo {
+  font-family: var(--fonte-titulo);
+  letter-spacing: 0.05em;
+  color: var(--cor-texto);
+}
+
+.cyan { color: var(--cor-ciano); }
+.green { color: var(--cor-verde); }
+
+/* CTA (botões) */
+
+.cta {
+  display: inline-block;
+  margin-top: var(--ritmo-cta);
+  padding: var(--espaco-sm) var(--espaco-xl);
+  border-radius: var(--raio);
+  border: none;
+  font-size: var(--texto-md);
+  font-weight: 700;
+  font-family: var(--fonte-texto);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.cta-primary {
+  background: linear-gradient(120deg, var(--cor-ciano), var(--cor-verde));
+  color: var(--cor-cta-texto);
+  box-shadow: var(--glow-cyan);
+}
+
+.cta-secondary {
+  background: transparent;
+  color: var(--cor-ciano);
+  border: 1px solid var(--cor-ciano);
+}
+
+/* Não é um botão novo: é o .cta-primary com mais corpo e mais respiro antes
+   dele, para ler como a ação da página e não como mais um link. */
+.cta-fechamento {
+  margin-top: var(--espaco-xl);
+  padding: var(--espaco-md) var(--espaco-2xl);
+  font-size: var(--texto-lg);
+}
+
+/* Foco visível — teclado enxerga onde está, sem depender de hover */
+
+.cta:focus-visible,
+.link-descoberta:focus-visible,
+a.capacidade:focus-visible {
+  outline: 2px solid var(--cor-ciano);
+  outline-offset: 3px;
+}
+
+/* Movimento leve — hover (filter é sempre seguro; transform só sem prefers-reduced-motion).
+   Reveal e hover compartilham o mesmo transform via custom properties, para
+   .js-reveal .reveal.is-visible não anular o translateY do card. */
+
+@property --reveal-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --hover-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+.cta {
+  transition: filter 0.2s ease;
+}
+
+.cta:hover {
+  filter: brightness(1.06);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .cta {
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .cta:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Scroll-reveal — visível por padrão. O bloco só é escondido antes de aparecer
+   quando o próprio script.js marca <html class="js-reveal">, ou seja, apenas
+   quando existe alguém rodando para revelá-lo. Sem JS, com JS quebrado ou com
+   prefers-reduced-motion, nada é escondido e a página aparece inteira. */
+
+.reveal {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .js-reveal .reveal {
+    opacity: 0;
+    --reveal-y: 16px;
+    transform: translateY(var(--reveal-y)) translateY(var(--hover-y));
+    transition: opacity 0.6s ease, --reveal-y 0.6s ease, --hover-y 0.2s ease;
+  }
+
+  .js-reveal .reveal.is-visible {
+    opacity: 1;
+    --reveal-y: 0px;
+  }
+}
+
+/* ==========================================================================
+   AMBIENTE — CINEMATIC TECHNOLOGY LUXURY
+   Uma cena única, atrás da página inteira, em quatro sistemas:
+     1. .ambiente-base    — profundidade e composição de luz assimétrica
+     2. .ambiente-luz     — campos de luz difusa, independentes da rede
+     3. .ambiente-neural  — rede autoral em três planos de profundidade
+     4. .ambiente-sinais  — pouquíssimos pontos de atividade distante
+   Mais .ambiente-grao (materialidade) e .ambiente-vinheta (foco de leitura).
+   Tudo decorativo, inerte e fora da árvore de acessibilidade. Sem JS a cena
+   fica completa e parada; o JS só modula presença e parallax.
+   ========================================================================== */
+
+.ambiente {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* 1. Base — navy profundo à esquerda, quase preto no centro, calor discreto à
+   direita. Concentrações baixas e bordas largas: atmosfera, não gradiente. */
+
+.ambiente-base {
+  position: absolute;
+  inset: -14%;
+  background:
+    radial-gradient(ellipse 64% 88% at 2% 18%, rgba(0, 86, 122, 0.32), transparent 68%),
+    radial-gradient(ellipse 48% 74% at 10% 62%, rgba(0, 140, 152, 0.12), transparent 70%),
+    radial-gradient(ellipse 54% 62% at 96% 72%, rgba(255, 138, 0, 0.042), transparent 62%),
+    radial-gradient(ellipse 72% 52% at 68% 96%, rgba(57, 255, 20, 0.028), transparent 64%),
+    radial-gradient(ellipse 52% 46% at 36% 8%, rgba(0, 150, 180, 0.07), transparent 70%),
+    linear-gradient(108deg, rgba(3, 12, 22, 0.96), rgba(1, 3, 5, 0.78) 44%, rgba(7, 9, 12, 0.92));
+}
+
+/* 2. Campo de luz — difuso, sem contorno reconhecível */
+
+.ambiente-luz {
+  position: absolute;
+  inset: 0;
+  /* Canal narrativo: a luz cai ao sair da abertura e volta no fechamento. */
+  opacity: calc(var(--ambiente-luz) * var(--luz-canal-max));
+}
+
+.luz {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(var(--luz-blur));
+}
+
+.luz-fria {
+  top: -22%;
+  left: -18%;
+  width: 70vmax;
+  height: 58vmax;
+  border-radius: 46% 54% 48% 52%;
+  background: radial-gradient(ellipse 72% 80% at 42% 38%, rgba(0, 186, 210, var(--luz-fria)), transparent 72%);
+}
+
+.luz-profunda {
+  bottom: -30%;
+  right: -12%;
+  width: 80vmax;
+  height: 68vmax;
+  border-radius: 58% 42% 52% 48%;
+  background: radial-gradient(ellipse 70% 78% at 58% 62%, rgba(0, 92, 128, var(--luz-profunda)), transparent 74%);
+}
+
+.luz-quente {
+  top: 44%;
+  right: -18%;
+  width: 36vmax;
+  height: 44vmax;
+  border-radius: 42% 58% 60% 40%;
+  background: radial-gradient(ellipse 68% 72% at 60% 40%, rgba(255, 138, 0, var(--luz-quente)), transparent 70%);
+}
+
+/* Volume — faixa alongada, sem ler como círculo. Só nas bordas da abertura. */
+.luz-volume {
+  top: -8%;
+  left: -22%;
+  width: 36vmax;
+  height: 78vmax;
+  border-radius: 38% 62% 44% 56%;
+  background: linear-gradient(
+    118deg,
+    rgba(0, 58, 88, var(--luz-volume)) 0%,
+    rgba(0, 140, 150, 0.05) 38%,
+    transparent 72%
+  );
+  transform: rotate(-18deg);
+  filter: blur(calc(var(--luz-blur) + 24px));
+}
+
+/* 2b. Eixo de luz — a única massa direcional da cena. Não é um glow: é uma
+   faixa oblíqua, maior que o quadro, que atravessa lentamente e redistribui a
+   luminância. Fica DEPOIS da malha no DOM e clareia por screen, então a rede
+   aparece onde a luz passa e recua quando ela sai — revelar e esconder, sem
+   animar nada além de transform e opacity. A vinheta, que vem por último,
+   continua protegendo o eixo editorial do H1. */
+
+.luz-eixo {
+  position: absolute;
+  top: -55%;
+  left: -45%;
+  width: 62%;
+  height: 210%;
+  opacity: calc(var(--ambiente-luz) * var(--luz-canal-max));
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 108, 148, calc(var(--luz-eixo-forca) * 0.5)) 26%,
+    rgba(0, 176, 208, var(--luz-eixo-forca)) 46%,
+    rgba(126, 226, 246, calc(var(--luz-eixo-forca) * 0.72)) 54%,
+    rgba(0, 128, 168, calc(var(--luz-eixo-forca) * 0.44)) 72%,
+    transparent 100%
+  );
+  /* Estado parado: uma diagonal já composta atravessando o terço esquerdo.
+     Sem animação — reduced motion, JS ausente — a cena continua iluminada. */
+  transform: rotate(-25deg) translate3d(76%, 0, 0);
+  filter: blur(var(--luz-eixo-blur));
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+/* 3. Rede neural — composição autoral e determinística, em três planos. A
+   presença é modulada pelo JS entre os limites declarados nos tokens. */
+
+.ambiente-neural {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  height: 112%;
+  opacity: var(--ambiente-presenca);
+  /* Rede periférica: entra pelas laterais e some no eixo editorial, um pouco
+     deslocada para não simetrizar o quadro. */
+  -webkit-mask-image: radial-gradient(ellipse 46% 58% at 48% 40%, transparent 22%, #000 78%);
+  mask-image: radial-gradient(ellipse 46% 58% at 48% 40%, transparent 22%, #000 78%);
+}
+
+#traco-energia stop {
+  stop-color: var(--ambiente-cor);
+}
+
+.plano .conexoes path {
+  fill: none;
+  stroke: var(--ambiente-cor);
+  stroke-width: 1px;
+}
+
+.plano .nos circle {
+  fill: var(--ambiente-cor);
+}
+
+.plano-fundo {
+  opacity: var(--plano-fundo-opacidade);
+  filter: blur(var(--plano-fundo-blur));
+  transform: translate3d(
+    calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-fundo)),
+    calc(var(--ambiente-y-fundo) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-fundo)),
+    0
+  );
+}
+
+.plano-fundo .conexoes path {
+  stroke-opacity: var(--plano-fundo-conexao);
+}
+
+.plano-fundo .nos circle {
+  fill-opacity: var(--plano-fundo-no);
+}
+
+.plano-medio {
+  transform: translate3d(
+    calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-medio)),
+    calc(var(--ambiente-y-medio) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-medio)),
+    0
+  );
+}
+
+.plano-medio .conexoes path {
+  stroke-opacity: var(--plano-medio-conexao);
+}
+
+.plano-medio .nos circle {
+  fill-opacity: var(--plano-medio-no);
+}
+
+.plano-frente {
+  transform: translate3d(
+    calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-frente)),
+    calc(var(--ambiente-y-frente) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-frente)),
+    0
+  );
+}
+
+.plano-frente .nos circle {
+  fill-opacity: var(--plano-frente-no);
+}
+
+.plano-frente .halos circle {
+  fill: var(--ambiente-cor);
+  fill-opacity: var(--plano-frente-halo);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.plano-frente .energia path {
+  fill: none;
+  stroke: url(#traco-energia);
+  /* Canal narrativo: pico em Capacidades, silêncio em Princípios, retorno
+     no fechamento. */
+  stroke-opacity: calc(var(--plano-frente-energia) * var(--ambiente-energia));
+  stroke-width: 1.4px;
+  stroke-linecap: round;
+}
+
+/* 4. Sinais distantes — atividade, não estrelas. Cinco pontos, só isso. */
+
+.ambiente-sinais span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--ambiente-cor);
+  opacity: 0.18;
+}
+
+.ambiente-sinais span:nth-child(3) {
+  background: var(--ambiente-cor-viva);
+}
+
+.ambiente-sinais span:nth-child(5) {
+  background: var(--ambiente-cor-quente);
+}
+
+/* Materialidade — grão procedural, gerado no próprio arquivo, quase invisível */
+
+.ambiente-grao {
+  position: absolute;
+  inset: 0;
+  opacity: var(--grao);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27180%27 height=%27180%27%3E%3Cfilter id=%27g%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27180%27 height=%27180%27 filter=%27url(%23g)%27/%3E%3C/svg%3E");
+}
+
+/* Foco de leitura — a área editorial fica um pouco mais funda que as bordas */
+
+.ambiente-vinheta {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 68% 54% at 49% 44%,
+    rgba(var(--cor-fundo-rgb), 0.54),
+    rgba(var(--cor-fundo-rgb), 0) 76%
+  );
+}
+
+/* Ar próximo da câmera — só na abertura. Bordas, nunca o eixo do H1. */
+.ar-proximo {
+  position: absolute;
+  inset: -6% 0 auto;
+  height: 118%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Foreground: grande, muito transparente e claramente desfocado — a escala e
+     o desfoque é que dizem "perto", não a opacidade. Recua pelo canal do ar. */
+  opacity: calc(0.5 * var(--ambiente-ar));
+  filter: blur(18px);
+  transform: translate3d(
+    calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-ar)),
+    calc(var(--ambiente-y-ar) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-ar)),
+    0
+  );
+  -webkit-mask-image: radial-gradient(ellipse 62% 70% at 50% 46%, transparent 36%, #000 88%);
+  mask-image: radial-gradient(ellipse 62% 70% at 50% 46%, transparent 36%, #000 88%);
+}
+
+.ar-halo {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.ar-halo-esq {
+  top: 6%;
+  left: -12%;
+  width: 34vmax;
+  height: 48vmax;
+  border-radius: 42% 58% 50% 50%;
+  background: radial-gradient(ellipse at 40% 40%, rgba(0, 170, 190, 0.16), transparent 70%);
+}
+
+.ar-halo-dir {
+  right: -16%;
+  bottom: 8%;
+  width: 28vmax;
+  height: 40vmax;
+  border-radius: 60% 40% 55% 45%;
+  background: radial-gradient(ellipse at 60% 50%, rgba(0, 70, 110, 0.18), transparent 72%);
+}
+
+.ar-fragmentos {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.55;
+}
+
+.ar-fragmentos path {
+  fill: none;
+  stroke: var(--ambiente-cor);
+  /* Traço mais grosso que o da malha: mesma rede, só que muito mais perto. */
+  stroke-width: 2.4px;
+  stroke-opacity: 0.2;
+}
+
+/* Movimento do ambiente — lento, contínuo, quase subconsciente. Só transform,
+   opacity e stroke-dashoffset, para o compositor resolver sem repintar. */
+
+@media (prefers-reduced-motion: no-preference) {
+  .ambiente-base {
+    animation: atmosfera var(--tempo-base) ease-in-out infinite;
+  }
+
+  .luz-fria {
+    animation: luz-deriva var(--tempo-luz) ease-in-out infinite;
+  }
+
+  .luz-profunda {
+    animation: luz-deriva var(--tempo-luz) ease-in-out infinite reverse;
+  }
+
+  .luz-quente {
+    animation: luz-evento var(--tempo-luz) ease-in-out infinite;
+  }
+
+  .luz-volume {
+    animation: luz-volume var(--tempo-base) ease-in-out infinite;
+  }
+
+  /* Velocidade constante: uma varredura de luz não acelera no meio do quadro.
+     O atraso negativo faz a faixa já estar entrando no primeiro frame, sem
+     quebrar o ciclo — os dois extremos do keyframe ficam fora do quadro. */
+  .luz-eixo {
+    animation: luz-eixo var(--tempo-eixo) linear infinite;
+    animation-delay: calc(var(--tempo-eixo) * -0.26);
+  }
+
+  .plano-fundo {
+    animation: deriva-fundo var(--tempo-drift-fundo) ease-in-out infinite;
+  }
+
+  .plano-medio {
+    animation: deriva-medio var(--tempo-drift-medio) ease-in-out infinite;
+  }
+
+  .plano-frente {
+    animation: deriva-frente var(--tempo-drift-frente) ease-in-out infinite;
+  }
+
+  .ar-proximo {
+    animation: deriva-ar var(--tempo-drift-ar) ease-in-out infinite;
+  }
+
+  .plano-frente .halos circle {
+    animation: respiro var(--tempo-respiro) ease-in-out infinite;
+  }
+
+  .plano-frente .halos circle:nth-child(2) { animation-delay: 2.4s; }
+  .plano-frente .halos circle:nth-child(3) { animation-delay: 4.8s; }
+  .plano-frente .halos circle:nth-child(4) { animation-delay: 7.2s; }
+  .plano-frente .halos circle:nth-child(5) { animation-delay: 9.6s; }
+  .plano-frente .halos circle:nth-child(6) { animation-delay: 12s; }
+
+  .plano-frente .energia path {
+    stroke-dasharray: 90 1400;
+    animation: energia var(--tempo-energia) linear infinite;
+  }
+
+  .plano-frente .energia path:nth-child(2) { animation-delay: 7s; }
+  .plano-frente .energia path:nth-child(3) { animation-delay: 14s; }
+
+  .ambiente-sinais span {
+    animation: sinal var(--tempo-sinal) ease-in-out infinite;
+  }
+
+  .ambiente-sinais span:nth-child(2) { animation-delay: 1.7s; }
+  .ambiente-sinais span:nth-child(3) { animation-delay: 3.4s; }
+  .ambiente-sinais span:nth-child(4) { animation-delay: 5.1s; }
+  .ambiente-sinais span:nth-child(5) { animation-delay: 6.8s; }
+}
+
+@keyframes atmosfera {
+  0%, 100% { transform: scale(1) translate3d(0, 0, 0); opacity: 1; }
+  50% { transform: scale(1.075) translate3d(1.9%, -1.3%, 0); opacity: 0.84; }
+}
+
+@keyframes luz-deriva {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: 1; }
+  50% { transform: translate3d(5.5%, -4%, 0); opacity: 0.68; }
+}
+
+/* A varredura do eixo: uma passagem só, em velocidade constante, com a
+   inclinação abrindo alguns graus no caminho — luz atravessando volume, não
+   um retângulo deslizando. Entra e sai completamente fora do quadro, então o
+   retorno do ciclo nunca é visto. */
+@keyframes luz-eixo {
+  0% { transform: rotate(-27deg) translate3d(-52%, 0, 0); }
+  100% { transform: rotate(-20deg) translate3d(252%, 0, 0); }
+}
+
+@keyframes luz-evento {
+  0%, 62%, 100% { opacity: 0.35; }
+  80% { opacity: 1; }
+}
+
+@keyframes luz-volume {
+  0%, 100% { opacity: 0.55; transform: rotate(-18deg) translate3d(0, 0, 0); }
+  50% { opacity: 0.82; transform: rotate(-16deg) translate3d(1.4%, -1.1%, 0); }
+}
+
+@keyframes deriva-fundo {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-fundo)),
+      calc(var(--ambiente-y-fundo) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-fundo)),
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-fundo) - 1.5%),
+      calc(var(--ambiente-y-fundo) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-fundo) + 1.1%),
+      0
+    );
+  }
+}
+
+@keyframes deriva-medio {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-medio)),
+      calc(var(--ambiente-y-medio) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-medio)),
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-medio) + 2.2%),
+      calc(var(--ambiente-y-medio) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-medio) - 1.6%),
+      0
+    );
+  }
+}
+
+/* Plano da frente: a maior amplitude e o ciclo mais curto dos três. É essa
+   diferença entre planos — não a velocidade absoluta — que produz paralaxe. */
+@keyframes deriva-frente {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-frente)),
+      calc(var(--ambiente-y-frente) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-frente)),
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-frente) - 3.2%),
+      calc(var(--ambiente-y-frente) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-frente) + 2.3%),
+      0
+    );
+  }
+}
+
+@keyframes deriva-ar {
+  0%, 100% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-ar)),
+      calc(var(--ambiente-y-ar) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-ar)),
+      0
+    );
+  }
+  50% {
+    transform: translate3d(
+      calc(var(--ambiente-ponteiro-x) * var(--profundidade-ponteiro-ar) - 1.7%),
+      calc(var(--ambiente-y-ar) + var(--ambiente-ponteiro-y) * var(--profundidade-ponteiro-ar) + 1.3%),
+      0
+    );
+  }
+}
+
+@keyframes respiro {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.9); opacity: 1; }
+}
+
+@keyframes energia {
+  from { stroke-dashoffset: 1400; }
+  to { stroke-dashoffset: -90; }
+}
+
+@keyframes sinal {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 1; }
+}
+
+/* Garantias de CSS, independentes do JS. O script já respeita as duas
+   preferências, mas estas regras vencem até um estilo inline, então a
+   preferência é respeitada mesmo que algum script escreva mesmo assim. */
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  .ambiente {
+    --ambiente-presenca: 0.62 !important;
+    /* Cena parada, porém composta: os canais ficam num meio-termo calmo em vez
+       de herdarem o estado da abertura ou o do silêncio. */
+    --ambiente-luz: 0.8 !important;
+    --ambiente-ar: 0.55 !important;
+    --ambiente-energia: 0.5 !important;
+    --ambiente-y-fundo: 0px !important;
+    --ambiente-y-medio: 0px !important;
+    --ambiente-y-frente: 0px !important;
+    --ambiente-y-ar: 0px !important;
+    --ambiente-ponteiro-x: 0px !important;
+    --ambiente-ponteiro-y: 0px !important;
+  }
+}
+
+@media (pointer: coarse) {
+  :root,
+  .ambiente {
+    --ambiente-ponteiro-x: 0px !important;
+    --ambiente-ponteiro-y: 0px !important;
+  }
+}
+
+/* Mobile — atmosfera reduzida, não desktop encolhido */
+
+@media (max-width: 768px) {
+  .ambiente .plano-fundo {
+    display: none;
+  }
+
+  .ambiente-grao,
+  .ar-proximo,
+  .luz-volume {
+    display: none;
+  }
+
+  /* O eixo de luz continua — é ele que segura a profundidade quando o
+     foreground sai. Mas parado, mais fraco e sem blend: sobre um fundo quase
+     preto o resultado é praticamente o mesmo, por uma fração do custo. */
+  .luz-eixo {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+
+  .ambiente {
+    --ambiente-escala: 0.62;
+    --luz-fria: 0.032;
+    --luz-profunda: 0.026;
+    --luz-quente: 0.014;
+    --luz-blur: 70px;
+    --luz-eixo-forca: 0.1;
+    --luz-eixo-blur: 78px;
+    --luz-canal-max: 0.72;
+    --ambiente-presenca: 0.5;
+  }
+}
+
+@media (max-width: 560px) {
+  .ambiente .energia {
+    display: none;
+  }
+
+  .ambiente-sinais {
+    display: none;
+  }
+
+  /* ~390px: gradientes profundos, pouquíssimos sinais, movimento mínimo. O
+     eixo vira só uma direção de luz no fundo, sem leitura de faixa. */
+  .ambiente {
+    --ambiente-escala: 0.5;
+    --ambiente-presenca: 0.42;
+    --plano-medio-conexao: 0.09;
+    --luz-eixo-forca: 0.075;
+    --luz-eixo-blur: 64px;
+    --luz-canal-max: 0.6;
+  }
+}
+
+/* Responsivo */
+
+@media (max-width: 900px) {
+  /* A sequência já é vertical: só o título deixa de dividir a linha com ela.
+     O eixo continua o mesmo, então nada vira card empilhado. */
+  .logica-grade {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-2xl);
+  }
+
+  .logica h2 {
+    max-width: 20ch;
+  }
+
+  /* A pauta já era vertical: só o título deixa de dividir a linha com ela. */
+  .principios-grade {
+    grid-template-columns: 1fr;
+    gap: var(--espaco-xl);
+  }
+
+  .principios h2 {
+    max-width: 24ch;
+  }
+
+}
+
+@media (max-width: 720px) {
+  /* O bloco continua contínuo: o corte entre fases só troca de eixo, de
+     divisória vertical para horizontal. Nada vira card nem lista com marcador. */
+  .metodo {
+    grid-template-columns: 1fr;
+  }
+
+  .fase {
+    padding: var(--espaco-lg) 0 0;
+  }
+
+  .fase:first-child {
+    padding-top: 0;
+  }
+
+  .fase + .fase {
+    border-left: 0;
+    border-top: 1px solid var(--linha-fina);
+  }
+
+  /* A linha das três frentes deixa de caber numa linha só por aqui. O filete
+     entre elas é posicionado à esquerda do item, então numa linha quebrada ele
+     sobraria solto no começo: abaixo deste ponto o espaço separa sozinho. */
+  .frentes {
+    gap: var(--espaco-xs) var(--espaco-xl);
+  }
+
+  .frentes li + li::before {
+    display: none;
+  }
+
+}
+
+@media (max-width: 560px) {
+  :root {
+    --padding-container: var(--espaco-md);
+  }
+
+  /* A matriz vira pauta: uma coluna, só filete horizontal. O corte vertical e
+     os paddings laterais precisam sair juntos, senão sobra recuo sem régua. */
+  .capacidades {
+    grid-template-columns: 1fr;
+  }
+
+  .capacidade:nth-child(odd) {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .capacidade:nth-child(even) {
+    padding-left: 0;
+  }
+
+  .capacidade:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .capacidade:last-child {
+    border-bottom: 1px solid var(--linha-fina);
+  }
+}
+
+@media (max-width: 480px) {
+  .cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
