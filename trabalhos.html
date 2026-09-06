@@ -1,25 +1,31 @@
-<!-- TRABALHOS PASS (2026-07-31) — página estática /trabalhos.html, servida via
-     rewrite interno /trabalhos -> /trabalhos.html em vercel.json (mesmo padrão
-     do rewrite local já usado por /solucoes). Reaproveita 100% de styles.css e
-     script.js já existentes — .solucoes-lista/.solucao-bloco/.badge/.card-link/
-     .cta já validados em produção via solucoes.html, nenhuma classe CSS nova
-     criada. Sem CDN, sem dependência nova, sem build. Não altera index.html
-     (decisão registrada: sem link na homepage nesta v1).
+<!-- TRABALHOS — MIGRACAO VISUAL v1 (2026-09-06, CHECKPOINT 10D).
 
-     4 cards: Comanda Local, Jessie Nails e FB Restaurações — tipo "Trabalho
-     publicado / Vitrine real" (badge-green), autoria "Criado e desenvolvido
-     pela IDISTØPIC"/"Criado por IDISTØPIC" autorizada explicitamente pelo
-     usuário, sem métrica/resultado/depoimento inventado — e Homepage
-     IDISTØPIC — tipo "Demo interna / produto próprio" (badge-orange),
-     mantida separada dos 3 trabalhos reais.
+     A pagina saiu do sistema legado (styles.css, .solucao-bloco, badges
+     coloridos) para a camada propria das paginas secundarias: secondary-v1.css
+     e secondary-v1.js. A homepage e a referencia visual e NAO foi tocada.
 
-     Ver memory/products/landing-idistopic/trabalhos-implementation-plan-v1.md
-     e DECISIONS.md (aprovação Nível 2 registrada antes desta implementação).
+     De lista de blocos iguais para vitrine editorial: cada trabalho ocupa uma
+     faixa inteira, com o texto de um lado e uma placa de luz do outro,
+     alternando de lado. Menos densidade textual que /solucoes, de proposito —
+     aqui o argumento e visual.
 
-     Correção pós-publicação (2026-07-31) — nome corrigido de "Comanda Loca"
-     para "Comanda Local" (erro de digitação da v1). -->
+     SOBRE AS IMAGENS. Nao existe captura de tela de cliente publicavel neste
+     repositorio. O unico arquivo de imagem que existe fora da marca e
+     assets/fb-restauracoes.jpg, que nao e referenciado por nenhuma pagina, tem
+     paleta marrom-quente incompativel com o sistema navy/ciano e cobriria so 1
+     dos 4 projetos. Usa-lo seria criar desequilibrio; gerar as outras tres
+     seria inventar prova de trabalho. A placa e, portanto, uma superficie de
+     luz e filete, decorativa e declarada como tal: da peso de portfolio sem
+     afirmar nada que nao seja verdade. O arquivo continua onde esta, intacto.
+
+     CONTEUDO PRESERVADO. Os mesmos 4 itens, os mesmos textos de autoria, os
+     mesmos destinos reais. Nenhum cliente, resultado, metrica, depoimento ou
+     case foi inventado. A demo interna continua separada dos trabalhos de
+     cliente, agora por secao propria em vez de por cor de badge.
+
+     Metadata de descoberta do 10B reintegrada sem alteracao de valor. -->
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-pagina="trabalhos">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -56,74 +62,199 @@
   <meta name="twitter:description" content="Vitrine de trabalhos reais publicados pela IDISTØPIC, e a homepage institucional como demonstração interna." />
   <meta name="twitter:image" content="https://www.idistopic.com/assets/brand/og-idistopic-1200x630.png" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="secondary-v1.css" />
 </head>
 <body>
 
-  <main>
-  <header class="hero" id="hero">
-    <div class="container">
-      <a class="voltar-home" href="/">← Voltar para a home</a>
-      <p class="eyebrow">Trabalhos</p>
-      <span class="accent-line"></span>
-      <h1>Trabalhos publicados pela IDISTØPIC</h1>
-      <p class="lead">Uma vitrine dos projetos reais que já colocamos no ar, mais a nossa própria homepage como demonstração interna.</p>
-      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+  <a class="pular-para-conteudo" href="#conteudo">Ir para o conteúdo</a>
+
+  <!-- CENA — a mesma composição de /solucoes, com intensidade um degrau acima:
+       esta é a página de vitrine, onde a impressão visual faz parte do
+       argumento. Decorativa, inerte e fora da árvore de acessibilidade. -->
+  <div class="cena" aria-hidden="true">
+    <div class="cena-base"></div>
+    <div class="cena-luz">
+      <span class="luz luz-a"></span>
+      <span class="luz luz-b"></span>
+      <span class="luz luz-c"></span>
+    </div>
+
+    <svg class="cena-malha" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+      <g class="plano plano-longe">
+        <line x1="90" y1="0" x2="90" y2="900" />
+        <line x1="250" y1="0" x2="250" y2="900" />
+        <line x1="430" y1="0" x2="430" y2="900" />
+        <line x1="1010" y1="0" x2="1010" y2="900" />
+        <line x1="1200" y1="0" x2="1200" y2="900" />
+        <line x1="1360" y1="0" x2="1360" y2="900" />
+        <line x1="90" y1="180" x2="430" y2="180" />
+        <line x1="1010" y1="700" x2="1360" y2="700" />
+        <circle cx="90" cy="180" r="1.8" />
+        <circle cx="250" cy="180" r="1.8" />
+        <circle cx="430" cy="180" r="1.8" />
+        <circle cx="1010" cy="700" r="1.8" />
+        <circle cx="1200" cy="700" r="1.8" />
+        <circle cx="1360" cy="700" r="1.8" />
+      </g>
+
+      <g class="plano plano-meio">
+        <line x1="170" y1="60" x2="170" y2="860" />
+        <line x1="350" y1="0" x2="350" y2="760" />
+        <line x1="1090" y1="120" x2="1090" y2="900" />
+        <line x1="1290" y1="0" x2="1290" y2="820" />
+        <line x1="170" y1="320" x2="350" y2="320" />
+        <line x1="1090" y1="600" x2="1290" y2="600" />
+        <path d="M350 320 L620 470" />
+        <path d="M1090 600 L820 520" />
+        <circle cx="170" cy="320" r="2.2" />
+        <circle cx="350" cy="320" r="2.2" />
+        <circle cx="1090" cy="600" r="2.2" />
+        <circle cx="1290" cy="600" r="2.2" />
+        <circle cx="620" cy="470" r="2.2" />
+        <circle cx="820" cy="520" r="2.2" />
+      </g>
+
+      <g class="plano plano-perto">
+        <path class="energia" d="M170 320 L350 320 L620 470" />
+        <path class="energia" d="M1290 600 L1090 600 L820 520" />
+        <circle cx="350" cy="320" r="2.8" />
+        <circle cx="620" cy="470" r="2.8" />
+        <circle cx="1090" cy="600" r="2.8" />
+        <circle cx="820" cy="520" r="2.8" />
+      </g>
+    </svg>
+
+    <div class="cena-eixo"></div>
+
+    <div class="cena-sinais">
+      <span style="--x: 14%; --y: 24%"></span>
+      <span style="--x: 80%; --y: 16%"></span>
+      <span style="--x: 36%; --y: 70%"></span>
+      <span style="--x: 88%; --y: 60%"></span>
+    </div>
+
+    <div class="cena-grao"></div>
+    <div class="cena-vinheta"></div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container cabecalho-inner">
+      <a class="marca" href="/"><span class="cyan">IDIST</span><span class="green">ØPIC</span></a>
+      <nav class="cabecalho-nav" aria-label="Navegação principal">
+        <a href="/">Home</a>
+        <a href="/solucoes">Soluções</a>
+        <a href="/trabalhos" aria-current="page">Trabalhos</a>
+        <a class="nav-acao" href="/briefing">Briefing</a>
+      </nav>
     </div>
   </header>
 
-  <section class="solucao" id="trabalhos">
+  <main id="conteudo">
+
+  <header class="hero" id="hero" data-cena="1 1 0.95">
     <div class="container">
-      <div class="solucoes-lista">
+      <p class="rotulo">Trabalhos</p>
+      <span class="risco" aria-hidden="true"></span>
+      <div class="hero-grade">
+        <div>
+          <h1>Trabalhos publicados pela IDISTØPIC</h1>
+          <p class="lead">Uma vitrine dos projetos reais que já colocamos no ar, mais a nossa própria homepage como demonstração interna.</p>
+        </div>
+        <div class="hero-acao">
+          <a class="cta cta-primaria" href="/briefing">Preencher briefing</a>
+        </div>
+        <span class="hero-risco" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
 
-        <article class="solucao-bloco reveal">
-          <h2 class="solucao-titulo">Comanda Local</h2>
-          <span class="badge badge-green">Trabalho publicado</span>
-          <p>Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
-          <a class="cta cta-secondary" href="https://comanda-local.netlify.app/#demonstracao" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
+  <!-- A VITRINE — três trabalhos de cliente, cada um numa faixa própria. O
+       marcador sólido diz o mesmo que dizia o badge verde: está publicado e no
+       ar. A alternância de lado vem da ordem do grid, então a ordem de leitura
+       no DOM continua nome, contexto e link em todos os itens. -->
+  <section class="veu-fundo" id="trabalhos" data-cena="0.7 0.78 0.7">
+    <div class="container">
+      <p class="rotulo">Trabalhos selecionados</p>
+      <span class="risco" aria-hidden="true"></span>
+
+      <div class="vitrine">
+
+        <article class="trabalho revela">
+          <div class="obra-texto">
+            <h2 class="nome">Comanda Local</h2>
+            <span class="estado-marca estado-marca-ativa">Trabalho publicado</span>
+            <p class="contexto">Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+            <a class="link-fino link-obra" href="https://comanda-local.netlify.app/#demonstracao" target="_blank" rel="noopener noreferrer"><span>Ver trabalho publicado <span aria-hidden="true">↗</span></span></a>
+          </div>
+          <div class="placa" aria-hidden="true"></div>
         </article>
 
-        <article class="solucao-bloco reveal">
-          <h2 class="solucao-titulo">Jessie Nails</h2>
-          <span class="badge badge-green">Trabalho publicado</span>
-          <p>Criado por IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
-          <a class="cta cta-secondary" href="https://jessie-nails.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
+        <article class="trabalho revela">
+          <div class="obra-texto">
+            <h2 class="nome">Jessie Nails</h2>
+            <span class="estado-marca estado-marca-ativa">Trabalho publicado</span>
+            <p class="contexto">Criado por IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+            <a class="link-fino link-obra" href="https://jessie-nails.netlify.app/" target="_blank" rel="noopener noreferrer"><span>Ver trabalho publicado <span aria-hidden="true">↗</span></span></a>
+          </div>
+          <div class="placa" aria-hidden="true"></div>
         </article>
 
-        <article class="solucao-bloco reveal">
-          <h2 class="solucao-titulo">FB Restaurações</h2>
-          <span class="badge badge-green">Trabalho publicado</span>
-          <p>Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
-          <a class="cta cta-secondary" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener noreferrer">Ver trabalho publicado ↗</a>
-        </article>
-
-        <article class="solucao-bloco reveal">
-          <h2 class="solucao-titulo">Homepage IDISTØPIC</h2>
-          <span class="badge badge-orange">Demo interna</span>
-          <p>Produto próprio da IDISTØPIC, não é entrega para cliente — a nossa própria vitrine institucional, em evolução, construída com a mesma abordagem que oferecemos.</p>
-          <a class="cta cta-secondary" href="/">Ver homepage</a>
+        <article class="trabalho revela">
+          <div class="obra-texto">
+            <h2 class="nome">FB Restaurações</h2>
+            <span class="estado-marca estado-marca-ativa">Trabalho publicado</span>
+            <p class="contexto">Criado e desenvolvido pela IDISTØPIC. Página online publicada, disponível para visualização pública.</p>
+            <a class="link-fino link-obra" href="https://fb-restauracoes.netlify.app/" target="_blank" rel="noopener noreferrer"><span>Ver trabalho publicado <span aria-hidden="true">↗</span></span></a>
+          </div>
+          <div class="placa" aria-hidden="true"></div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <section class="cta-final" id="cta-final">
-    <div class="container reveal">
+  <!-- PRODUTO PRÓPRIO — a homepage não é entrega para cliente, e por isso não
+       divide seção com quem é. Antes a separação dependia da cor do badge;
+       agora ela é estrutural. -->
+  <section class="veu-painel" id="produto-proprio" data-cena="0.42 0.5 0.3">
+    <div class="container">
+      <p class="rotulo">Produto próprio</p>
+      <span class="risco" aria-hidden="true"></span>
+
+      <div class="vitrine">
+        <article class="trabalho revela">
+          <div class="obra-texto">
+            <h2 class="nome">Homepage IDISTØPIC</h2>
+            <span class="estado-marca estado-marca-ativa">Demo interna</span>
+            <p class="contexto">Produto próprio da IDISTØPIC, não é entrega para cliente — a nossa própria vitrine institucional, em evolução, construída com a mesma abordagem que oferecemos.</p>
+            <a class="link-fino link-obra" href="/"><span>Ver homepage</span></a>
+          </div>
+          <div class="placa" aria-hidden="true"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fechamento" id="cta-final" data-cena="0.9 0.98 0.9">
+    <div class="container revela">
+      <p class="rotulo">Próximo passo</p>
+      <span class="risco" aria-hidden="true"></span>
       <h2>Quer um trabalho assim para o seu negócio?</h2>
-      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
-      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+      <p class="lead">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
+      <a class="cta cta-primaria cta-fechamento" href="/briefing">Preencher briefing</a>
     </div>
   </section>
   </main>
 
-  <footer class="rodape" id="rodape">
-    <div class="container footer-inner">
-      <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
-      <span>Landing pages com IA</span>
+  <footer class="rodape" id="rodape" data-cena="0.72 0.88 0.62">
+    <div class="container rodape-inner">
+      <span class="rodape-marca">
+        <strong class="rodape-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
+        <span>AI Systems Company</span>
+      </span>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="secondary-v1.js" defer></script>
 </body>
 </html>

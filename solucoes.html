@@ -1,48 +1,29 @@
-<!-- SOLUÇÕES PASS (2026-07-28) — página estática /solucoes.html, servida via
-     rewrite interno /solucoes -> /solucoes.html em vercel.json. Reaproveita
-     styles.css e script.js já existentes (mesmo design system, mesmo
-     scroll-reveal). Sem CDN, sem dependência nova, sem build. Não altera
-     index.html. Ver plano aprovado nesta conversa.
+<!-- SOLUCOES — MIGRACAO VISUAL v1 (2026-09-06, CHECKPOINT 10D).
 
-     REPOSICIONAMENTO — alinhamento com a homepage (2026-07-29) — título,
-     meta description, Hero e CTA final agora distinguem "landing pages com
-     IA" (oferta disponível hoje, badge-cyan "Disponível agora", CTAs para
-     /briefing) das demais 4 frentes (badge-neutro "Em desenvolvimento",
-     sem CTA de venda, sem link de contato nesta etapa). Rodapé alinhado ao
-     index.html ("Landing pages com IA"). Grid 2x2 interno de cada bloco
-     (Problema/Para quem/O que entregamos/Exemplo) não foi reescrito. Só
-     classes já existentes reaproveitadas (.badge/.badge-cyan/.badge-neutro)
-     — nenhuma mudança em styles.css, index.html, vercel.json ou script.js.
+     A pagina saiu do sistema legado (styles.css, cards com moldura, badges
+     coloridos, molduras tech nos cantos) para a camada propria das paginas
+     secundarias: secondary-v1.css e secondary-v1.js. A homepage e a referencia
+     visual e NAO foi tocada; a identidade e compartilhada por paridade de
+     tokens, e nao por importacao de arquivo.
 
-     TRABALHOS PASS (2026-07-31) — link discreto "Ver trabalhos publicados →"
-     adicionado dentro do campo "Exemplo" da linha "Sites e landing pages",
-     apontando para a página nova /trabalhos. Só essa linha nova; nenhum
-     outro conteúdo desta página alterado. Classe já existente reaproveitada
-     (.card-link) — nenhuma mudança em styles.css. Ver
-     memory/products/landing-idistopic/trabalhos-implementation-plan-v1.md.
-     Ver memory/products/landing-idistopic/DECISIONS.md.
+     Composicao propria, na ordem pedida no 10D: hero editorial assimetrico,
+     contexto (matriz de estados), capacidade atual, como entra em operacao,
+     frentes em desenvolvimento e fechamento.
 
-     PREMIUM PASS v0 (2026-08-02, branch feature/solucoes-premium-v0) — a
-     seção única "Soluções" (5 cards `.solucao-bloco` idênticos, só o badge
-     mudava) virou 2 seções que reaproveitam exatamente os componentes já
-     validados e em produção na homepage (index.html): "Sites e landing
-     pages" (oferta real) agora usa `.servico-destaque` + `.destaque-tech-
-     frame`/`.destaque-tech-corner-*` (frame completo, mesmo tratamento do
-     serviço principal da homepage); as 4 frentes futuras agora usam
-     `.valores`/`.card-compact` (ícone + título + badge, sem os 4 campos
-     detalhados que tinham antes). Hero ganhou `.hero-tech-frame`/`.hero-
-     tech-corner-*`, igual ao da homepage. Nenhum token/cor/fonte/componente
-     novo — só classes já existentes em styles.css, reaproveitadas. Copy do
-     serviço principal (parágrafo + 5 bullets de mecanismo) e da seção de
-     visão futura (eyebrow/h2/lead) reaproveitada literalmente de index.html
-     — mesma oferta, mesmo texto já aprovado, nada inventado. Distinção
-     badge-cyan "Disponível agora" vs. badge-neutro "Em desenvolvimento"
-     preservada; CTAs para /briefing e link para /trabalhos preservados.
-     Local/branch only — NÃO promovido a produção. Ver
-     memory/products/landing-idistopic/solucoes-premium-diagnosis-v0.md e
-     premium-page-system-v0.md. -->
+     CONTEUDO PRESERVADO. Nenhuma capacidade, servico, cliente ou metrica foi
+     inventado. Toda a copy vem da versao anterior desta pagina ou da homepage
+     em producao. As unicas trocas registradas: a tagline do rodape passa de
+     "Landing pages com IA" para "AI Systems Company", a mesma da home, e o link
+     solto de retorno virou item de navegacao no header.
+
+     A distincao entre o que esta disponivel e o que esta em desenvolvimento
+     deixou de depender da cor de um badge: agora e estrutural, marcada pela
+     espessura da regua do marcador de estado, legivel tambem em monocromo.
+
+     Metadata de descoberta do 10B (canonical, Open Graph, Twitter, icones)
+     reintegrada sem alteracao de valor. -->
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-pagina="solucoes">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -79,141 +60,236 @@
   <meta name="twitter:description" content="Landing pages com IA é a oferta disponível hoje na IDISTØPIC. Veja também a visão de produto em desenvolvimento: sistemas inteligentes, agentes de IA, automações, APIs e SaaS." />
   <meta name="twitter:image" content="https://www.idistopic.com/assets/brand/og-idistopic-1200x630.png" />
 
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="secondary-v1.css" />
 </head>
 <body>
 
-  <main>
-  <header class="hero" id="hero">
-    <div class="hero-tech-frame" aria-hidden="true"></div>
-    <span class="hero-tech-corner hero-tech-corner-tl" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-tr" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-bl" aria-hidden="true"></span>
-    <span class="hero-tech-corner hero-tech-corner-br" aria-hidden="true"></span>
-    <div class="container">
-      <a class="voltar-home" href="/">← Voltar para a home</a>
-      <p class="eyebrow">Soluções</p>
-      <span class="accent-line"></span>
-      <h1>O que a IDISTØPIC entrega hoje — e o que está em desenvolvimento</h1>
-      <p class="lead">Landing pages com IA já é uma oferta real, com briefing guiado, apoio de IA e validação de qualidade. As demais frentes abaixo fazem parte da nossa visão de produto e ainda estão em desenvolvimento.</p>
-      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+  <a class="pular-para-conteudo" href="#conteudo">Ir para o conteúdo</a>
+
+  <!-- CENA — uma composição única atrás da página inteira. Decorativa, inerte e
+       fora da árvore de acessibilidade. A figura é de prumadas e travessas, não
+       a rede neural da home: a mesma matéria, outro desenho, porque o assunto
+       aqui é sistema em operação. O JS apenas modula presença e paralaxe; sem
+       ele a cena continua inteira, parada. -->
+  <div class="cena" aria-hidden="true">
+    <div class="cena-base"></div>
+    <div class="cena-luz">
+      <span class="luz luz-a"></span>
+      <span class="luz luz-b"></span>
+      <span class="luz luz-c"></span>
+    </div>
+
+    <svg class="cena-malha" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" focusable="false" aria-hidden="true">
+      <!-- plano de fundo: a estrutura quase apagada, mais lenta, com leve desfoque -->
+      <g class="plano plano-longe">
+        <line x1="90" y1="0" x2="90" y2="900" />
+        <line x1="250" y1="0" x2="250" y2="900" />
+        <line x1="430" y1="0" x2="430" y2="900" />
+        <line x1="1010" y1="0" x2="1010" y2="900" />
+        <line x1="1200" y1="0" x2="1200" y2="900" />
+        <line x1="1360" y1="0" x2="1360" y2="900" />
+        <line x1="90" y1="180" x2="430" y2="180" />
+        <line x1="1010" y1="700" x2="1360" y2="700" />
+        <circle cx="90" cy="180" r="1.8" />
+        <circle cx="250" cy="180" r="1.8" />
+        <circle cx="430" cy="180" r="1.8" />
+        <circle cx="1010" cy="700" r="1.8" />
+        <circle cx="1200" cy="700" r="1.8" />
+        <circle cx="1360" cy="700" r="1.8" />
+      </g>
+
+      <!-- plano médio: a estrutura legível, com espaço negativo no eixo do texto -->
+      <g class="plano plano-meio">
+        <line x1="170" y1="60" x2="170" y2="860" />
+        <line x1="350" y1="0" x2="350" y2="760" />
+        <line x1="1090" y1="120" x2="1090" y2="900" />
+        <line x1="1290" y1="0" x2="1290" y2="820" />
+        <line x1="170" y1="320" x2="350" y2="320" />
+        <line x1="1090" y1="600" x2="1290" y2="600" />
+        <path d="M350 320 L620 470" />
+        <path d="M1090 600 L820 520" />
+        <circle cx="170" cy="320" r="2.2" />
+        <circle cx="350" cy="320" r="2.2" />
+        <circle cx="1090" cy="600" r="2.2" />
+        <circle cx="1290" cy="600" r="2.2" />
+        <circle cx="620" cy="470" r="2.2" />
+        <circle cx="820" cy="520" r="2.2" />
+      </g>
+
+      <!-- primeiro plano: pouquíssimos nós, e só por eles corre energia -->
+      <g class="plano plano-perto">
+        <path class="energia" d="M170 320 L350 320 L620 470" />
+        <path class="energia" d="M1290 600 L1090 600 L820 520" />
+        <circle cx="350" cy="320" r="2.8" />
+        <circle cx="620" cy="470" r="2.8" />
+        <circle cx="1090" cy="600" r="2.8" />
+        <circle cx="820" cy="520" r="2.8" />
+      </g>
+    </svg>
+
+    <div class="cena-eixo"></div>
+
+    <div class="cena-sinais">
+      <span style="--x: 14%; --y: 24%"></span>
+      <span style="--x: 80%; --y: 16%"></span>
+      <span style="--x: 36%; --y: 70%"></span>
+      <span style="--x: 88%; --y: 60%"></span>
+    </div>
+
+    <div class="cena-grao"></div>
+    <div class="cena-vinheta"></div>
+  </div>
+
+  <!-- HEADER — a home não tem um, porque a home é o destino. Esta página tem,
+       porque quem chega aqui precisa poder voltar e circular. Mesmo vocabulário
+       visual: filete, microtipografia em caixa alta, ciano só no que é estado. -->
+  <header class="cabecalho">
+    <div class="container cabecalho-inner">
+      <a class="marca" href="/"><span class="cyan">IDIST</span><span class="green">ØPIC</span></a>
+      <nav class="cabecalho-nav" aria-label="Navegação principal">
+        <a href="/">Home</a>
+        <a href="/solucoes" aria-current="page">Soluções</a>
+        <a href="/trabalhos">Trabalhos</a>
+        <a class="nav-acao" href="/briefing">Briefing</a>
+      </nav>
     </div>
   </header>
 
-  <section class="servicos" id="servico-principal">
+  <main id="conteudo">
+
+  <!-- HERO — assimétrico de propósito. A home abre centrada; aqui o título
+       encosta à esquerda e o filete corre até a borda direita, deixando o canto
+       superior direito aberto para a cena aparecer. -->
+  <header class="hero" id="hero" data-cena="1 1 0.9">
     <div class="container">
-      <p class="eyebrow eyebrow-inline">Oferta atual</p>
-      <span class="accent-line"></span>
+      <p class="rotulo">Soluções</p>
+      <span class="risco" aria-hidden="true"></span>
+      <div class="hero-grade">
+        <div>
+          <h1>O que a IDISTØPIC entrega hoje — e o que está em desenvolvimento</h1>
+          <p class="lead">Landing pages com IA já é uma oferta real, com briefing guiado, apoio de IA e validação de qualidade.</p>
+        </div>
+        <div class="hero-acao">
+          <a class="cta cta-primaria" href="/briefing">Preencher briefing</a>
+        </div>
+        <span class="hero-risco" aria-hidden="true"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ESTADO DA OFERTA — o bloco de contexto. Responde, antes de qualquer
+       detalhe, a única pergunta que separa uma coisa da outra nesta página: o
+       que dá para contratar hoje e o que ainda não dá. É um índice; cada linha
+       reaparece adiante, desenvolvida. -->
+  <section class="veu-aberto" id="estado" data-cena="0.5 0.55 0.5">
+    <div class="container">
+      <p class="rotulo">Estado da oferta</p>
+      <span class="risco" aria-hidden="true"></span>
+      <p class="lead">As demais frentes abaixo fazem parte da nossa visão de produto e ainda estão em desenvolvimento.</p>
+
+      <div class="estado-matriz revela">
+        <div class="estado-linha">
+          <span class="estado-marca estado-marca-ativa">Disponível agora</span>
+          <p class="estado-nome">Sites e landing pages</p>
+        </div>
+        <div class="estado-linha">
+          <span class="estado-marca">Em desenvolvimento</span>
+          <p class="estado-nome">Também estamos construindo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- A OFERTA — bloco editorial com régua ciano à esquerda, sem caixa. Mesmo
+       recurso que a home usa na frente principal, porque é o mesmo papel: este
+       é o item dominante da página. -->
+  <section class="veu-painel" id="servico-principal" data-cena="0.62 0.7 0.85">
+    <div class="container">
+      <p class="rotulo">Oferta atual</p>
+      <span class="risco" aria-hidden="true"></span>
       <h2>Sites e landing pages</h2>
 
-      <div class="servico-destaque reveal">
-        <div class="destaque-tech-frame" aria-hidden="true"></div>
-        <span class="destaque-tech-corner destaque-tech-corner-tl" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-tr" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-bl" aria-hidden="true"></span>
-        <span class="destaque-tech-corner destaque-tech-corner-br" aria-hidden="true"></span>
-        <span class="badge badge-cyan">Disponível agora</span>
-        <span class="card-icon icon-orange">
-          <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3.5" y="5" width="17" height="14" rx="2"/>
-            <line x1="3.5" y1="9" x2="20.5" y2="9"/>
-          </svg>
-        </span>
+      <div class="oferta revela">
+        <span class="estado-marca estado-marca-ativa">Disponível agora</span>
         <p>Nosso serviço principal é a criação de landing pages para negócios que precisam vender, validar ou apresentar uma oferta sem montar uma equipe técnica.</p>
-        <ul>
-          <li>Briefing guiado para entender oferta, público e objetivo da página</li>
-          <li>Estrutura de página pensada para clareza e conversão</li>
-          <li>Construção com apoio de IA e checagens automatizadas</li>
-          <li>Validação técnica e visual antes da entrega</li>
-          <li>Caminho simples para captar interessados e iniciar conversas</li>
-        </ul>
-        <p class="solucao-nota">Exemplo próprio: a homepage da IDISTØPIC como vitrine institucional em evolução.</p>
-        <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
-        <a class="card-link" href="/trabalhos">Ver trabalhos publicados →</a>
+        <p class="oferta-nota">Exemplo próprio: a homepage da IDISTØPIC como vitrine institucional em evolução.</p>
+        <div class="oferta-acoes">
+          <a class="cta cta-primaria" href="/briefing">Preencher briefing</a>
+          <a class="link-fino" href="/trabalhos"><span>Ver trabalhos publicados <span aria-hidden="true">&rarr;</span></span></a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="valores" id="em-desenvolvimento">
+  <!-- COMO ENTRA EM OPERAÇÃO — as cinco etapas são uma sequência real: briefing,
+       estrutura, construção, validação e captação acontecem nessa ordem. Por
+       isso, e só por isso, elas são numeradas. O número vem de um contador CSS,
+       então se o CSS falhar a lista continua numerada pelo próprio navegador. -->
+  <section class="veu-fundo" id="operacao" data-cena="0.34 0.45 0.4">
     <div class="container">
-      <p class="eyebrow eyebrow-inline">Visão futura</p>
-      <span class="accent-line"></span>
+      <span class="risco" aria-hidden="true"></span>
+      <h2>Como entra em operação</h2>
+      <ol class="etapas revela">
+        <li class="etapa"><p>Briefing guiado para entender oferta, público e objetivo da página</p></li>
+        <li class="etapa"><p>Estrutura de página pensada para clareza e conversão</p></li>
+        <li class="etapa"><p>Construção com apoio de IA e checagens automatizadas</p></li>
+        <li class="etapa"><p>Validação técnica e visual antes da entrega</p></li>
+        <li class="etapa"><p>Caminho simples para captar interessados e iniciar conversas</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FRENTES EM DESENVOLVIMENTO — pauta de linhas, sem caixa e sem ícone. O
+       estado fica na coluna da direita, alinhado, para as quatro linhas lerem
+       como um registro de situação e não como catálogo de produto. -->
+  <section class="veu-fundo" id="em-desenvolvimento" data-cena="0.2 0.3 0.12">
+    <div class="container">
+      <p class="rotulo">Visão futura</p>
+      <span class="risco" aria-hidden="true"></span>
       <h2>Também estamos construindo</h2>
       <p class="lead">A IDISTØPIC está evoluindo para criar sistemas inteligentes, agentes de IA, automações, APIs e produtos digitais. Essas frentes fazem parte da visão do produto, mas ainda não são ofertas abertas de venda.</p>
-      <div class="cards-grid cards-grid-servicos">
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="2.5"/>
-              <circle cx="5" cy="6" r="1.4"/>
-              <circle cx="19" cy="6" r="1.4"/>
-              <circle cx="12" cy="20" r="1.4"/>
-              <line x1="10.2" y1="10.4" x2="6.3" y2="7.1"/>
-              <line x1="13.8" y1="10.4" x2="17.7" y2="7.1"/>
-              <line x1="12" y1="14.5" x2="12" y2="18.3"/>
-            </svg>
-          </span>
+
+      <div class="frentes-pauta revela">
+        <div class="frente-linha">
           <h3>Sistemas inteligentes e agentes de IA</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <span class="estado-marca">Em desenvolvimento</span>
         </div>
-
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="5"/>
-              <circle cx="12" cy="12" r="1.6"/>
-              <line x1="12" y1="3.5" x2="12" y2="6"/>
-              <line x1="12" y1="18" x2="12" y2="20.5"/>
-              <line x1="3.5" y1="12" x2="6" y2="12"/>
-              <line x1="18" y1="12" x2="20.5" y2="12"/>
-            </svg>
-          </span>
+        <div class="frente-linha">
           <h3>Automações</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <span class="estado-marca">Em desenvolvimento</span>
         </div>
-
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-cyan">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-              <circle cx="8" cy="8" r="3.5"/>
-              <circle cx="16" cy="16" r="3.5"/>
-              <line x1="10.5" y1="10.5" x2="13.5" y2="13.5"/>
-            </svg>
-          </span>
+        <div class="frente-linha">
           <h3>APIs e integrações</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <span class="estado-marca">Em desenvolvimento</span>
         </div>
-
-        <div class="card card-compact reveal">
-          <span class="card-icon icon-green">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
-              <rect x="4" y="4" width="12" height="7" rx="1.5"/>
-              <rect x="8" y="13" width="12" height="7" rx="1.5"/>
-            </svg>
-          </span>
+        <div class="frente-linha">
           <h3>SaaS e produtos digitais</h3>
-          <span class="badge badge-neutro">Em desenvolvimento</span>
+          <span class="estado-marca">Em desenvolvimento</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cta-final" id="cta-final">
-    <div class="container reveal">
+  <section class="fechamento" id="cta-final" data-cena="0.85 0.95 0.85">
+    <div class="container revela">
+      <p class="rotulo">Próximo passo</p>
+      <span class="risco" aria-hidden="true"></span>
       <h2>Precisa de uma landing page que já comece com estratégia?</h2>
-      <p class="lead lead-invertido">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
-      <a class="cta cta-primary" href="/briefing">Preencher briefing</a>
+      <p class="lead">Comece pelo briefing. A partir dele, entendemos sua oferta, seu público e o tipo de página que faz sentido construir agora.</p>
+      <a class="cta cta-primaria cta-fechamento" href="/briefing">Preencher briefing</a>
     </div>
   </section>
   </main>
 
-  <footer class="rodape" id="rodape">
-    <div class="container footer-inner">
-      <strong class="footer-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
-      <span>Landing pages com IA</span>
+  <footer class="rodape" id="rodape" data-cena="0.68 0.85 0.6">
+    <div class="container rodape-inner">
+      <span class="rodape-marca">
+        <strong class="rodape-logo"><span class="cyan">IDIST</span><span class="green">ØPIC</span></strong>
+        <span>AI Systems Company</span>
+      </span>
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="secondary-v1.js" defer></script>
 </body>
 </html>
