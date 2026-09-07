@@ -1,0 +1,34 @@
+name: IndexNow Production Automation
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: idistopic-indexnow-production
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  indexnow:
+    name: Submit to IndexNow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Execute IndexNow Automation
+        run: |
+          node scripts/indexnow-submit.mjs \
+            --before="${{ github.event.before }}" \
+            --after="${{ github.sha }}"
