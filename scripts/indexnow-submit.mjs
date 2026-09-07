@@ -101,6 +101,9 @@ export function mapFileToUrls(filePath, sitemapUrls = []) {
   if (normalized === 'trabalhos.html') {
     return [`${CANONICAL_ORIGIN}/trabalhos`];
   }
+  if (normalized === 'web.html') {
+    return [`${CANONICAL_ORIGIN}/web`];
+  }
 
   // Page-specific CSS/JS
   if (normalized === 'homepage-v1.css' || normalized === 'homepage-v1.js') {
@@ -108,6 +111,9 @@ export function mapFileToUrls(filePath, sitemapUrls = []) {
   }
   if (normalized === 'secondary-v1.css' || normalized === 'secondary-v1.js') {
     return [`${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`];
+  }
+  if (normalized === 'web.css' || normalized === 'web.js') {
+    return [`${CANONICAL_ORIGIN}/web`];
   }
 
   // Assets
@@ -119,7 +125,7 @@ export function mapFileToUrls(filePath, sitemapUrls = []) {
       normalized.startsWith('assets/brand/og-') ||
       normalized.startsWith('assets/fonts/')
     ) {
-      return [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`];
+      return sitemapUrls.length > 0 ? sitemapUrls : [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`, `${CANONICAL_ORIGIN}/web`];
     }
     // Specific images
     if (normalized === 'assets/brand/idistopic-lockup.png' || normalized === 'assets/brand/idistopic-symbol.png') {
@@ -129,12 +135,12 @@ export function mapFileToUrls(filePath, sitemapUrls = []) {
       return [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/trabalhos`];
     }
     // Fallback for any other asset: affect all known sitemap URLs
-    return sitemapUrls.length > 0 ? sitemapUrls : [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`];
+    return sitemapUrls.length > 0 ? sitemapUrls : [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`, `${CANONICAL_ORIGIN}/web`];
   }
 
   // vercel.json routing changes potentially affect all canonical pages
   if (normalized === 'vercel.json') {
-    return sitemapUrls.length > 0 ? sitemapUrls : [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`];
+    return sitemapUrls.length > 0 ? sitemapUrls : [`${CANONICAL_ORIGIN}/`, `${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`, `${CANONICAL_ORIGIN}/web`];
   }
 
   return [];

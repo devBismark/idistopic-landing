@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/web.html", "destination": "/web", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/briefing", "destination": "https://client-flow-ekgp.onrender.com/index.html" },
     { "source": "/painel", "destination": "https://client-flow-ekgp.onrender.com/central.html" },
@@ -13,6 +16,7 @@
     { "source": "/painel/briefings", "destination": "https://client-flow-ekgp.onrender.com/painel/briefings" },
     { "source": "/painel/diagnostico", "destination": "https://client-flow-ekgp.onrender.com/painel/diagnostico" },
     { "source": "/painel/radar", "destination": "https://client-flow-ekgp.onrender.com/painel/radar" },
-    { "source": "/trabalhos", "destination": "/trabalhos.html" }
+    { "source": "/trabalhos", "destination": "/trabalhos.html" },
+    { "source": "/web", "destination": "/web.html" }
   ]
 }

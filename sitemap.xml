@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Sitemap IDISTØPIC. Lista apenas as tres rotas publicas de conteudo, nas URLs
+  Sitemap IDISTØPIC. Lista apenas as quatro rotas publicas de conteudo, nas URLs
   canonicas limpas servidas pelos rewrites internos do vercel.json.
 
   Fora de proposito: rotas administrativas e de painel, os fluxos externos
@@ -21,4 +21,8 @@
   <url>
     <loc>https://www.idistopic.com/trabalhos</loc>
   </url>
+  <url>
+    <loc>https://www.idistopic.com/web</loc>
+  </url>
 </urlset>
+

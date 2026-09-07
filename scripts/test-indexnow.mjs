@@ -79,10 +79,24 @@ async function runTests() {
     assert.deepEqual(urls, [`${CANONICAL_ORIGIN}/trabalhos`]);
   });
 
+  // C2. web.html alterado -> somente /web
+  test('C2: web.html changed -> only https://www.idistopic.com/web', () => {
+    const urls = detectAffectedUrls(['web.html'], { currentSitemap: SITEMAP_SAMPLE });
+    assert.deepEqual(urls, [`${CANONICAL_ORIGIN}/web`]);
+  });
+
   // D. secondary-v1.css -> /solucoes + /trabalhos
   test('D: secondary-v1.css changed -> /solucoes and /trabalhos', () => {
     const urls = detectAffectedUrls(['secondary-v1.css'], { currentSitemap: SITEMAP_SAMPLE });
     assert.deepEqual(urls.sort(), [`${CANONICAL_ORIGIN}/solucoes`, `${CANONICAL_ORIGIN}/trabalhos`].sort());
+  });
+
+  // D2. web.css e web.js -> /web
+  test('D2: web.css/web.js changed -> only /web', () => {
+    const urlsCss = detectAffectedUrls(['web.css'], { currentSitemap: SITEMAP_SAMPLE });
+    assert.deepEqual(urlsCss, [`${CANONICAL_ORIGIN}/web`]);
+    const urlsJs = detectAffectedUrls(['web.js'], { currentSitemap: SITEMAP_SAMPLE });
+    assert.deepEqual(urlsJs, [`${CANONICAL_ORIGIN}/web`]);
   });
 
   // E. homepage-v1.js -> /
